@@ -1,20 +1,27 @@
 {
-    "family": "$APP_NAME",
-    "networkMode": "bridge",
-    "containerDefinitions": [
-        {
-            "name": "$APP_NAME",
-            "image": "$DOCKER_REPO/$APP_NAME:$APP_VERSION",
-            "cpu": 64,
-            "memory": 256,
-            "portMappings": [
-                {
-                    "hostPort": 0,
-                    "containerPort": 80,
-                    "protocol": "tcp"
-                }
-            ],
-            "essential": true
-        }
-    ]
+	"family": "$APP_NAME",
+	"networkMode": "bridge",
+	"containerDefinitions": [
+		{
+			"name": "$APP_NAME",
+			"image": "$DOCKER_REPO/$APP_NAME:$APP_VERSION",
+			"cpu": 64,
+			"memory": 256,
+			"portMappings": [
+				{
+					"hostPort": 0,
+					"containerPort": 80,
+					"protocol": "tcp"
+				}
+			],
+			"essential": true,
+			"logConfiguration": {
+				"logDriver": "awslogs",
+				"options": {
+					"awslogs-group": "$STAGE-pwa",
+					"awslogs-region": "ap-southeast-1"
+				}
+			}
+		}
+	]
 }
