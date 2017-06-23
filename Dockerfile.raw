@@ -1,0 +1,15 @@
+FROM $DOCKER_REPO/node:8.0.0
+
+# Install app dependencies
+COPY package.json .
+RUN npm install
+
+# Bundle app source
+COPY server.js .
+
+# test
+COPY test.html .
+
+EXPOSE 80
+
+CMD [ "npm", "start" ]
