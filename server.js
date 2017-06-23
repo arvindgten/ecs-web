@@ -18,6 +18,7 @@ app.get( '/*', function( req, res ) {
 		content = fs.readFileSync( 'src/pwa-stylesheets/style.css' );
 		res.set( 'Content-Type', 'text/css' );
 	} else if( req.path == '/health' ) {
+		console.log( "health is good~~!" );
 		content = Date.now() + "";
 		res.set( 'Content-Type', 'text/plain' );
 	} else {
