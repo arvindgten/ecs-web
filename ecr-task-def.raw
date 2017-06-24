@@ -7,6 +7,7 @@
 			"image": "$DOCKER_REPO/$APP_NAME:$APP_VERSION",
 			"cpu": 64,
 			"memory": 256,
+			"memoryReservation": 128,
 			"portMappings": [
 				{
 					"hostPort": 0,
@@ -18,7 +19,7 @@
 			"logConfiguration": {
 				"logDriver": "awslogs",
 				"options": {
-					"awslogs-group": "$STAGE-pwa",
+					"awslogs-group": "$STAGE-$APP_NAME",
 					"awslogs-region": "ap-southeast-1"
 				}
 			}
