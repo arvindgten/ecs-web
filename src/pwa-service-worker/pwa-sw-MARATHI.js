@@ -27,7 +27,7 @@
 		'https://www.ptlp.co/resource-all/font/font-mr.css'
 	];
 
-	var STATIC_VERSION = "230620171727";
+	var STATIC_VERSION = "240620171450";
 	var DYNAMIC_VERSION = "7";
 	var staticCacheName = 'pratilipi-cache-static-' + STATIC_VERSION;
 	var dynamicCacheName = 'pratilipi-cache-dynamic-' + DYNAMIC_VERSION;
@@ -93,8 +93,9 @@
 			&& url.indexOf( hostName + "/api?" ) === -1 // Batch Api Calls
 			&& url.indexOf( hostName + "/api/" ) === -1 // Individual Api Calls
 			&& url.indexOf( hostName + "/pwa-sw-MARATHI.js" ) === -1
-			&& url.indexOf( hostName + "/pratilipi-write" ) === -1
-			&& url.indexOf( hostName + "/write" ) === -1
+			&& url.indexOf( hostName + "/pratilipi-write?" ) === -1
+			&& url.indexOf( hostName + "/write?" ) === -1
+			&& url.indexOf( hostName + "/theme.pratilipi/" ) === -1 // Old writer panel resources
 			&& url !== ( hostName + "/admin" )
 			&& url.indexOf( hostName + "/admin/" ) === -1
 			&& url.indexOf( hostName + "/elements.mr" ) === -1
