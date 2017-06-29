@@ -86,7 +86,7 @@ var Website = defineEnum({
 	KANNADA:		{ hostName: "kannada.pratilipi.com",    mobileHostName: "kn.pratilipi.com", displayLanguage: Language.KANNADA,	filterLanguage: Language.KANNADA,   isTestEnvironment: false },
 	TELUGU:			{ hostName: "telugu.pratilipi.com",     mobileHostName: "te.pratilipi.com", displayLanguage: Language.TELUGU,		filterLanguage: Language.TELUGU,    isTestEnvironment: false },
 
-	GAMMA_ALL_LANGUAGE:	{ hostName: "www-gamma.pratilipi.com",          mobileHostName: "m-gamma.pratilipi.com", displayLanguage: Language.ENGLISH,		filterLanguage: null,               isTestEnvironment: true },
+	GAMMA_ALL_LANGUAGE:	{ hostName: "gamma.pratilipi.com",          mobileHostName: "m-gamma.pratilipi.com", displayLanguage: Language.ENGLISH,		filterLanguage: null,               isTestEnvironment: true },
 	GAMMA_HINDI:			{ hostName: "hindi-gamma.pratilipi.com",        mobileHostName: "hi-gamma.pratilipi.com", displayLanguage: Language.HINDI,		filterLanguage: Language.HINDI,     isTestEnvironment: true },
 	GAMMA_GUJARATI:		    { hostName: "gujarati-gamma.pratilipi.com",     mobileHostName: "gu-gamma.pratilipi.com", displayLanguage: Language.GUJARATI,	filterLanguage: Language.GUJARATI,  isTestEnvironment: true },
 	GAMMA_TAMIL:			{ hostName: "tamil-gamma.pratilipi.com",        mobileHostName: "ta-gamma.pratilipi.com", displayLanguage: Language.TAMIL,		filterLanguage: Language.TAMIL,     isTestEnvironment:  true },
@@ -96,7 +96,7 @@ var Website = defineEnum({
 	GAMMA_KANNADA:		    { hostName: "kannada-gamma.pratilipi.com",      mobileHostName: "kn-gamma.pratilipi.com", displayLanguage: Language.KANNADA,	filterLanguage: Language.KANNADA,   isTestEnvironment: true },
 	GAMMA_TELUGU:		    { hostName: "telugu-gamma.pratilipi.com",       mobileHostName: "te-gamma.pratilipi.com", displayLanguage: Language.TELUGU,		filterLanguage: Language.TELUGU,    isTestEnvironment:  true },
 
-	DEVO_ALL_LANGUAGE:	{ hostName: "www-devo.pratilipi.com",       mobileHostName: "m-devo-pratilipi.com",  displayLanguage: Language.ENGLISH,	    filterLanguage: null,               isTestEnvironment:   true },
+	DEVO_ALL_LANGUAGE:	{ hostName: "devo.pratilipi.com",       mobileHostName: "m-devo-pratilipi.com",  displayLanguage: Language.ENGLISH,	    filterLanguage: null,               isTestEnvironment:   true },
 	DEVO_HINDI:			{ hostName: "hindi-devo-pratilipi.com",     mobileHostName: "hi-devo-pratilipi.com", displayLanguage: Language.HINDI,		filterLanguage: Language.HINDI,     isTestEnvironment:   true },
 	DEVO_GUJARATI:		{ hostName: "gujarati-devo-pratilipi.com",  mobileHostName: "gu-devo-pratilipi.com", displayLanguage: Language.GUJARATI,	filterLanguage: Language.GUJARATI,  isTestEnvironment:  true },
 	DEVO_TAMIL:			{ hostName: "tamil-devo-pratilipi.com",     mobileHostName: "ta-devo-pratilipi.com", displayLanguage: Language.TAMIL,		filterLanguage: Language.TAMIL,     isTestEnvironment:   true },
