@@ -171,7 +171,7 @@ app.use( (req, res, next) => {
 					res.status(500).send( UNEXPECTED_SERVER_EXCEPTION );
 				} else {
 					accessToken = JSON.parse( body )[ "accessToken" ];
-					res.cookie( 'access_token', accessToken, { maxAge: 900000, httpOnly: true } );
+					res.cookie( 'access_token', accessToken, { maxAge: 30 * 86400, httpOnly: false } );
 					next();
 				}
 			});
