@@ -1,7 +1,9 @@
 'use strict';
 
-const express = require('express');
+const express = require( 'express' );
+const cookieParser = require( 'cookie-parser' );
 
+var requestModule = require( 'request' );
 var fs = require('fs');
 
 // Constants
@@ -9,8 +11,8 @@ const PORT = 80;
 
 
 function Enum() {
-    this._enums = [];
-    this._lookups = {};
+	this._enums = [];
+	this._lookups = {};
 }
 
 Enum.prototype = {
@@ -107,18 +109,7 @@ var Website = defineEnum({
 	ALPHA:	{ hostName: "localhost:8080", mobileHostName: "localhost:8080", displayLanguage: Language.HINDI, displayLanguage: Language.HINDI, isTestEnvironment: true }
 });
 
-
-// App
-const app = express();
-
-app.get( '/health', function( request, response ) {
-	response.send( Date.now() + "" );
-});
-
-app.get( '/*', function( req, res, next ) {
-
-	var hostName = req.headers.host;
-
+function _getWebsite( hostName ) {
 	var website = null;
 	var basicMode;
 	Website.forEach( function( web ) {
@@ -132,12 +123,66 @@ app.get( '/*', function( req, res, next ) {
 			return;
 		}
 	});
+	return website;
+}
 
-	/* Redirect to www.pratilipi.com */
-	if( website == null )
-		return res.redirect( 301, 'https://www.pratilipi.com/?redirect=ecs' );
+const APPENGINE_ENDPOINT =
+		( process.env.STAGE === 'gamma' || process.env.STAGE === 'prod' ) ?
+		"https://api.pratilipi.com" : "https://devo-pratilipi.appspot.com";
+const UNEXPECTED_SERVER_EXCEPTION = { "message": "Some exception occurred at server. Please try again." };
+
+// App
+const app = express();
+
+// Health
+app.get( '/health', (req, res, next) => {
+	res.send( Date.now() + "" );
+});
+
+// Redirect to www.pratilipi.com
+app.use( (req, res, next) => {
+	if( _getWebsite( req.headers.host ) == null )
+		res.redirect( 301, 'https://www.pratilipi.com/?redirect=ecs' );
+	else
+		next();
+});
+
+// cookie parser
+app.use( cookieParser() );
+
+// access_token
+app.use( (req, res, next) => {
+	var blackListFormats = [ '.html', '.css', '.js', '.png', '.jpg', '.svg', '.ico' ];
+	var isStaticRequest = false;
+	blackListFormats.forEach( function( format ) {
+		if( req.path.endsWith( format ) ) {
+			isStaticRequest = true;
+			return;
+		}
+	});
+	if( isStaticRequest ) {
+		next();
+	} else {
+		var accessToken = req.cookies[ "access_token" ];
+		if( accessToken === undefined ) {
+			requestModule( APPENGINE_ENDPOINT + "/user/accesstoken", (error, response, body) => {
+				if( error ) {
+					console.log( 'GET_ACCESSTOKEN_ERROR:: ', error );
+					res.status(500).send( UNEXPECTED_SERVER_EXCEPTION );
+				} else {
+					accessToken = JSON.parse( body )[ "accessToken" ];
+					res.cookie( 'access_token', accessToken, { maxAge: 900000, httpOnly: true } );
+					next();
+				}
+			});
+		}
+	}
+});
+
+app.get( '/*', (req, res, next) => {
 
 	var content = null;
+	var website = _getWebsite( req.headers.host );
 
 	if( req.path === '/pwa-stylesheets/css/style.css' ) {
 		content = fs.readFileSync( 'src/pwa-stylesheets/style.css', 'utf8' );
