@@ -200,7 +200,11 @@ app.get( '/*', (req, res, next) => {
 	} else if( req.path.indexOf( '/resources/' ) === 0 || req.path.indexOf( '/stylesheets/' ) === 0 ) {
 		content = "";
 		res.set( 'Content-Type', 'text/plain' );
+	} else if( req.path === "/pwa-manifest-" + website.__name__ + ".json" ) {
+		content = fs.readFileSync( 'src/pwa-manifest' + "/pwa-manifest-" + website.__name__ + ".json", 'utf8' );
+		res.set( 'Content-Type', 'application/json' );
 	} else {
+		console.log( "Serving html file to url : ",  req.url );
 		content = fs.readFileSync( 'src/pwa-markup/PWA-' + website.__name__ + '.html', 'utf8' );
 		res.set( 'Content-Type', 'text/html' );
 	}
