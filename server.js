@@ -141,6 +141,7 @@ app.get( '/health', (req, res, next) => {
 
 // Redirect to www.pratilipi.com
 app.use( (req, res, next) => {
+	console.log( req.headers.host );
 	if( _getWebsite( req.headers.host ) == null )
 		res.redirect( 301, 'https://www.pratilipi.com/?redirect=ecs' );
 	else
