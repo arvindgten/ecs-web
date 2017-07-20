@@ -126,10 +126,16 @@ function _getWebsite( hostName ) {
 	return website;
 }
 
-const APPENGINE_ENDPOvar =
+const APPENGINE_ENDPOINT =
 		( process.env.STAGE === 'gamma' || process.env.STAGE === 'prod' ) ?
 		"https://api.pratilipi.com" : "https://devo-pratilipi.appspot.com";
 const UNEXPECTED_SERVER_EXCEPTION = { "message": "Some exception occurred at server. Please try again." };
+
+if( !( 'contains' in String.prototype ) ) {
+	String.prototype.contains = function( str, startIndex ) {
+		return -1 !== String.prototype.indexOf.call( this, str, startIndex );
+	};
+}
 
 // App
 const app = express();
@@ -237,31 +243,73 @@ app.use( (req, res, next) => {
 		next();
 });
 
-// TODO: Crawlers
+// Crawlers
+app.use( (req, res, next) => {
+
+	var userAgent = req.get( 'User-Agent' );
+	var isCrawler = false;
+
+	if( userAgent.contains( "Googlebot" ) ) { // Googlebot/2.1; || Googlebot-News || Googlebot-Image/1.0 || Googlebot-Video/1.0
+		isCrawler = true;
+
+	} else if( userAgent.equals( "Google (+https://developers.google.com/+/web/snippet/)" ) ) { // Google+
+		isCrawler = true;
+
+	} else if( userAgent.contains( "Bingbot" ) ) { // Microsoft Bing
+		isCrawler = true;
+
+	} else if( userAgent.contains( "Slurp" ) ) { // Yahoo
+		isCrawler = true;
+
+	} else if( userAgent.contains( "DuckDuckBot" ) ) { // DuckDuckGo
+		isCrawler = true;
+
+	} else if( userAgent.contains( "Baiduspider" ) ) { // Baidu - China
+		isCrawler = true;
+
+	} else if( userAgent.contains( "YandexBot" ) ) { // Yandex - Russia
+		isCrawler = true;
+
+	} else if( userAgent.contains( "Exabot" ) ) { // ExaLead - France
+		isCrawler = true;
+
+	} else if( userAgent.equals( "facebot" )
+			|| userAgent.startsWith( "facebookexternalhit/1.0" )
+			|| userAgent.startsWith( "facebookexternalhit/1.1" ) ) { // Facebook Scraping requests
+		isCrawler = true;
+
+	} else if( userAgent.startsWith( "WhatsApp" ) ) { // Whatsapp
+		isCrawler = true;
+
+	} else if( userAgent.startsWith( "ia_archiver" ) ) { // Alexa Crawler
+		isCrawler = true;
+	}
+
+	isCrawler = true;
+	if( isCrawler ) {
+		var appengineUrl = APPENGINE_ENDPOINT + request.url;
+		appengineUrl += ( appengineUrl.indexOf( "?" ) === -1 ? "?" : "&" ) + "loadPWA=false";
+		request.pipe( requestModule( appengineUrl ) ).pipe( response );
+	} else {
+		next();
+	}
+});
 
 // TODO: Static Urls like robots.txt, sitemap
 
 // Redirecting to Mini website
 app.use( (req, res, next) => {
 
-	var website = _getWebsite( req.headers.host );
+	var web = _getWebsite( req.headers.host );
 
 	// request already coming to mobileHost -> don't do anything
-	if( req.headers.host == website.mobileHostName ) {
+	if( req.headers.host == web.mobileHostName ) {
 		next();
 		return;
 	}
 
 	var userAgent = req.get( 'User-Agent' );
-	console.log( userAgent );
 	var basicBrowser = false;
-	var isCrawler = false;
-
-	if( !( 'contains' in String.prototype ) ) {
-		String.prototype.contains = function( str, startIndex ) {
-			return -1 !== String.prototype.indexOf.call( this, str, startIndex );
-		};
-	}
 
 	if( userAgent == null || userAgent.trim() === "" ) {
 		basicBrowser = true;
@@ -355,54 +403,13 @@ app.use( (req, res, next) => {
 //					basicBrowser = version < 28;
 		basicBrowser = false;
 
-	} else if( userAgent.contains( "Googlebot" ) ) { // Googlebot/2.1; || Googlebot-News || Googlebot-Image/1.0 || Googlebot-Video/1.0
-		isCrawler = true;
-
-	} else if( userAgent.equals( "Google (+https://developers.google.com/+/web/snippet/)" ) ) { // Google+
-		isCrawler = true;
-
-	} else if( userAgent.contains( "Bingbot" ) ) { // Microsoft Bing
-		isCrawler = true;
-
-	} else if( userAgent.contains( "Slurp" ) ) { // Yahoo
-		isCrawler = true;
-
-	} else if( userAgent.contains( "DuckDuckBot" ) ) { // DuckDuckGo
-		isCrawler = true;
-
-	} else if( userAgent.contains( "Baiduspider" ) ) { // Baidu - China
-		isCrawler = true;
-
-	} else if( userAgent.contains( "YandexBot" ) ) { // Yandex - Russia
-		isCrawler = true;
-
-	} else if( userAgent.contains( "Exabot" ) ) { // ExaLead - France
-		isCrawler = true;
-
-	} else if( userAgent.equals( "facebot" )
-			|| userAgent.startsWith( "facebookexternalhit/1.0" )
-			|| userAgent.startsWith( "facebookexternalhit/1.1" ) ) { // Facebook Scraping requests
-		isCrawler = true;
-
-	} else if( userAgent.startsWith( "WhatsApp" ) ) { // Whatsapp
-		isCrawler = true;
-
-	} else if( userAgent.startsWith( "ia_archiver" ) ) { // Alexa Crawler
-		isCrawler = true;
-
 	} else {
 		basicBrowser = true;
 		logger.log( Level.INFO, "UNKNOWN_USER_AGENT: " + userAgent );
 	}
 
 	if( basicBrowser ) {
-		// TODO: Implementation
-	} else if( isCrawler ) {
-		// TODO: Implementation
-	} else if( path == 'sitemap' ) {
-		// TODO: Implementation
-	} else if( path == 'robots.txt' ) {
-		// TODO: Implementation
+		res.redirect( 307, ( req.secure ? 'https://' : 'http://' ) + web.mobileHostName + + req.originalUrl );
 	} else {
 		next();
 	}
@@ -424,7 +431,7 @@ app.use( (req, res, next) => {
 	} else {
 		var accessToken = req.cookies[ "access_token" ];
 		if( accessToken === undefined ) {
-			requestModule( APPENGINE_ENDPOvar + "/user/accesstoken", (error, response, body) => {
+			requestModule( APPENGINE_ENDPOINT + "/user/accesstoken", (error, response, body) => {
 				if( error ) {
 					console.log( 'GET_ACCESSTOKEN_ERROR:: ', error );
 					res.status(500).send( UNEXPECTED_SERVER_EXCEPTION );
