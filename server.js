@@ -106,7 +106,7 @@ var Website = defineEnum({
 	DEVO_MALAYALAM:		{ hostName: "malayalam-devo.pratilipi.com", mobileHostName: "ml-devo.pratilipi.com", displayLanguage: Language.MALAYALAM,	filterLanguage: Language.MALAYALAM, isTestEnvironment: true },
 	DEVO_BENGALI:		{ hostName: "bengali-devo.pratilipi.com",   mobileHostName: "bn-devo.pratilipi.com", displayLanguage: Language.BENGALI,	    filterLanguage: Language.BENGALI,   isTestEnvironment:  true },
 
-	ALPHA:	{ hostName: "localhost:8080", mobileHostName: "localhost:8080", displayLanguage: Language.HINDI, displayLanguage: Language.HINDI, isTestEnvironment: true }
+	ALPHA:	{ hostName: "localhost:8080", mobileHostName: "localhost:8081", displayLanguage: Language.HINDI, displayLanguage: Language.HINDI, isTestEnvironment: true }
 });
 
 function _getWebsite( hostName ) {
@@ -126,7 +126,7 @@ function _getWebsite( hostName ) {
 	return website;
 }
 
-const APPENGINE_ENDPOINT =
+const APPENGINE_ENDPOvar =
 		( process.env.STAGE === 'gamma' || process.env.STAGE === 'prod' ) ?
 		"https://api.pratilipi.com" : "https://devo-pratilipi.appspot.com";
 const UNEXPECTED_SERVER_EXCEPTION = { "message": "Some exception occurred at server. Please try again." };
@@ -134,22 +134,280 @@ const UNEXPECTED_SERVER_EXCEPTION = { "message": "Some exception occurred at ser
 // App
 const app = express();
 
+// cookie parser
+app.use( cookieParser() );
+
 // Health
 app.get( '/health', (req, res, next) => {
 	res.send( Date.now() + "" );
 });
 
-// Redirect to www.pratilipi.com
+// http -> https redirection
 app.use( (req, res, next) => {
-	console.log( req.headers.host );
+	if( _getWebsite( req.headers.host ).__name__ !== "ALPHA" && ! req.secure )
+		res.redirect( 301, "https://" + req.get('host') + req.originalUrl );
+	else
+		next();
+});
+
+// https://www.hindi.pratilipi.com -> https://hindi.pratilipi.com
+app.use( (req, res, next) => {
+	var host = req.get( 'host' );
+	var redirected = false;
+	Website.forEach( function( web ) {
+		if( host === "www." + web.hostName ) {
+			res.redirect( 301, ( req.secure ? 'https://' : 'http://' ) + web.hostName + req.originalUrl );
+			redirected = true;
+		} else if( host === "www." + web.mobileHostName ) {
+			res.redirect( 301, ( req.secure ? 'https://' : 'http://' ) + web.mobileHostName + req.originalUrl );
+			redirected = true;
+		}
+	});
+	if( !redirected )
+		next();
+});
+
+// Remove trailing slash
+app.use( (req, res, next) => {
+	if( req.path !== "/" && req.originalUrl.endsWith( "/" ) )
+		res.redirect( 301, ( req.secure ? 'https://' : 'http://' ) + req.get('host') + req.originalUrl.slice(0, -1) );
+	else
+		next();
+});
+
+// Redirections
+app.use( (req, res, next) => {
+
+	var redirections = {};
+	redirections[ "/theme.pratilipi/logo.png" ] =  "/logo.png" ;
+	redirections[ "/apple-touch-icon.png" ] =  "/favicon.ico" ;
+	redirections[ "/apple-touch-icon-120x120.png" ] =  "/favicon.ico" ;
+	redirections[ "/apple-touch-icon-precomposed.png" ] =  "/favicon.ico" ;
+	redirections[ "/apple-touch-icon-120x120-precomposed.png" ] =  "/favicon.ico" ;
+	redirections[ "/give-away" ] =  "/" ;
+	redirections[ "/give-away/Gora.pdf" ] =  "/" ;
+	redirections[ "/give-away/Kukurmutta.pdf" ] =  "/" ;
+	redirections[ "/give-away/Ram_Ki_Shakti_Pooja.pdf" ] =  "/" ;
+	redirections[ "/give-away/Utkrasht_Sahitya_1.pdf" ] =  "/" ;
+	redirections[ "/give-away/Chandrakanta.pdf" ] =  "/book/5673309542809600" ;
+	redirections[ "/event/gpv" ] =  "/event/gnayam-pada-varai" ;
+	redirections[ "/event/gnayam&pada&varai" ] =  "/event/gnayam-pada-varai" ;
+	redirections[ "/event/gnayam&pada&varai>" ] =  "/event/gnayam-pada-varai" ;
+	redirections[ "/event/kk" ] =  "/event/kondaadapadaadha-kaadhalgal" ;
+	redirections[ "/event/yn" ] =  "/event/yaadhumaagi-nindraal" ;
+	redirections[ "/books/gujarati" ] =     "http://gujarati.pratilipi.com/search?q=books" ;
+	redirections[ "/poems/gujarati" ] =     "http://gujarati.pratilipi.com/search?q=poems" ;
+	redirections[ "/stories/gujarati" ] =   "http://gujarati.pratilipi.com/search?q=stories" ;
+	redirections[ "/articles/gujarati" ] =  "http://gujarati.pratilipi.com/search?q=articles" ;
+	redirections[ "/books/tamil" ] =     "http://tamil.pratilipi.com/search?q=books" ;
+	redirections[ "/poems/tamil" ] =     "http://tamil.pratilipi.com/search?q=poems" ;
+	redirections[ "/stories/tamil" ] =   "http://tamil.pratilipi.com/search?q=stories" ;
+	redirections[ "/articles/tamil" ] =  "http://tamil.pratilipi.com/search?q=articles" ;
+	redirections[ "/books/hindi" ] =     "http://hindi.pratilipi.com/search?q=books" ;
+	redirections[ "/poems/hindi" ] =     "http://hindi.pratilipi.com/search?q=poems" ;
+	redirections[ "/stories/hindi" ] =   "http://hindi.pratilipi.com/search?q=stories" ;
+	redirections[ "/articles/hindi" ] =  "http://hindi.pratilipi.com/search?q=articles" ;
+	redirections[ "/about" ] =  "/about/pratilipi" ;
+	redirections[ "/career" ] =  "/work-with-us" ;
+	redirections[ "/authors" ] =  "/admin/authors" ;
+	redirections[ "/email-templates" ] =  "/admin/email-templates" ;
+	redirections[ "/batch-process" ] =  "/admin/batch-process" ;
+	redirections[ "/resetpassword" ] =  "/forgot-password" ;
+
+	if( redirections[ req.path ] )
+		res.redirect( 301, ( req.secure ? 'https://' : 'http://' ) + req.get('host') + redirections[ req.path ] );
+	else
+		next();
+
+});
+
+// Redirecting to new Pratilipi content image url
+app.use( (req, res, next) => {
+	if( req.path === "/api.pratilipi/pratilipi/resource" )
+		res.redirect( 301, ( req.secure ? 'https://' : 'http://' ) + req.get('host') + "/api/pratilipi/content/image" + "?" + req.url.split( '?' )[1] );
+	else
+		next();
+});
+
+// Host Filter - nothing matches, redirect to pratilipi.com
+app.use( (req, res, next) => {
 	if( _getWebsite( req.headers.host ) == null )
 		res.redirect( 301, 'https://www.pratilipi.com/?redirect=ecs' );
 	else
 		next();
 });
 
-// cookie parser
-app.use( cookieParser() );
+// TODO: Crawlers
+
+// TODO: Static Urls like robots.txt, sitemap
+
+// Redirecting to Mini website
+app.use( (req, res, next) => {
+
+	var website = _getWebsite( req.headers.host );
+
+	// request already coming to mobileHost -> don't do anything
+	if( req.headers.host == website.mobileHostName ) {
+		next();
+		return;
+	}
+
+	var userAgent = req.get( 'User-Agent' );
+	console.log( userAgent );
+	var basicBrowser = false;
+	var isCrawler = false;
+
+	if( !( 'contains' in String.prototype ) ) {
+		String.prototype.contains = function( str, startIndex ) {
+			return -1 !== String.prototype.indexOf.call( this, str, startIndex );
+		};
+	}
+
+	if( userAgent == null || userAgent.trim() === "" ) {
+		basicBrowser = true;
+
+	} else if( userAgent.contains( "UCBrowser" ) || userAgent.contains( "UCWEB" ) ) { // UCBrowser
+		/*
+		 * UCBrowser on Android 4.3
+		 *   "Mozilla/5.0 (Linux; U; Android 4.3; en-US; GT-I9300 Build/JSS15J) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 UCBrowser/10.0.1.512 U3/0.8.0 Mobile Safari/533.1"
+		 */
+		basicBrowser = true; // Extreme mode
+
+	} else if( userAgent.contains( "Opera Mobi" ) ) { // Opera Classic
+		/*
+		 * Opera Classic on Android 4.3
+		 *   "Opera/9.80 (Android 4.3; Linux; Opera Mobi/ADR-1411061201) Presto/2.11.355 Version/12.10"
+		 */
+		basicBrowser = true; // Not sure whether Polymer 1.0 is supported or not
+
+	} else if( userAgent.contains( "Opera Mini" ) ) { // Opera Mini
+		/*
+		 * Opera Mini on Android 4.3
+		 *   "Opera/9.80 (Android; Opera Mini/7.6.40077/35.5706; U; en) Presto/2.8.119 Version/11.10"
+		 */
+		basicBrowser = true; // Extreme mode
+
+	} else if( userAgent.contains( "Trident/7" ) && userAgent.contains( "rv:11" ) ) { // Microsoft Internet Explorer 11
+		/*
+		 * Microsoft Internet Explorer 11 on Microsoft Windows 8.1
+		 *   "Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; LCJB; rv:11.0) like Gecko"
+		 */
+		basicBrowser = true;
+
+	} else if( userAgent.contains( "OPR" ) ) { // Opera
+		/*
+		 * Opera on Microsoft Windows 8.1
+		 *   "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.65 Safari/537.36 OPR/26.0.1656.24"
+		 * Opera on Android 4.3
+		 *   "Mozilla/5.0 (Linux; Android 4.3; GT-I9300 Build/JSS15J) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.102 Mobile Safari/537.36 OPR/25.0.1619.84037"
+		 */
+		var userAgentSubStr = userAgent.substring( userAgent.indexOf( "OPR" ) + 4 );
+		var version = parseInt( userAgentSubStr.substring( 0, userAgentSubStr.indexOf( "." ) ) );
+//					basicBrowser = version < 20;
+		basicBrowser = false;
+
+	} else if( userAgent.contains( "Edge" ) ) {
+		/*
+		 * Microsoft Edge browser on Windows 10
+		 * Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14393
+		 */
+		basicBrowser = false;
+
+	} else if( userAgent.contains( "Chrome" ) && ! userAgent.contains( "(Chrome)" ) ) { // Google Chrome
+		/*
+		 * Google Chrome on Microsoft Windows 8.1
+		 *   "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.65 Safari/537.36"
+		 * Google Chrome on Android 4.3
+		 *   "Mozilla/5.0 (Linux; Android 4.3; GT-I9300 Build/JSS15J) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.59 Mobile Safari/537.36"
+		 */
+		var userAgentSubStr = userAgent.substring( userAgent.indexOf( "Chrome" ) + 7 );
+		var version = parseInt( userAgentSubStr.substring( 0, userAgentSubStr.indexOf( "." ) ) );
+		basicBrowser = version < 35;
+
+	} else if( userAgent.contains( "Safari" ) ) { // Apple Safari
+		/*
+		 * Apple Safari on Microsoft Windows 8.1
+		 *   Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2
+		 */
+//					if( userAgent.contains( "Version" ) ) {
+//						var userAgentSubStr = userAgent.substring( userAgent.indexOf( "Version" ) + 8 );
+//						var version = parseInt( userAgentSubStr.substring( 0, userAgentSubStr.indexOf( "." ) ) );
+//						basicBrowser = version < 8;
+//					} else {
+//						var userAgentSubStr = userAgent.substring( userAgent.indexOf( "Safari" ) + 7 );
+//						var version = parseInt( userAgentSubStr.substring( 0, userAgentSubStr.indexOf( "." ) ) );
+//						basicBrowser = version < 538 || version > 620;
+//					}
+
+		basicBrowser = false;
+
+	} else if( userAgent.contains( "Firefox" ) ) { // Mozilla Firefox
+		/*
+		 * Mozilla Firefox on Microsoft 8.1
+		 *   "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:33.0) Gecko/20100101 Firefox/33.0 AlexaToolbar/alxf-2.21"
+		 * Mozilla Firefox on Android 4.3
+		 *   "Mozilla/5.0 (Android; Mobile; rv:33.0) Gecko/33.0 Firefox/33.0"
+		 * Mozilla Firefox on Linux
+		 *   "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20100101 Firefox/10.0 (Chrome)"
+		 */
+		var userAgentSubStr = userAgent.substring( userAgent.indexOf( "Firefox" ) + 8 );
+		var version = parseInt( userAgentSubStr.substring( 0, userAgentSubStr.indexOf( "." ) ) );
+//					basicBrowser = version < 28;
+		basicBrowser = false;
+
+	} else if( userAgent.contains( "Googlebot" ) ) { // Googlebot/2.1; || Googlebot-News || Googlebot-Image/1.0 || Googlebot-Video/1.0
+		isCrawler = true;
+
+	} else if( userAgent.equals( "Google (+https://developers.google.com/+/web/snippet/)" ) ) { // Google+
+		isCrawler = true;
+
+	} else if( userAgent.contains( "Bingbot" ) ) { // Microsoft Bing
+		isCrawler = true;
+
+	} else if( userAgent.contains( "Slurp" ) ) { // Yahoo
+		isCrawler = true;
+
+	} else if( userAgent.contains( "DuckDuckBot" ) ) { // DuckDuckGo
+		isCrawler = true;
+
+	} else if( userAgent.contains( "Baiduspider" ) ) { // Baidu - China
+		isCrawler = true;
+
+	} else if( userAgent.contains( "YandexBot" ) ) { // Yandex - Russia
+		isCrawler = true;
+
+	} else if( userAgent.contains( "Exabot" ) ) { // ExaLead - France
+		isCrawler = true;
+
+	} else if( userAgent.equals( "facebot" )
+			|| userAgent.startsWith( "facebookexternalhit/1.0" )
+			|| userAgent.startsWith( "facebookexternalhit/1.1" ) ) { // Facebook Scraping requests
+		isCrawler = true;
+
+	} else if( userAgent.startsWith( "WhatsApp" ) ) { // Whatsapp
+		isCrawler = true;
+
+	} else if( userAgent.startsWith( "ia_archiver" ) ) { // Alexa Crawler
+		isCrawler = true;
+
+	} else {
+		basicBrowser = true;
+		logger.log( Level.INFO, "UNKNOWN_USER_AGENT: " + userAgent );
+	}
+
+	if( basicBrowser ) {
+		// TODO: Implementation
+	} else if( isCrawler ) {
+		// TODO: Implementation
+	} else if( path == 'sitemap' ) {
+		// TODO: Implementation
+	} else if( path == 'robots.txt' ) {
+		// TODO: Implementation
+	} else {
+		next();
+	}
+
+});
 
 // access_token
 app.use( (req, res, next) => {
@@ -166,7 +424,7 @@ app.use( (req, res, next) => {
 	} else {
 		var accessToken = req.cookies[ "access_token" ];
 		if( accessToken === undefined ) {
-			requestModule( APPENGINE_ENDPOINT + "/user/accesstoken", (error, response, body) => {
+			requestModule( APPENGINE_ENDPOvar + "/user/accesstoken", (error, response, body) => {
 				if( error ) {
 					console.log( 'GET_ACCESSTOKEN_ERROR:: ', error );
 					res.status(500).send( UNEXPECTED_SERVER_EXCEPTION );
@@ -182,6 +440,9 @@ app.use( (req, res, next) => {
 	}
 });
 
+// TODO: NotificationFilter
+
+// Serving PWA files
 app.get( '/*', (req, res, next) => {
 
 	var content = null;
