@@ -4,10 +4,10 @@
 
 	var localFilesToCache = [
 		'.',
-		'pwa-stylesheets/css/style.css',
+		'pwa-stylesheets/css/style.css?200720171750',
 		'pwa-images/404.svg',
 		'pwa-images/library-empty.svg',
-		'pwa-images/NewSprite.png',
+		'pwa-images/NewSprite_2.png',
 		'pwa-images/notifications-empty.svg',
 		'pwa-images/sprite-av-black.png',
 		'resources/css/style.css',
@@ -27,7 +27,7 @@
 		'https://www.ptlp.co/resource-all/font/font-ta.css'
 	];
 
-	var STATIC_VERSION = "240620171450";
+	var STATIC_VERSION = "200720171750";
 	var DYNAMIC_VERSION = "7";
 	var staticCacheName = 'pratilipi-cache-static-' + STATIC_VERSION;
 	var dynamicCacheName = 'pratilipi-cache-dynamic-' + DYNAMIC_VERSION;
@@ -38,6 +38,7 @@
 	/* Cache Keys */
 	var PWA_INDEX_HTML = "app-shell.html";
 	var INIT_BANNER_LIST = "init-banner-list.json";
+	var TRENDING_SEARCH_KEYWORDS = "trending-search-keywords.json";
 
 
 	self.addEventListener( 'install', function(event) {
@@ -92,6 +93,10 @@
 		if( url.indexOf( hostName ) > -1
 			&& url.indexOf( hostName + "/api?" ) === -1 // Batch Api Calls
 			&& url.indexOf( hostName + "/api/" ) === -1 // Individual Api Calls
+			&& url.indexOf( hostName + "/api.pratilipi/" ) === -1 // Legacy writer panel api calls
+			&& url.indexOf( hostName + "/filebrowser/" ) === -1 // Legacy writer panel api calls
+			&& url.indexOf( hostName + "/polymer/" ) === -1 // Legacy writer panel api calls
+			&& url.indexOf( hostName + "/theme.pratilipi/" ) === -1 // Legacy writer panel api calls
 			&& url.indexOf( hostName + "/pwa-sw-DEVO_RAGHU.js" ) === -1
 			&& url.indexOf( hostName + "/pratilipi-write?" ) === -1
 			&& url.indexOf( hostName + "/write?" ) === -1
@@ -105,27 +110,29 @@
 			&& url.indexOf( hostName + "/sitemap?" ) === -1
 			&& url !== ( hostName + "/robots.txt" )
 			&& url.indexOf( hostName + "/robots.txt?" ) === -1
+			&& url.indexOf( hostName + "/pwa-manifest-DEVO_RAGHU.json" ) === -1
 
 			/* TODO: check for static files */
 			&& url.indexOf( hostName + "/pwa-stylesheets/" ) === -1
 			&& url.indexOf( hostName + "/pwa-images/" ) === -1
 			&& url.indexOf( hostName + "/resources/" ) === -1
-			&& url.indexOf( hostName + "/stylesheets/" ) === -1 ) {
-			event.respondWith(
-				caches.match( PWA_INDEX_HTML ).then( function(response) {
-					if( response ) return response;
-					return fetch( event.request ).then( function(response) {
-						if( !response.ok ) {
-							console.error( "Network request failed to fetch AppShell." );
-							return "Failed to load Application! Please re-load the page!";
-						}
-						return caches.open( staticCacheName ).then( function(cache) {
-							cache.put( PWA_INDEX_HTML, response.clone() );
-							return response;
+			&& url.indexOf( hostName + "/stylesheets/" ) === -1
+			&& url.indexOf( "loadPWA=false" ) === -1 ) {
+				event.respondWith(
+					caches.match( PWA_INDEX_HTML ).then( function(response) {
+						if( response ) return response;
+						return fetch( event.request ).then( function(response) {
+							if( !response.ok ) {
+								console.error( "Network request failed to fetch AppShell." );
+								return "Failed to load Application! Please re-load the page!";
+							}
+							return caches.open( staticCacheName ).then( function(cache) {
+								cache.put( PWA_INDEX_HTML, response.clone() );
+								return response;
+							});
 						});
-					});
-				})
-			);
+					})
+				);
 		}
 
 		// External Resource Files
@@ -148,19 +155,28 @@
 
 		// Banner List Api
 		if( url.indexOf( apiPrefix + "/api/init/banner/list" ) !== -1 ) {
-			event.respondWith(
-				caches.open( dynamicCacheName ).then( function(cache) {
-					return cache.match( INIT_BANNER_LIST ).then( function(response) {
-						var fetchPromise = fetch(event.request).then( function(networkResponse) {
-							cache.put( INIT_BANNER_LIST, networkResponse.clone() );
-							return networkResponse;
-						});
-						return response || fetchPromise;
-					})
-				})
-			);
+			cacheAndRevalidate( dynamicCacheName, INIT_BANNER_LIST, event );
 		}
 
+		// Trending Search KeywordList
+        if( url.indexOf( "/api/search/trending_search" ) !== -1 ) {
+			cacheAndRevalidate( dynamicCacheName, TRENDING_SEARCH_KEYWORDS, event );
+        }
+
 	});
+
+	function cacheAndRevalidate( cacheName, cacheKey, event ) {
+        event.respondWith(
+            caches.open( cacheName ).then( function( cache ) {
+                return cache.match( cacheKey ).then( function( response ) {
+                    var fetchPromise = fetch( event.request ).then( function( networkResponse ) {
+                        cache.put( cacheKey, networkResponse.clone() );
+                        return networkResponse;
+                    });
+                    return response || fetchPromise;
+                })
+            })
+        );
+    }
 
 })();
