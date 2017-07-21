@@ -162,15 +162,12 @@ app.get( '/health', (req, res, next) => {
 });
 
 // http -> https redirection
-/*
 app.use( (req, res, next) => {
-	console.log( req.path );
-	if( _getWebsite( req.headers.host ).__name__ !== "ALPHA" && ! req.secure )
-		res.redirect( 301, "https://" + req.get('host') + req.originalUrl );
-	else
-		next();
+	if( _getWebsite( req.headers.host ).__name__ !== "ALPHA" && ! req.secure ) {
+		return res.redirect( "https://" + req.headers.host + req.url );
+	}
+	next();
 });
-*/
 
 // https://www.hindi.pratilipi.com -> https://hindi.pratilipi.com
 app.use( (req, res, next) => {
@@ -178,10 +175,10 @@ app.use( (req, res, next) => {
 	var redirected = false;
 	Website.forEach( function( web ) {
 		if( host === "www." + web.hostName ) {
-			res.redirect( 301, ( req.secure ? 'https://' : 'http://' ) + web.hostName + req.originalUrl );
+			return res.redirect( 301, ( req.secure ? 'https://' : 'http://' ) + web.hostName + req.originalUrl );
 			redirected = true;
 		} else if( host === "www." + web.mobileHostName ) {
-			res.redirect( 301, ( req.secure ? 'https://' : 'http://' ) + web.mobileHostName + req.originalUrl );
+			return res.redirect( 301, ( req.secure ? 'https://' : 'http://' ) + web.mobileHostName + req.originalUrl );
 			redirected = true;
 		}
 	});
@@ -192,7 +189,7 @@ app.use( (req, res, next) => {
 // Remove trailing slash
 app.use( (req, res, next) => {
 	if( req.path !== "/" && req.originalUrl.endsWith( "/" ) )
-		res.redirect( 301, ( req.secure ? 'https://' : 'http://' ) + req.get('host') + req.originalUrl.slice(0, -1) );
+		return res.redirect( 301, ( req.secure ? 'https://' : 'http://' ) + req.get('host') + req.originalUrl.slice(0, -1) );
 	else
 		next();
 });
@@ -236,7 +233,7 @@ app.use( (req, res, next) => {
 	redirections[ "/resetpassword" ] =  "/forgot-password" ;
 
 	if( redirections[ req.path ] )
-		res.redirect( 301, ( req.secure ? 'https://' : 'http://' ) + req.get('host') + redirections[ req.path ] );
+		return res.redirect( 301, ( req.secure ? 'https://' : 'http://' ) + req.get('host') + redirections[ req.path ] );
 	else
 		next();
 
@@ -245,7 +242,7 @@ app.use( (req, res, next) => {
 // Redirecting to new Pratilipi content image url
 app.use( (req, res, next) => {
 	if( req.path === "/api.pratilipi/pratilipi/resource" )
-		res.redirect( 301, ( req.secure ? 'https://' : 'http://' ) + req.get('host') + "/api/pratilipi/content/image" + "?" + req.url.split( '?' )[1] );
+		return res.redirect( 301, ( req.secure ? 'https://' : 'http://' ) + req.get('host') + "/api/pratilipi/content/image" + "?" + req.url.split( '?' )[1] );
 	else
 		next();
 });
@@ -253,7 +250,7 @@ app.use( (req, res, next) => {
 // Host Filter - nothing matches, redirect to pratilipi.com
 app.use( (req, res, next) => {
 	if( _getWebsite( req.headers.host ) == null )
-		res.redirect( 301, 'https://www.pratilipi.com/?redirect=ecs' );
+		return res.redirect( 301, 'https://www.pratilipi.com/?redirect=ecs' );
 	else
 		next();
 });
@@ -425,13 +422,11 @@ app.use( (req, res, next) => {
 		console.log( "UNKNOWN_USER_AGENT: " + userAgent );
 	}
 
-	/*
 	if( basicBrowser ) {
-		res.redirect( 307, ( req.secure ? 'https://' : 'http://' ) + web.mobileHostName + + req.originalUrl );
+		return res.redirect( 307, ( req.secure ? 'https://' : 'http://' ) + web.mobileHostName + + req.originalUrl );
 	} else {
 		next();
 	}
-	*/
 
 	next();
 
