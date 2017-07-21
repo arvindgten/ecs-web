@@ -149,6 +149,7 @@ if( !( 'contains' in String.prototype ) ) {
 	};
 }
 
+console.log( "Hi" );
 // App
 const app = express();
 
@@ -162,6 +163,7 @@ app.get( '/health', (req, res, next) => {
 
 // http -> https redirection
 app.use( (req, res, next) => {
+	console.log( req.path );
 	if( _getWebsite( req.headers.host ).__name__ !== "ALPHA" && ! req.secure )
 		res.redirect( 301, "https://" + req.get('host') + req.originalUrl );
 	else
