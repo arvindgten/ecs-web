@@ -186,12 +186,12 @@ app.use( (req, res, next) => {
 });
 
 // Remove trailing slash
-app.use( (req, res, next) => {
-	if( req.path !== "/" && req.originalUrl.endsWith( "/" ) )
-		res.redirect( 301, ( req.secure ? 'https://' : 'http://' ) + req.get('host') + req.originalUrl.slice(0, -1) );
-	else
-		next();
-});
+//app.use( (req, res, next) => {
+//	if( req.path !== "/" && req.originalUrl.endsWith( "/" ) )
+//		res.redirect( 301, ( req.secure ? 'https://' : 'http://' ) + req.get('host') + req.originalUrl.slice(0, -1) );
+//	else
+//		next();
+//});
 
 // Redirections
 app.use( (req, res, next) => {
@@ -451,6 +451,7 @@ app.use( (req, res, next) => {
 					res.status(500).send( UNEXPECTED_SERVER_EXCEPTION );
 				} else {
 					accessToken = JSON.parse( body )[ "accessToken" ];
+					// TODO: set for *.ptlp.co or *.pratilipi.com
 					res.cookie( 'access_token', accessToken, { maxAge: 30 * 86400, httpOnly: false } );
 					next();
 				}
