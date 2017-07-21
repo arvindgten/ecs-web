@@ -266,7 +266,7 @@ app.use( (req, res, next) => {
 	if( userAgent.contains( "Googlebot" ) ) { // Googlebot/2.1; || Googlebot-News || Googlebot-Image/1.0 || Googlebot-Video/1.0
 		isCrawler = true;
 
-	} else if( userAgent.equals( "Google (+https://developers.google.com/+/web/snippet/)" ) ) { // Google+
+	} else if( userAgent === "Google (+https://developers.google.com/+/web/snippet/)" ) { // Google+
 		isCrawler = true;
 
 	} else if( userAgent.contains( "Bingbot" ) ) { // Microsoft Bing
@@ -287,7 +287,7 @@ app.use( (req, res, next) => {
 	} else if( userAgent.contains( "Exabot" ) ) { // ExaLead - France
 		isCrawler = true;
 
-	} else if( userAgent.equals( "facebot" )
+	} else if( userAgent === "facebot"
 			|| userAgent.startsWith( "facebookexternalhit/1.0" )
 			|| userAgent.startsWith( "facebookexternalhit/1.1" ) ) { // Facebook Scraping requests
 		isCrawler = true;
