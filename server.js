@@ -173,7 +173,6 @@ app.use( (req, res, next) => {
 */
 
 // https://www.hindi.pratilipi.com -> https://hindi.pratilipi.com
-/*
 app.use( (req, res, next) => {
 	var host = req.get( 'host' );
 	var redirected = false;
@@ -189,20 +188,16 @@ app.use( (req, res, next) => {
 	if( !redirected )
 		next();
 });
-*/
 
 // Remove trailing slash
-/*
 app.use( (req, res, next) => {
 	if( req.path !== "/" && req.originalUrl.endsWith( "/" ) )
 		res.redirect( 301, ( req.secure ? 'https://' : 'http://' ) + req.get('host') + req.originalUrl.slice(0, -1) );
 	else
 		next();
 });
-*/
 
 // Redirections
-/*
 app.use( (req, res, next) => {
 	var redirections = {};
 	redirections[ "/theme.pratilipi/logo.png" ] =  "/logo.png" ;
@@ -246,30 +241,24 @@ app.use( (req, res, next) => {
 		next();
 
 });
-*/
 
 // Redirecting to new Pratilipi content image url
-/*
 app.use( (req, res, next) => {
 	if( req.path === "/api.pratilipi/pratilipi/resource" )
 		res.redirect( 301, ( req.secure ? 'https://' : 'http://' ) + req.get('host') + "/api/pratilipi/content/image" + "?" + req.url.split( '?' )[1] );
 	else
 		next();
 });
-*/
 
 // Host Filter - nothing matches, redirect to pratilipi.com
-/*
 app.use( (req, res, next) => {
 	if( _getWebsite( req.headers.host ) == null )
 		res.redirect( 301, 'https://www.pratilipi.com/?redirect=ecs' );
 	else
 		next();
 });
-*/
 
 // Crawlers
-/*
 app.use( (req, res, next) => {
 
 	var userAgent = req.get( 'User-Agent' );
@@ -320,7 +309,6 @@ app.use( (req, res, next) => {
 		next();
 	}
 });
-*/
 
 // TODO: Static Urls like robots.txt, sitemap
 // TODO: www.pratilipi.com
