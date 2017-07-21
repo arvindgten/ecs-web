@@ -463,10 +463,6 @@ app.use( (req, res, next) => {
 // TODO: Implementation: Crawling Urls like robots.txt, sitemap
 // TODO: www.pratilipi.com
 
-
-// TODO: /pratilipi-write, /write
-
-
 // access_token
 app.use( (req, res, next) => {
 	var blackListFormats = [ '.html', '.css', '.js', '.png', '.jpg', '.svg', '.ico' ];
@@ -496,6 +492,41 @@ app.use( (req, res, next) => {
 		} else {
 			next();
 		}
+	}
+});
+
+// Other urls where PWA is not supported
+app.get( '/*', (req, res, next) => {
+	var referer = req.header( 'Referer' ) != null ? req.header( 'Referer' ) : "";
+	console.log( req.path );
+	var forwardToGae = req.path === '/pratilipi-write'
+		|| req.path === '/write'
+		|| req.path.startsWith( '/admin/' )
+		|| req.path === '/edit-event'
+		|| req.path === '/edit-blog'
+		|| req.path.contains( 'loadPWA=false' )
+		|| referer.contains( '/pratilipi-write' )
+		|| referer.contains( '/write' )
+		|| referer.contains( '/admin' )
+		|| referer.contains( '/edit-event' )
+		|| referer.contains( '/edit-blog' )
+		|| referer.contains( '/loadPWA=false' );
+
+	if( forwardToGae ) {
+		var url = "https://devo-pratilipi.appspot.com" +
+			req.url + ( req.url.contains( "?" ) ? "&" : "?" ) +
+			"accessToken=" + req.cookies[ 'access_token' ];
+		console.log( "forwardToGae: " + url );
+		var options = {
+			method: 'GET',
+			url: url,
+			headers: {
+				"ECS-HostName": "pr-hindi.ptlp.co"
+			}
+		};
+		req.pipe( requestModule( options ) ).pipe( res );
+	} else {
+		next();
 	}
 });
 
