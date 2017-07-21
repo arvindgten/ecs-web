@@ -301,9 +301,9 @@ app.use( (req, res, next) => {
 
 	isCrawler = true;
 	if( isCrawler ) {
-		var appengineUrl = APPENGINE_ENDPOINT + request.url;
+		var appengineUrl = APPENGINE_ENDPOINT + req.url;
 		appengineUrl += ( appengineUrl.indexOf( "?" ) === -1 ? "?" : "&" ) + "loadPWA=false";
-		request.pipe( requestModule( appengineUrl ) ).pipe( response );
+		req.pipe( requestModule( appengineUrl ) ).pipe( res );
 	} else {
 		next();
 	}
