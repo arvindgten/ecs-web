@@ -434,7 +434,7 @@ app.use( (req, res, next) => {
 
 	} else {
 		basicBrowser = true;
-		logger.log( Level.INFO, "UNKNOWN_USER_AGENT: " + userAgent );
+		console.log( "UNKNOWN_USER_AGENT: " + userAgent );
 	}
 
 	/*
