@@ -162,12 +162,14 @@ app.get( '/health', (req, res, next) => {
 });
 
 // http -> https redirection
+/*
 app.use( (req, res, next) => {
 	if( _getWebsite( req.headers.host ).__name__ !== "ALPHA" && ! req.secure ) {
 		return res.redirect( "https://" + req.headers.host + req.url );
 	}
 	next();
 });
+*/
 
 // https://www.hindi.pratilipi.com -> https://hindi.pratilipi.com
 app.use( (req, res, next) => {
