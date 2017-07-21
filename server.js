@@ -149,7 +149,7 @@ if( !( 'contains' in String.prototype ) ) {
 	};
 }
 
-console.log( "Hi" );
+
 // App
 const app = express();
 
@@ -163,7 +163,9 @@ app.get( '/health', (req, res, next) => {
 
 // http -> https redirection
 /*
+// TODO: Proper implementation
 app.use( (req, res, next) => {
+	console.log( "http -> https redirection" ); // TODO: Remove
 	if( _getWebsite( req.headers.host ).__name__ !== "ALPHA" && ! req.secure ) {
 		return res.redirect( "https://" + req.headers.host + req.url );
 	}
@@ -249,7 +251,7 @@ app.use( (req, res, next) => {
 		next();
 });
 
-// Host Filter - nothing matches, redirect to pratilipi.com
+// If nothing matches, redirect to pratilipi.com
 app.use( (req, res, next) => {
 	if( _getWebsite( req.headers.host ) == null )
 		return res.redirect( 301, 'https://www.pratilipi.com/?redirect=ecs' );
@@ -257,8 +259,15 @@ app.use( (req, res, next) => {
 		next();
 });
 
-// Crawlers
+// Crawlers - only for prod env
+/*
 app.use( (req, res, next) => {
+
+	if( process.env.STAGE !== "prod" ) {
+		return next();
+	}
+
+	console.log( "Crawlers" ); // TODO: Remove
 
 	var userAgent = req.get( 'User-Agent' );
 	var isCrawler = false;
@@ -300,22 +309,39 @@ app.use( (req, res, next) => {
 	}
 
 	isCrawler = true;
+
 	if( isCrawler ) {
-		var appengineUrl = APPENGINE_ENDPOINT + req.url;
+		// TODO: Correct Urls
+		var appengineUrl = "https://tamil.pratilipi.com" + req.url;
 		appengineUrl += ( appengineUrl.indexOf( "?" ) === -1 ? "?" : "&" ) + "loadPWA=false";
+		console.log( "appengineUrl = " + appengineUrl );
 		req.pipe( requestModule( appengineUrl ) ).pipe( res );
 	} else {
 		next();
 	}
 });
 
-// TODO: Static Urls like robots.txt, sitemap
-// TODO: www.pratilipi.com
-// TODO: /pratilipi-write, /write
+// Requests coming from Polymer website
+app.use( (req, res, next) => {
+	console.log( "Requests coming from Polymer website" ); // TODO: Remove
+	// TODO: Correct Urls
+	var isPolymerRequest = req.header( 'Referer' ) && req.header( 'Referer' ).endsWith( 'loadPWA=false' );
+	if( isPolymerRequest ) {
+		var appengineUrl = "https://tamil.pratilipi.com" + req.url;
+        console.log( "appengineUrl = " + appengineUrl );
+        req.pipe( requestModule( appengineUrl ) ).pipe( res );
+	} else {
+		next();
+	}
+});
+*/
 
-// Redirecting to Mini website
+
+// Redirecting to Mini website - only for prod env
+/*
 app.use( (req, res, next) => {
 
+	console.log( "Redirecting to Mini website" ); // TODO: Remove
 	var web = _getWebsite( req.headers.host );
 
 	// request already coming to mobileHost -> don't do anything
@@ -331,68 +357,68 @@ app.use( (req, res, next) => {
 		basicBrowser = true;
 
 	} else if( userAgent.contains( "UCBrowser" ) || userAgent.contains( "UCWEB" ) ) { // UCBrowser
-		/*
-		 * UCBrowser on Android 4.3
-		 *   "Mozilla/5.0 (Linux; U; Android 4.3; en-US; GT-I9300 Build/JSS15J) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 UCBrowser/10.0.1.512 U3/0.8.0 Mobile Safari/533.1"
-		 */
+
+		 // UCBrowser on Android 4.3
+		 // "Mozilla/5.0 (Linux; U; Android 4.3; en-US; GT-I9300 Build/JSS15J) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 UCBrowser/10.0.1.512 U3/0.8.0 Mobile Safari/533.1"
+
 		basicBrowser = true; // Extreme mode
 
 	} else if( userAgent.contains( "Opera Mobi" ) ) { // Opera Classic
-		/*
-		 * Opera Classic on Android 4.3
-		 *   "Opera/9.80 (Android 4.3; Linux; Opera Mobi/ADR-1411061201) Presto/2.11.355 Version/12.10"
-		 */
+
+		 // Opera Classic on Android 4.3
+		 //  "Opera/9.80 (Android 4.3; Linux; Opera Mobi/ADR-1411061201) Presto/2.11.355 Version/12.10"
+
 		basicBrowser = true; // Not sure whether Polymer 1.0 is supported or not
 
 	} else if( userAgent.contains( "Opera Mini" ) ) { // Opera Mini
-		/*
-		 * Opera Mini on Android 4.3
-		 *   "Opera/9.80 (Android; Opera Mini/7.6.40077/35.5706; U; en) Presto/2.8.119 Version/11.10"
-		 */
+
+		 // Opera Mini on Android 4.3
+		 //  "Opera/9.80 (Android; Opera Mini/7.6.40077/35.5706; U; en) Presto/2.8.119 Version/11.10"
+
 		basicBrowser = true; // Extreme mode
 
 	} else if( userAgent.contains( "Trident/7" ) && userAgent.contains( "rv:11" ) ) { // Microsoft Internet Explorer 11
-		/*
-		 * Microsoft Internet Explorer 11 on Microsoft Windows 8.1
-		 *   "Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; LCJB; rv:11.0) like Gecko"
-		 */
+
+		 // Microsoft Internet Explorer 11 on Microsoft Windows 8.1
+		 //  "Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; LCJB; rv:11.0) like Gecko"
+
 		basicBrowser = true;
 
 	} else if( userAgent.contains( "OPR" ) ) { // Opera
-		/*
-		 * Opera on Microsoft Windows 8.1
-		 *   "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.65 Safari/537.36 OPR/26.0.1656.24"
-		 * Opera on Android 4.3
-		 *   "Mozilla/5.0 (Linux; Android 4.3; GT-I9300 Build/JSS15J) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.102 Mobile Safari/537.36 OPR/25.0.1619.84037"
-		 */
+
+		// Opera on Microsoft Windows 8.1
+		//   "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.65 Safari/537.36 OPR/26.0.1656.24"
+		// Opera on Android 4.3
+		//   "Mozilla/5.0 (Linux; Android 4.3; GT-I9300 Build/JSS15J) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.102 Mobile Safari/537.36 OPR/25.0.1619.84037"
+
 		var userAgentSubStr = userAgent.substring( userAgent.indexOf( "OPR" ) + 4 );
 		var version = parseInt( userAgentSubStr.substring( 0, userAgentSubStr.indexOf( "." ) ) );
-//					basicBrowser = version < 20;
+		// basicBrowser = version < 20;
 		basicBrowser = false;
 
 	} else if( userAgent.contains( "Edge" ) ) {
-		/*
-		 * Microsoft Edge browser on Windows 10
-		 * Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14393
-		 */
+
+		// Microsoft Edge browser on Windows 10
+		// Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14393
+
 		basicBrowser = false;
 
 	} else if( userAgent.contains( "Chrome" ) && ! userAgent.contains( "(Chrome)" ) ) { // Google Chrome
-		/*
-		 * Google Chrome on Microsoft Windows 8.1
-		 *   "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.65 Safari/537.36"
-		 * Google Chrome on Android 4.3
-		 *   "Mozilla/5.0 (Linux; Android 4.3; GT-I9300 Build/JSS15J) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.59 Mobile Safari/537.36"
-		 */
+
+		 // Google Chrome on Microsoft Windows 8.1
+		 //   "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.65 Safari/537.36"
+		 // Google Chrome on Android 4.3
+		 //   "Mozilla/5.0 (Linux; Android 4.3; GT-I9300 Build/JSS15J) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.59 Mobile Safari/537.36"
+
 		var userAgentSubStr = userAgent.substring( userAgent.indexOf( "Chrome" ) + 7 );
 		var version = parseInt( userAgentSubStr.substring( 0, userAgentSubStr.indexOf( "." ) ) );
 		basicBrowser = version < 35;
 
 	} else if( userAgent.contains( "Safari" ) ) { // Apple Safari
-		/*
-		 * Apple Safari on Microsoft Windows 8.1
-		 *   Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2
-		 */
+
+		 // Apple Safari on Microsoft Windows 8.1
+		 //   Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2
+
 //					if( userAgent.contains( "Version" ) ) {
 //						var userAgentSubStr = userAgent.substring( userAgent.indexOf( "Version" ) + 8 );
 //						var version = parseInt( userAgentSubStr.substring( 0, userAgentSubStr.indexOf( "." ) ) );
@@ -406,17 +432,17 @@ app.use( (req, res, next) => {
 		basicBrowser = false;
 
 	} else if( userAgent.contains( "Firefox" ) ) { // Mozilla Firefox
-		/*
-		 * Mozilla Firefox on Microsoft 8.1
-		 *   "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:33.0) Gecko/20100101 Firefox/33.0 AlexaToolbar/alxf-2.21"
-		 * Mozilla Firefox on Android 4.3
-		 *   "Mozilla/5.0 (Android; Mobile; rv:33.0) Gecko/33.0 Firefox/33.0"
-		 * Mozilla Firefox on Linux
-		 *   "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20100101 Firefox/10.0 (Chrome)"
-		 */
+
+		 // Mozilla Firefox on Microsoft 8.1
+		 //   "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:33.0) Gecko/20100101 Firefox/33.0 AlexaToolbar/alxf-2.21"
+		 // Mozilla Firefox on Android 4.3
+		 //   "Mozilla/5.0 (Android; Mobile; rv:33.0) Gecko/33.0 Firefox/33.0"
+		 // Mozilla Firefox on Linux
+		 //   "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20100101 Firefox/10.0 (Chrome)"
+
 		var userAgentSubStr = userAgent.substring( userAgent.indexOf( "Firefox" ) + 8 );
 		var version = parseInt( userAgentSubStr.substring( 0, userAgentSubStr.indexOf( "." ) ) );
-//					basicBrowser = version < 28;
+		// basicBrowser = version < 28;
 		basicBrowser = false;
 
 	} else {
@@ -424,15 +450,22 @@ app.use( (req, res, next) => {
 		console.log( "UNKNOWN_USER_AGENT: " + userAgent );
 	}
 
+	basicBrowser = true;
 	if( basicBrowser ) {
 		return res.redirect( 307, ( req.secure ? 'https://' : 'http://' ) + web.mobileHostName + + req.originalUrl );
 	} else {
 		next();
 	}
-
-	next();
-
 });
+*/
+
+
+// TODO: Implementation: Crawling Urls like robots.txt, sitemap
+// TODO: www.pratilipi.com
+
+
+// TODO: /pratilipi-write, /write
+
 
 // access_token
 app.use( (req, res, next) => {
