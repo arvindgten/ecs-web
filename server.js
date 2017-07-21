@@ -162,6 +162,7 @@ app.get( '/health', (req, res, next) => {
 });
 
 // http -> https redirection
+/*
 app.use( (req, res, next) => {
 	console.log( req.path );
 	if( _getWebsite( req.headers.host ).__name__ !== "ALPHA" && ! req.secure )
@@ -169,6 +170,7 @@ app.use( (req, res, next) => {
 	else
 		next();
 });
+*/
 
 // https://www.hindi.pratilipi.com -> https://hindi.pratilipi.com
 /*
