@@ -160,7 +160,7 @@ function _forwardToGae( url, req, res ) {
 		method: 'GET',
 		url: url,
 		headers: {
-			"ECS-HostName": "pr-hindi.ptlp.co" // TODO: req.headers.host
+			"ECS-HostName": req.headers.host
 		}
 	};
 	console.log( "forwardToGae: " + JSON.stringify( options ) );
