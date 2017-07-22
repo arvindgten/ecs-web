@@ -182,7 +182,6 @@ app.get( '/health', (req, res, next) => {
 /*
 // TODO: Proper implementation
 app.use( (req, res, next) => {
-	console.log( "http -> https redirection" ); // TODO: Remove
 	if( _getWebsite( req.headers.host ).__name__ !== "ALPHA" && ! req.secure ) {
 		return res.redirect( "https://" + req.headers.host + req.url );
 	}
@@ -223,29 +222,6 @@ app.use( (req, res, next) => {
 	redirections[ "/apple-touch-icon-120x120.png" ] =  "/favicon.ico" ;
 	redirections[ "/apple-touch-icon-precomposed.png" ] =  "/favicon.ico" ;
 	redirections[ "/apple-touch-icon-120x120-precomposed.png" ] =  "/favicon.ico" ;
-	redirections[ "/give-away" ] =  "/" ;
-	redirections[ "/give-away/Gora.pdf" ] =  "/" ;
-	redirections[ "/give-away/Kukurmutta.pdf" ] =  "/" ;
-	redirections[ "/give-away/Ram_Ki_Shakti_Pooja.pdf" ] =  "/" ;
-	redirections[ "/give-away/Utkrasht_Sahitya_1.pdf" ] =  "/" ;
-	redirections[ "/give-away/Chandrakanta.pdf" ] =  "/book/5673309542809600" ;
-	redirections[ "/event/gpv" ] =  "/event/gnayam-pada-varai" ;
-	redirections[ "/event/gnayam&pada&varai" ] =  "/event/gnayam-pada-varai" ;
-	redirections[ "/event/gnayam&pada&varai>" ] =  "/event/gnayam-pada-varai" ;
-	redirections[ "/event/kk" ] =  "/event/kondaadapadaadha-kaadhalgal" ;
-	redirections[ "/event/yn" ] =  "/event/yaadhumaagi-nindraal" ;
-	redirections[ "/books/gujarati" ] =     "http://gujarati.pratilipi.com/search?q=books" ;
-	redirections[ "/poems/gujarati" ] =     "http://gujarati.pratilipi.com/search?q=poems" ;
-	redirections[ "/stories/gujarati" ] =   "http://gujarati.pratilipi.com/search?q=stories" ;
-	redirections[ "/articles/gujarati" ] =  "http://gujarati.pratilipi.com/search?q=articles" ;
-	redirections[ "/books/tamil" ] =     "http://tamil.pratilipi.com/search?q=books" ;
-	redirections[ "/poems/tamil" ] =     "http://tamil.pratilipi.com/search?q=poems" ;
-	redirections[ "/stories/tamil" ] =   "http://tamil.pratilipi.com/search?q=stories" ;
-	redirections[ "/articles/tamil" ] =  "http://tamil.pratilipi.com/search?q=articles" ;
-	redirections[ "/books/hindi" ] =     "http://hindi.pratilipi.com/search?q=books" ;
-	redirections[ "/poems/hindi" ] =     "http://hindi.pratilipi.com/search?q=poems" ;
-	redirections[ "/stories/hindi" ] =   "http://hindi.pratilipi.com/search?q=stories" ;
-	redirections[ "/articles/hindi" ] =  "http://hindi.pratilipi.com/search?q=articles" ;
 	redirections[ "/about" ] =  "/about/pratilipi" ;
 	redirections[ "/career" ] =  "/work-with-us" ;
 	redirections[ "/authors" ] =  "/admin/authors" ;
@@ -276,7 +252,17 @@ app.use( (req, res, next) => {
 		next();
 });
 
-// TODO: Implementation: Crawling Urls like robots.txt, sitemap
+// Crawling Urls like robots.txt, sitemap
+app.get( '/*', (req, res, next) => {
+	if( process.env.STAGE === "prod" ) {
+		if( req.path === '/sitemap' || req.path === '/robots.txt' )
+			_forwardToGae( null, req, res );
+		else
+			next();
+	} else {
+		next();
+	}
+});
 
 // Crawlers - only for prod env
 app.get( '/*', (req, res, next) => {
@@ -472,8 +458,14 @@ app.use( (req, res, next) => {
 					res.status(500).send( UNEXPECTED_SERVER_EXCEPTION );
 				} else {
 					accessToken = JSON.parse( body )[ "accessToken" ];
-					// TODO: set for *.ptlp.co or *.pratilipi.com
-					res.cookie( 'access_token', accessToken, { maxAge: 30 * 86400, httpOnly: false } );
+					var domain = process.env.STAGE === 'devo' ? '.ptlp.co' : '.pratilipi.com';
+					if( _getWebsite( req.headers.host )[ "__name__" ] === "ALPHA" )
+						domain = "localhost";
+					res.cookie( 'access_token', accessToken,
+						{ domain: domain,
+							path: '/',
+							maxAge: 30 * 86400,
+							httpOnly: false } );
 					next();
 				}
 			});
@@ -483,9 +475,16 @@ app.use( (req, res, next) => {
 	}
 });
 
-// TODO: www.pratilipi.com
+// TODO: Serving mini website
 
-
+// Master website: www.pratilipi.com
+app.get( '/*', (req, res, next) => {
+	var web = _getWebsite( req.headers.host );
+	if( web.__name__ === "ALL_LANGUAGE" || web.__name__ === "GAMMA_ALL_LANGUAGE" )
+		_forwardToGae( null, req, res );
+	else
+		next();
+});
 
 // Other urls where PWA is not supported
 app.get( '/*', (req, res, next) => {
@@ -526,7 +525,7 @@ app.get( '/*', (req, res, next) => {
 		content = fs.readFileSync( 'src/pwa-service-worker' + req.path );
 		res.set( 'Content-Type', 'text/javascript' );
 	} else if( req.path === '/favicon.ico' ) {
-		next();
+		content = fs.readFileSync( 'src/favicon.ico' );
 	} else if( req.path.indexOf( '/pwa-images/' ) === 0 ) {
 		content = fs.readFileSync( 'src' + req.path );
 	} else if( req.path.indexOf( '/resources/' ) === 0 || req.path.indexOf( '/stylesheets/' ) === 0 ) {
