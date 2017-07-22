@@ -475,7 +475,15 @@ app.use( (req, res, next) => {
 	}
 });
 
-// TODO: Serving mini website
+// Serving mini website
+app.get( '/*', (req, res, next) => {
+	var web = _getWebsite( req.headers.host );
+	if( req.headers.host === web.mobileHostName ) {
+		_forwardToGae( null, req, res );
+	} else {
+		next();
+	}
+});
 
 // Master website: www.pratilipi.com
 app.get( '/*', (req, res, next) => {
