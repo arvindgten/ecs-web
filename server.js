@@ -451,27 +451,26 @@ app.use( (req, res, next) => {
 		next();
 	} else {
 		var accessToken = req.cookies[ "access_token" ];
-		if( accessToken === undefined ) {
-			requestModule( APPENGINE_ENDPOINT + "/user/accesstoken", (error, response, body) => {
-				if( error ) {
-					console.log( 'GET_ACCESSTOKEN_ERROR:: ', error );
-					res.status(500).send( UNEXPECTED_SERVER_EXCEPTION );
-				} else {
-					accessToken = JSON.parse( body )[ "accessToken" ];
-					var domain = process.env.STAGE === 'devo' ? '.ptlp.co' : '.pratilipi.com';
-					if( _getWebsite( req.headers.host )[ "__name__" ] === "ALPHA" )
-						domain = "localhost";
-					res.cookie( 'access_token', accessToken,
-						{ domain: domain,
-							path: '/',
-							maxAge: 30 * 86400,
-							httpOnly: false } );
-					next();
-				}
-			});
-		} else {
-			next();
-		}
+		var url = APPENGINE_ENDPOINT + "/ecs/accesstoken";
+		if( accessToken ) url += "?accessToken=" + accessToken;
+		requestModule( url, (error, response, body) => {
+			if( error ) {
+				console.log( 'ACCESS_TOKEN_ERROR:: ', error );
+				res.status(500).send( UNEXPECTED_SERVER_EXCEPTION );
+			} else {
+				accessToken = JSON.parse( body )[ "accessToken" ];
+				var domain = process.env.STAGE === 'devo' ? '.ptlp.co' : '.pratilipi.com';
+				if( _getWebsite( req.headers.host )[ "__name__" ] === "ALPHA" )
+					domain = "localhost";
+				res.cookie( 'access_token', accessToken,
+					{ domain: domain,
+						path: '/',
+						maxAge: 30 * 86400,
+						httpOnly: false } );
+				next();
+			}
+		});
+
 	}
 });
 
