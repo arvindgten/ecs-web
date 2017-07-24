@@ -475,7 +475,7 @@ app.use( (req, res, next) => {
 				res.cookie( 'access_token', accessToken,
 					{ domain: domain,
 						path: '/',
-						maxAge: 30 * 86400,
+						maxAge: 30 * 24 * 3600000, // 30 days
 						httpOnly: false } );
 				next();
 			}
