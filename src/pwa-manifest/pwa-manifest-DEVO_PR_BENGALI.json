@@ -1,0 +1,24 @@
+{
+	"name": "প্রতিলিপি",
+	"short_name": "প্রতিলিপি",
+	"start_url": "/?homescreen=1",
+	"display": "standalone",
+	"background_color": "#FFF",
+	"theme_color": "#D0021B",
+	"description": "পড়ুন বাংলা গল্প,কবিতা,উপন্যাস এবং আরও অনেক কিছু",
+	"lang": "bn",
+	"icons": [
+		{
+			"src": "pratilipi-logo-144px.png",
+			"sizes": "144x144",
+			"type": "image/png"
+		}
+	],
+	"related_applications": [
+		{
+		  "platform": "play",
+		  "url": "https://play.google.com/store/apps/details?id=com.pratilipi.mobile.android&hl=en",
+		  "id": "com.pratilipi.mobile.android"
+		}
+	]
+}

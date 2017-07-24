@@ -4,7 +4,7 @@
 
 	var localFilesToCache = [
 		'.',
-		'pwa-stylesheets/css/style.css?200720171750',
+		'pwa-stylesheets/css/style.css?240720171520',
 		'pwa-images/404.svg',
 		'pwa-images/library-empty.svg',
 		'pwa-images/NewSprite_2.png',
@@ -27,13 +27,13 @@
 		'https://www.ptlp.co/resource-all/font/font-hi.css'
 	];
 
-	var STATIC_VERSION = "200720171750";
+	var STATIC_VERSION = "240720171520";
 	var DYNAMIC_VERSION = "7";
 	var staticCacheName = 'pratilipi-cache-static-' + STATIC_VERSION;
 	var dynamicCacheName = 'pratilipi-cache-dynamic-' + DYNAMIC_VERSION;
 
-	var hostName = "https://hindi-delta.pratilipi.com";
-	var apiPrefix = "https://hindi-delta.pratilipi.com";
+	var hostName = "https://hindi-gamma.pratilipi.com";
+	var apiPrefix = "https://hindi-gamma.pratilipi.com";
 
 	/* Cache Keys */
 	var PWA_INDEX_HTML = "app-shell.html";

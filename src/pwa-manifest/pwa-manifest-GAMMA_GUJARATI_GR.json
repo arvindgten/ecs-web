@@ -1,0 +1,24 @@
+{
+	"name": "પ્રતિલિપિ",
+	"short_name": "પ્રતિલિપિ",
+	"start_url": "/?homescreen=1",
+	"display": "standalone",
+	"background_color": "#FFF",
+	"theme_color": "#D0021B",
+	"description": "વાંચો ગુજરાતી વાર્તાઓ, કવિતાઓ, નવલકથાઓ, સામયિકો અને નવીન સાહિત્ય",
+	"lang": "gu",
+	"icons": [
+		{
+			"src": "pratilipi-logo-144px.png",
+			"sizes": "144x144",
+			"type": "image/png"
+		}
+	],
+	"related_applications": [
+		{
+		  "platform": "play",
+		  "url": "https://play.google.com/store/apps/details?id=com.pratilipi.mobile.android&hl=en",
+		  "id": "com.pratilipi.mobile.android"
+		}
+	]
+}
