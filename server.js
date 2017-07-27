@@ -148,9 +148,19 @@ function _getWebsite( hostName ) {
 	return website;
 }
 
-const APPENGINE_ENDPOINT =
-		( process.env.STAGE === 'gamma' || process.env.STAGE === 'prod' ) ?
-		"https://api.pratilipi.com" : "https://devo-pratilipi.appspot.com";
+var APPENGINE_ENDPOINT;
+switch( process.env.STAGE ) {
+	case "devo":
+		APPENGINE_ENDPOINT = "https://devo-pratilipi.appspot.com";
+		break;
+	case "gamma":
+		APPENGINE_ENDPOINT = "https://gae-gamma.pratilipi.com";
+		break;
+	case "prod":
+		APPENGINE_ENDPOINT = "https://gae-prod.pratilipi.com";
+		break;
+}
+
 const UNEXPECTED_SERVER_EXCEPTION = { "message": "Some exception occurred at server. Please try again." };
 
 if( !( 'contains' in String.prototype ) ) {
