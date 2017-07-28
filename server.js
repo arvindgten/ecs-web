@@ -2,7 +2,6 @@
 
 const express = require( 'express' );
 const cookieParser = require( 'cookie-parser' );
-var redirectToHTTPS = require( 'express-http-to-https' );
 
 var requestModule = require( 'request' );
 var fs = require('fs');
@@ -200,7 +199,13 @@ app.get( '/health', (req, res, next) => {
 });
 
 // http -> https redirection
-app.use( redirectToHTTPS( [/localhost:(\d{4})/], [] ) );
+app.enable('trust proxy');
+app.use(function(req, res, next) {
+    if (req.secure){
+        return next();
+    }
+    res.redirect("https://" + req.headers.host + req.url);
+});
 
 app.get( '/*', (req, res, next) => {
 	console.log( "req.secure = " + req.secure );
