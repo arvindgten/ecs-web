@@ -208,18 +208,10 @@ app.get( '/health', (req, res, next) => {
 */
 app.enable( 'trust proxy' );
 app.use( (req, res, next) => {
-	if( req.secure ) {
+	if( req.secure || _getWebsite( req.headers.host ).__name__ === "ALPHA" ) {
 		return next();
 	}
 	res.redirect( "https://" + req.headers.host + req.url );
-});
-
-app.get( '/*', (req, res, next) => {
-	console.log( "req.secure = " + req.secure );
-	if( _getWebsite( req.headers.host ).__name__ !== "ALPHA" && ! req.secure ) {
-		return res.redirect( "https://" + req.headers.host + req.url );
-	}
-	next();
 });
 
 // https://www.hindi.pratilipi.com -> https://hindi.pratilipi.com
