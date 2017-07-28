@@ -183,7 +183,7 @@ function _forwardToGae( url, req, res ) {
 			"ECS-HostName": req.headers.host
 		}
 	};
-	console.log( "forwardToGae: " + JSON.stringify( options ) );
+	console.log( "forwardToGae :: " + JSON.stringify( options ) );
 	req.pipe( requestModule( options ) ).pipe( res );
 }
 
@@ -448,7 +448,7 @@ app.use( (req, res, next) => {
 
 		} else {
 			basicBrowser = true;
-			console.log( "UNKNOWN_USER_AGENT: " + userAgent );
+			console.log( "UNKNOWN_USER_AGENT :: " + userAgent );
 		}
 
 		if( basicBrowser ) {
@@ -480,7 +480,7 @@ app.use( (req, res, next) => {
 		if( accessToken ) url += "?accessToken=" + accessToken;
 		requestModule( url, (error, response, body) => {
 			if( error ) {
-				console.log( 'ACCESS_TOKEN_ERROR:: ', error );
+				console.log( 'ACCESS_TOKEN_ERROR :: ', error );
 				res.status(500).send( UNEXPECTED_SERVER_EXCEPTION );
 			} else {
 				accessToken = JSON.parse( body )[ "accessToken" ];
@@ -521,7 +521,6 @@ app.get( '/*', (req, res, next) => {
 // Other urls where PWA is not supported
 app.get( '/*', (req, res, next) => {
 	var referer = req.header( 'Referer' ) != null ? req.header( 'Referer' ) : "";
-	console.log( req.path );
 	var forwardToGae = req.path === '/pratilipi-write'
 		|| req.path === '/write'
 		|| req.path.startsWith( '/admin/' )
@@ -567,7 +566,7 @@ app.get( '/*', (req, res, next) => {
 		content = fs.readFileSync( 'src/pwa-manifest' + "/pwa-manifest-" + website.__name__ + ".json", 'utf8' );
 		res.set( 'Content-Type', 'application/json' );
 	} else {
-		console.log( "Serving html file to url : ",  req.url );
+		console.log( "Serving html file to url :: ",  req.url );
 		content = fs.readFileSync( 'src/pwa-markup/PWA-' + website.__name__ + '.html', 'utf8' );
 		res.set( 'Content-Type', 'text/html' );
 	}
