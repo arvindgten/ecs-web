@@ -2,6 +2,7 @@
 
 const express = require( 'express' );
 const cookieParser = require( 'cookie-parser' );
+var redirectToHTTPS = require( 'express-http-to-https' );
 
 var requestModule = require( 'request' );
 var fs = require('fs');
@@ -199,6 +200,8 @@ app.get( '/health', (req, res, next) => {
 });
 
 // http -> https redirection
+app.use( redirectToHTTPS( [/localhost:(\d{4})/], [] ) );
+
 app.get( '/*', (req, res, next) => {
 	console.log( "req.secure = " + req.secure );
 	if( _getWebsite( req.headers.host ).__name__ !== "ALPHA" && ! req.secure ) {
