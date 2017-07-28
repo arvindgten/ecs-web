@@ -200,6 +200,7 @@ app.get( '/health', (req, res, next) => {
 
 // http -> https redirection
 app.get( '/*', (req, res, next) => {
+	console.log( "req.secure = " + req.secure );
 	if( _getWebsite( req.headers.host ).__name__ !== "ALPHA" && ! req.secure ) {
 		return res.redirect( "https://" + req.headers.host + req.url );
 	}
