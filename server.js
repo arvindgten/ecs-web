@@ -198,13 +198,20 @@ app.get( '/health', (req, res, next) => {
 	res.send( Date.now() + "" );
 });
 
-// http -> https redirection
-app.enable('trust proxy');
-app.use(function(req, res, next) {
-    if (req.secure){
-        return next();
-    }
-    res.redirect("https://" + req.headers.host + req.url);
+
+/*
+*   http -> https redirection
+*	If your app is behind a trusted proxy (e.g. an AWS ELB or a correctly configured nginx), this code should work.
+*	This assumes that you're hosting your site on 80 and 443, if not, you'll need to change the port when you redirect.
+*	This also assumes that you're terminating the SSL on the proxy. If you're doing SSL end to end use the answer from @basarat above. End to end SSL is the better solution.
+*	app.enable('trust proxy') allows express to check the X-Forwarded-Proto header.
+*/
+app.enable( 'trust proxy' );
+app.use( (req, res, next) => {
+	if( req.secure ) {
+		return next();
+	}
+	res.redirect( "https://" + req.headers.host + req.url );
 });
 
 app.get( '/*', (req, res, next) => {
