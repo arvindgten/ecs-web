@@ -289,7 +289,7 @@ app.get( '/*', (req, res, next) => {
 	}
 });
 
-/*
+
 // Crawlers - only for prod env
 app.get( '/*', (req, res, next) => {
 
@@ -344,10 +344,6 @@ app.get( '/*', (req, res, next) => {
 		next();
 	}
 });
-*/
-
-
-app.use( require( 'prerender-node' ) );
 
 
 // Redirecting to Mini website - only for prod env
