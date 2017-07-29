@@ -4,7 +4,7 @@
 
 	var localFilesToCache = [
 		'.',
-		'pwa-stylesheets/css/style.css?290720171114',
+		'pwa-stylesheets/css/style.css?290720171134',
 		'pwa-images/404.svg',
 		'pwa-images/library-empty.svg',
 		'pwa-images/NewSprite_2.png',
@@ -27,7 +27,7 @@
 		'https://www.ptlp.co/resource-all/font/font-ml.css'
 	];
 
-	var STATIC_VERSION = "290720171114";
+	var STATIC_VERSION = "290720171134";
 	var DYNAMIC_VERSION = "7";
 	var staticCacheName = 'pratilipi-cache-static-' + STATIC_VERSION;
 	var dynamicCacheName = 'pratilipi-cache-dynamic-' + DYNAMIC_VERSION;
@@ -117,7 +117,8 @@
 			&& url.indexOf( hostName + "/pwa-images/" ) === -1
 			&& url.indexOf( hostName + "/resources/" ) === -1
 			&& url.indexOf( hostName + "/stylesheets/" ) === -1
-			&& url.indexOf( "loadPWA=false" ) === -1 ) {
+			&& url.indexOf( "loadPWA=false" ) === -1
+			&& false ) {
 				event.respondWith(
 					caches.match( PWA_INDEX_HTML ).then( function(response) {
 						if( response ) return response;
