@@ -4,7 +4,7 @@
 
 	var localFilesToCache = [
 		'.',
-		'pwa-stylesheets/css/style.css?310720171655',
+		'pwa-stylesheets/css/style.css?310720171657',
 		'pwa-images/404.svg',
 		'pwa-images/library-empty.svg',
 		'pwa-images/NewSprite_2.png',
@@ -27,7 +27,7 @@
 		'https://www.ptlp.co/resource-all/font/font-kn.css'
 	];
 
-	var STATIC_VERSION = "310720171655";
+	var STATIC_VERSION = "310720171657";
 	var DYNAMIC_VERSION = "7";
 	var staticCacheName = 'pratilipi-cache-static-' + STATIC_VERSION;
 	var dynamicCacheName = 'pratilipi-cache-dynamic-' + DYNAMIC_VERSION;
