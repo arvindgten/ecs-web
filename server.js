@@ -4,7 +4,6 @@ const express = require( 'express' );
 const cookieParser = require( 'cookie-parser' );
 
 var requestModule = require( 'request' );
-var fs = require('fs');
 
 // Constants
 const PORT = 80;
@@ -547,31 +546,24 @@ app.get( '/*', (req, res, next) => {
 // Serving PWA files
 app.get( '/*', (req, res, next) => {
 
-	var content = null;
 	var website = _getWebsite( req.headers.host );
 
 	if( req.path === '/pwa-stylesheets/css/style.css' ) {
-		content = fs.readFileSync( 'src/pwa-stylesheets/style.css', 'utf8' );
-		res.set( 'Content-Type', 'text/css' );
+		res.set( 'Content-Type', 'text/css' ).sendfile( 'src/pwa-stylesheets/style.css' );
 	} else if( req.path === '/pwa-sw-' + website.__name__ + '.js' ) {
-		content = fs.readFileSync( 'src/pwa-service-worker' + req.path );
-		res.set( 'Content-Type', 'text/javascript' );
+		res.set( 'Content-Type', 'text/javascript' ).sendfile( 'src/pwa-service-worker' + req.path );
 	} else if( req.path === '/favicon.ico' ) {
-		content = fs.readFileSync( 'src/favicon.ico' );
+		res.sendfile( 'src/favicon.ico' );
 	} else if( req.path.indexOf( '/pwa-images/' ) === 0 ) {
-		content = fs.readFileSync( 'src' + req.path );
+		res.sendfile( 'src' + req.path );
 	} else if( req.path.indexOf( '/resources/' ) === 0 || req.path.indexOf( '/stylesheets/' ) === 0 ) {
-		content = "";
-		res.set( 'Content-Type', 'text/plain' );
+		res.set( 'Content-Type', 'text/plain' ).send( "" );
 	} else if( req.path === "/pwa-manifest-" + website.__name__ + ".json" ) {
-		content = fs.readFileSync( 'src/pwa-manifest' + "/pwa-manifest-" + website.__name__ + ".json", 'utf8' );
-		res.set( 'Content-Type', 'application/json' );
+		res.set( 'Content-Type', 'application/json' ).sendfile( 'src/pwa-manifest' + "/pwa-manifest-" + website.__name__ + ".json" );
 	} else {
 		console.log( "Serving html file to url :: ",  req.url );
-		content = fs.readFileSync( 'src/pwa-markup/PWA-' + website.__name__ + '.html', 'utf8' );
-		res.set( 'Content-Type', 'text/html' );
+		res.set( 'Content-Type', 'text/html' ).sendfile( 'src/pwa-markup/PWA-' + website.__name__ + '.html' );
 	}
-	res.send( content );
 });
 
 app.listen( PORT );

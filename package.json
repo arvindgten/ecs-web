@@ -10,8 +10,6 @@
   "dependencies": {
     "cookie-parser": "^1.4.3",
     "express": "^4.13.3",
-    "file-system": "^2.2.2",
-    "prerender-node": "^2.7.2",
     "request": "^2.81.0"
   }
 }
