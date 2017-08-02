@@ -198,21 +198,6 @@ app.get( '/health', (req, res, next) => {
 });
 
 
-/*
-*   http -> https redirection
-*	If your app is behind a trusted proxy (e.g. an AWS ELB or a correctly configured nginx), this code should work.
-*	This assumes that you're hosting your site on 80 and 443, if not, you'll need to change the port when you redirect.
-*	This also assumes that you're terminating the SSL on the proxy. If you're doing SSL end to end use the answer from @basarat above. End to end SSL is the better solution.
-*	app.enable('trust proxy') allows express to check the X-Forwarded-Proto header.
-*/
-app.enable( 'trust proxy' );
-app.use( (req, res, next) => {
-	if( req.secure || _getWebsite( req.headers.host ).__name__ === "ALPHA" ) {
-		return next();
-	}
-	res.redirect( "https://" + req.headers.host + req.url );
-});
-
 // https://www.hindi.pratilipi.com -> https://hindi.pratilipi.com
 app.use( (req, res, next) => {
 	var host = req.get( 'host' );
@@ -229,6 +214,31 @@ app.use( (req, res, next) => {
 	if( !redirected )
 		next();
 });
+
+
+// If nothing matches, redirect to pratilipi.com
+app.use( (req, res, next) => {
+	if( _getWebsite( req.headers.host ) == null )
+		return res.redirect( 301, 'https://www.pratilipi.com/?redirect=ecs' );
+	else
+		next();
+});
+
+/*
+*   http -> https redirection
+*	If your app is behind a trusted proxy (e.g. an AWS ELB or a correctly configured nginx), this code should work.
+*	This assumes that you're hosting your site on 80 and 443, if not, you'll need to change the port when you redirect.
+*	This also assumes that you're terminating the SSL on the proxy. If you're doing SSL end to end use the answer from @basarat above. End to end SSL is the better solution.
+*	app.enable('trust proxy') allows express to check the X-Forwarded-Proto header.
+*/
+app.enable( 'trust proxy' );
+app.use( (req, res, next) => {
+	if( req.secure || _getWebsite( req.headers.host ).__name__ === "ALPHA" ) {
+		return next();
+	}
+	res.redirect( "https://" + req.headers.host + req.url );
+});
+
 
 // Remove trailing slash
 app.use( (req, res, next) => {
@@ -264,14 +274,6 @@ app.use( (req, res, next) => {
 app.use( (req, res, next) => {
 	if( req.path === "/api.pratilipi/pratilipi/resource" )
 		return res.redirect( 301, ( req.secure ? 'https://' : 'http://' ) + req.get('host') + "/api/pratilipi/content/image" + "?" + req.url.split( '?' )[1] );
-	else
-		next();
-});
-
-// If nothing matches, redirect to pratilipi.com
-app.use( (req, res, next) => {
-	if( _getWebsite( req.headers.host ) == null )
-		return res.redirect( 301, 'https://www.pratilipi.com/?redirect=ecs' );
 	else
 		next();
 });
