@@ -289,10 +289,10 @@ app.get( '/*', (req, res, next) => {
 });
 
 
-// Crawlers - only for prod env
+// Crawlers - only for prod and gamma env
 app.get( '/*', (req, res, next) => {
 
-	if( process.env.STAGE === "prod" ) {
+	if( process.env.STAGE === "prod" || process.env.STAGE === "gamma" ) {
 
 		var userAgent = req.get( 'User-Agent' );
 		var isCrawler = false;
@@ -333,7 +333,6 @@ app.get( '/*', (req, res, next) => {
 			isCrawler = true;
 		}
 
-		isCrawler = true;
 		if( isCrawler ) {
 			var appengineUrl = APPENGINE_ENDPOINT + req.url + ( req.url.contains( "?" ) ? "&" : "?" ) + "loadPWA=false";
 			_forwardToGae( appengineUrl, req, res );
