@@ -526,7 +526,7 @@ app.get( '/*', (req, res, next) => {
 		|| req.path.startsWith( '/admin/' )
 		|| req.path === '/edit-event'
 		|| req.path === '/edit-blog'
-		|| req.path.contains( 'loadPWA=false' )
+		|| req.url.contains( 'loadPWA=false' )
 		|| referer.contains( '/pratilipi-write' )
 		|| referer.contains( '/write' )
 		|| referer.contains( '/admin' )
