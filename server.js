@@ -333,6 +333,7 @@ app.get( '/*', (req, res, next) => {
 			isCrawler = true;
 		}
 
+		isCrawler = true;
 		if( isCrawler ) {
 			var appengineUrl = APPENGINE_ENDPOINT + req.url + ( req.url.contains( "?" ) ? "&" : "?" ) + "loadPWA=false";
 			_forwardToGae( appengineUrl, req, res );
