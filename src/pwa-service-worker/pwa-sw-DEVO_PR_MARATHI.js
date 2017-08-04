@@ -4,7 +4,7 @@
 
 	var localFilesToCache = [
 		'.',
-		'pwa-stylesheets/css/style.css?030820171735',
+		'pwa-stylesheets/css/style.css?040820170802',
 		'pwa-images/404.svg',
 		'pwa-images/library-empty.svg',
 		'pwa-images/NewSprite_2.png',
@@ -27,7 +27,7 @@
 		'https://www.ptlp.co/resource-all/font/font-mr.css'
 	];
 
-	var STATIC_VERSION = "030820171735";
+	var STATIC_VERSION = "040820170802";
 	var DYNAMIC_VERSION = "7";
 	var staticCacheName = 'pratilipi-cache-static-' + STATIC_VERSION;
 	var dynamicCacheName = 'pratilipi-cache-dynamic-' + DYNAMIC_VERSION;
@@ -36,7 +36,7 @@
 	var apiPrefix = "https://pr-marathi.ptlp.co";
 
 	/* Cache Keys */
-	var PWA_INDEX_HTML = "app-shell.html";
+	var PWA_INDEX_HTML = "app-shell-" + STATIC_VERSION + ".html";
 	var INIT_BANNER_LIST = "init-banner-list.json";
 	var TRENDING_SEARCH_KEYWORDS = "trending-search-keywords.json";
 
@@ -117,7 +117,8 @@
 			&& url.indexOf( hostName + "/pwa-images/" ) === -1
 			&& url.indexOf( hostName + "/resources/" ) === -1
 			&& url.indexOf( hostName + "/stylesheets/" ) === -1
-			&& url.indexOf( "loadPWA=false" ) === -1 ) {
+			&& url.indexOf( "loadPWA=false" ) === -1
+			&& getCookie( "access_token" ) ) {
 				event.respondWith(
 					caches.match( PWA_INDEX_HTML ).then( function(response) {
 						if( response ) return response;
@@ -138,19 +139,19 @@
 		// External Resource Files
 		if( externalFilesToCache[ url ] ) {
 			event.respondWith(
-                caches.match( url ).then( function(response) {
-                    if( response ) return response;
-                    return fetch( event.request ).then( function(response) {
-                        if( !response.ok ) {
-                            return null;
-                        }
-                        return caches.open( staticCacheName ).then( function(cache) {
-                            cache.put( url, response.clone() );
-                            return response;
-                        });
-                    });
-                })
-            );
+				caches.match( url ).then( function(response) {
+					if( response ) return response;
+					return fetch( event.request ).then( function(response) {
+						if( !response.ok ) {
+							return null;
+						}
+						return caches.open( staticCacheName ).then( function(cache) {
+							cache.put( url, response.clone() );
+							return response;
+						});
+					});
+				})
+			);
 		}
 
 		// Banner List Api
@@ -159,24 +160,35 @@
 		}
 
 		// Trending Search KeywordList
-        if( url.indexOf( "/api/search/trending_search" ) !== -1 ) {
+		if( url.indexOf( "/api/search/trending_search" ) !== -1 ) {
 			cacheAndRevalidate( dynamicCacheName, TRENDING_SEARCH_KEYWORDS, event );
-        }
+		}
 
 	});
 
 	function cacheAndRevalidate( cacheName, cacheKey, event ) {
-        event.respondWith(
-            caches.open( cacheName ).then( function( cache ) {
-                return cache.match( cacheKey ).then( function( response ) {
-                    var fetchPromise = fetch( event.request ).then( function( networkResponse ) {
-                        cache.put( cacheKey, networkResponse.clone() );
-                        return networkResponse;
-                    });
-                    return response || fetchPromise;
-                })
-            })
-        );
-    }
+		event.respondWith(
+			caches.open( cacheName ).then( function( cache ) {
+				return cache.match( cacheKey ).then( function( response ) {
+					var fetchPromise = fetch( event.request ).then( function( networkResponse ) {
+						cache.put( cacheKey, networkResponse.clone() );
+						return networkResponse;
+					});
+					return response || fetchPromise;
+				})
+			})
+		);
+	}
+
+	function getCookie( cname ) {
+		var name = cname + "=";
+		var ca = document.cookie.split( ';' );
+		for( var i = 0; i < ca.length; i++ ) {
+			var c = ca[i];
+			while( c.charAt(0) == ' ' ) c = c.substring( 1 );
+			if( c.indexOf( name ) == 0 ) return c.substring( name.length, c.length );
+		}
+		return null;
+	}
 
 })();
