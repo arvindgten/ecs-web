@@ -1,0 +1,24 @@
+{
+	"name": "ಪ್ರತಿಲಿಪಿ",
+	"short_name": "ಪ್ರತಿಲಿಪಿ",
+	"start_url": "/?homescreen=1",
+	"display": "standalone",
+	"background_color": "#FFF",
+	"theme_color": "#D0021B",
+	"description": "ಕನ್ನಡ, ಹಿಂದಿ, ಗುಜರಾತಿ, ತಮಿಳು, ತೆಲುಗು, ಮಲಯಾಳಂ,ಮರಾಟಿ, ಬೆಂಗಾಲಿ ಕಥೆ, ಕವನ ಮತ್ತು ಪುಸ್ತಕಗಳನ್ನು ಓದಿರಿ.",
+	"lang": "kn",
+	"icons": [
+		{
+			"src": "pratilipi-logo-144px.png",
+			"sizes": "144x144",
+			"type": "image/png"
+		}
+	],
+	"related_applications": [
+		{
+		  "platform": "play",
+		  "url": "https://play.google.com/store/apps/details?id=com.pratilipi.mobile.android&hl=en",
+		  "id": "com.pratilipi.mobile.android"
+		}
+	]
+}
