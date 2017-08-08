@@ -4,7 +4,7 @@
 
 	var localFilesToCache = [
 		'.',
-		'pwa-stylesheets/css/style.css?080820170817',
+		'pwa-stylesheets/css/style.css?080820171041',
 		'pwa-images/404.svg',
 		'pwa-images/library-empty.svg',
 		'pwa-images/NewSprite_2.png',
@@ -27,7 +27,7 @@
 		'https://www.ptlp.co/resource-all/font/font-kn.css'
 	];
 
-	var STATIC_VERSION = "080820170817";
+	var STATIC_VERSION = "080820171041";
 	var DYNAMIC_VERSION = "7";
 	var staticCacheName = 'pratilipi-cache-static-' + STATIC_VERSION;
 	var dynamicCacheName = 'pratilipi-cache-dynamic-' + DYNAMIC_VERSION;
@@ -36,7 +36,7 @@
 	var apiPrefix = "https://gr-kannada.ptlp.co";
 
 	/* Cache Keys */
-	var PWA_INDEX_HTML = "app-shell-080820170817.html";
+	var PWA_INDEX_HTML = "app-shell-080820171041.html";
 	var INIT_BANNER_LIST = "init-banner-list.json";
 	var TRENDING_SEARCH_KEYWORDS = "trending-search-keywords.json";
 
@@ -117,7 +117,8 @@
 			&& url.indexOf( hostName + "/pwa-images/" ) === -1
 			&& url.indexOf( hostName + "/resources/" ) === -1
 			&& url.indexOf( hostName + "/stylesheets/" ) === -1
-			&& url.indexOf( "loadPWA=false" ) === -1 ) {
+			&& url.indexOf( "loadPWA=false" ) === -1
+			&& false ) {
 				event.respondWith(
 					caches.match( PWA_INDEX_HTML ).then( function(response) {
 						if( response ) return response;
