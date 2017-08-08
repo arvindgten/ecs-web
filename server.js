@@ -498,7 +498,7 @@ app.use( (req, res, next) => {
 				console.log( 'ACCESS_TOKEN_ERROR :: ', error );
 				res.status(500).send( UNEXPECTED_SERVER_EXCEPTION );
 			} else {
-				try { accessToken = JSON.parse( body )[ "accessToken" ]; } catch(e) { alert(e); }
+				try { accessToken = JSON.parse( body )[ "accessToken" ]; } catch(e) {}
 				if( ! accessToken ) {
 					console.log( 'ACCESS_TOKEN_CALL_ERROR' );
 					res.status(500).send( UNEXPECTED_SERVER_EXCEPTION );
