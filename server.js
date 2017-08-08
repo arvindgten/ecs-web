@@ -309,7 +309,10 @@ app.get( '/*', (req, res, next) => {
 		var userAgent = req.get( 'User-Agent' );
 		var isCrawler = false;
 
-		if( userAgent.contains( "Googlebot" ) ) { // Googlebot/2.1; || Googlebot-News || Googlebot-Image/1.0 || Googlebot-Video/1.0
+		if( ! userAgent ) {
+			// Do Nothing
+
+		} else if( userAgent.contains( "Googlebot" ) ) { // Googlebot/2.1; || Googlebot-News || Googlebot-Image/1.0 || Googlebot-Video/1.0
 			isCrawler = true;
 
 		} else if( userAgent === "Google (+https://developers.google.com/+/web/snippet/)" ) { // Google+
