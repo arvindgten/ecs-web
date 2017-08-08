@@ -88,6 +88,16 @@ var Website = defineEnum({
 	KANNADA:		    { hostName: "kannada.pratilipi.com",    mobileHostName: "kn.pratilipi.com", displayLanguage: Language.KANNADA,	    filterLanguage: Language.KANNADA },
 	TELUGU:			{ hostName: "telugu.pratilipi.com",     mobileHostName: "te.pratilipi.com", displayLanguage: Language.TELUGU,		filterLanguage: Language.TELUGU },
 
+	PROD_ALL_LANGUAGE:	{ hostName: "www-prod.pratilipi.com",          mobileHostName: "m-prod.pratilipi.com",  displayLanguage: Language.ENGLISH,	filterLanguage: null },
+	PROD_HINDI:			{ hostName: "hindi-prod.pratilipi.com",        mobileHostName: "hi-prod.pratilipi.com", displayLanguage: Language.HINDI,		filterLanguage: Language.HINDI },
+	PROD_GUJARATI:		{ hostName: "gujarati-prod.pratilipi.com",     mobileHostName: "gu-prod.pratilipi.com", displayLanguage: Language.GUJARATI,	filterLanguage: Language.GUJARATI },
+	PROD_TAMIL:			{ hostName: "tamil-prod.pratilipi.com",        mobileHostName: "ta-prod.pratilipi.com", displayLanguage: Language.TAMIL,		filterLanguage: Language.TAMIL },
+	PROD_MARATHI:		{ hostName: "marathi-prod.pratilipi.com",      mobileHostName: "mr-prod.pratilipi.com", displayLanguage: Language.MARATHI,	filterLanguage: Language.MARATHI },
+	PROD_MALAYALAM:		{ hostName: "malayalam-prod.pratilipi.com",    mobileHostName: "ml-prod.pratilipi.com", displayLanguage: Language.MALAYALAM,	filterLanguage: Language.MALAYALAM },
+	PROD_BENGALI:		{ hostName: "bengali-prod.pratilipi.com",      mobileHostName: "bn-prod.pratilipi.com", displayLanguage: Language.BENGALI,	filterLanguage: Language.BENGALI },
+	PROD_KANNADA:		{ hostName: "kannada-prod.pratilipi.com",      mobileHostName: "kn-prod.pratilipi.com", displayLanguage: Language.KANNADA,	filterLanguage: Language.KANNADA },
+	PROD_TELUGU:		{ hostName: "telugu-prod.pratilipi.com",       mobileHostName: "te-prod.pratilipi.com", displayLanguage: Language.TELUGU,	filterLanguage: Language.TELUGU },
+
 	GAMMA_ALL_LANGUAGE:	{ hostName: "www-gamma.pratilipi.com",          mobileHostName: "m-gamma.pratilipi.com",  displayLanguage: Language.ENGLISH,	filterLanguage: null },
 	GAMMA_HINDI:			{ hostName: "hindi-gamma.pratilipi.com",        mobileHostName: "hi-gamma.pratilipi.com", displayLanguage: Language.HINDI,		filterLanguage: Language.HINDI },
 	GAMMA_GUJARATI:		{ hostName: "gujarati-gamma.pratilipi.com",     mobileHostName: "gu-gamma.pratilipi.com", displayLanguage: Language.GUJARATI,	filterLanguage: Language.GUJARATI },
