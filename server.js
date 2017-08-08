@@ -498,16 +498,21 @@ app.use( (req, res, next) => {
 				console.log( 'ACCESS_TOKEN_ERROR :: ', error );
 				res.status(500).send( UNEXPECTED_SERVER_EXCEPTION );
 			} else {
-				accessToken = JSON.parse( body )[ "accessToken" ];
-				var domain = process.env.STAGE === 'devo' ? '.ptlp.co' : '.pratilipi.com';
-				if( _getWebsite( req.headers.host )[ "__name__" ] === "ALPHA" )
-					domain = "localhost";
-				res.cookie( 'access_token', accessToken,
-					{ domain: domain,
-						path: '/',
-						maxAge: 30 * 24 * 3600000, // 30 days
-						httpOnly: false } );
-				next();
+				try { accessToken = JSON.parse( body )[ "accessToken" ]; } catch(e) { alert(e); }
+				if( ! accessToken ) {
+					console.log( 'ACCESS_TOKEN_CALL_ERROR' );
+					res.status(500).send( UNEXPECTED_SERVER_EXCEPTION );
+				} else {
+					var domain = process.env.STAGE === 'devo' ? '.ptlp.co' : '.pratilipi.com';
+					if( _getWebsite( req.headers.host )[ "__name__" ] === "ALPHA" )
+						domain = "localhost";
+					res.cookie( 'access_token', accessToken,
+						{ domain: domain,
+							path: '/',
+							maxAge: 30 * 24 * 3600000, // 30 days
+							httpOnly: false } );
+					next();
+				}
 			}
 		});
 
