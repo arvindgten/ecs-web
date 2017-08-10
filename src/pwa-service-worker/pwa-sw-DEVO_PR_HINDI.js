@@ -4,7 +4,7 @@
 
 	var localFilesToCache = [
 		'.',
-		'pwa-stylesheets/css/style.css?090820171740',
+		'pwa-stylesheets/css/style.css?100820171303',
 		'pwa-images/404.svg',
 		'pwa-images/library-empty.svg',
 		'pwa-images/NewSprite_2.png',
@@ -27,7 +27,7 @@
 		'https://www.ptlp.co/resource-all/font/font-hi.css'
 	];
 
-	var STATIC_VERSION = "090820171740";
+	var STATIC_VERSION = "100820171303";
 	var DYNAMIC_VERSION = "7";
 	var staticCacheName = 'pratilipi-cache-static-' + STATIC_VERSION;
 	var dynamicCacheName = 'pratilipi-cache-dynamic-' + DYNAMIC_VERSION;
@@ -36,7 +36,7 @@
 	var apiPrefix = "https://pr-hindi.ptlp.co";
 
 	/* Cache Keys */
-	var PWA_INDEX_HTML = "app-shell-090820171740.html";
+	var PWA_INDEX_HTML = "app-shell-100820171303.html";
 	var INIT_BANNER_LIST = "init-banner-list.json";
 	var TRENDING_SEARCH_KEYWORDS = "trending-search-keywords.json";
 
