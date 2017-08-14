@@ -204,6 +204,7 @@ app.use( cookieParser() );
 
 // Health
 app.get( '/health', (req, res, next) => {
+	console.log( "Healthy!" );
 	res.send( Date.now() + "" );
 });
 
@@ -572,7 +573,7 @@ app.get( '/*', (req, res, next) => {
 		res.set( 'Content-Type', 'text/css' ).sendfile( 'src/pwa-stylesheets/style.css' );
 	} else if( req.path === '/pwa-sw-' + website.__name__ + '.js' ) {
 		res.set( 'Content-Type', 'text/javascript' ).sendfile( 'src/pwa-service-worker' + req.path );
-	} else if( req.path === '/favicon.ico' ) {
+	} else if( req.path === '/favicon.ico' || req.path === '/favicon.png' ) {
 		res.sendfile( 'src/favicon.ico' );
 	} else if( req.path.indexOf( '/pwa-images/' ) === 0 ) {
 		res.sendfile( 'src' + req.path );
@@ -581,8 +582,10 @@ app.get( '/*', (req, res, next) => {
 	} else if( req.path === "/pwa-manifest-" + website.__name__ + ".json" ) {
 		res.set( 'Content-Type', 'application/json' ).sendfile( 'src/pwa-manifest' + "/pwa-manifest-" + website.__name__ + ".json" );
 	} else {
+		// https://github.com/expressjs/express/issues/3127
+		var html = fs.readFileSync( 'src/pwa-markup/PWA-' + website.__name__ + '.html', 'utf8' );
+		res.set( 'Content-Type', 'text/html' ).send( html );
 		console.log( "Serving html file to url :: ",  req.url );
-		res.set( 'Content-Type', 'text/html' ).sendfile( 'src/pwa-markup/PWA-' + website.__name__ + '.html' );
 	}
 });
 
