@@ -2,6 +2,7 @@
 
 const express = require( 'express' );
 const cookieParser = require( 'cookie-parser' );
+var fs = require( 'fs' );
 
 var requestModule = require( 'request' );
 
