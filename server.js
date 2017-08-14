@@ -571,9 +571,11 @@ app.get( '/*', (req, res, next) => {
 	var website = _getWebsite( req.headers.host );
 
 	if( req.path === '/pwa-stylesheets/css/style.css' ) {
-		res.set( 'Content-Type', 'text/css' ).sendfile( 'src/pwa-stylesheets/style.css' );
+		var css = fs.readFileSync( 'src/pwa-stylesheets/style.css', 'utf8' );
+		res.set( 'Content-Type', 'text/css' ).send( css );
 	} else if( req.path === '/pwa-sw-' + website.__name__ + '.js' ) {
-		res.set( 'Content-Type', 'text/javascript' ).sendfile( 'src/pwa-service-worker' + req.path );
+		var sw = fs.readFileSync( 'src/pwa-service-worker' + req.path, 'utf8' );
+		res.set( 'Content-Type', 'text/javascript' ).send( sw );
 	} else if( req.path === '/favicon.ico' || req.path === '/favicon.png' ) {
 		res.sendfile( 'src/favicon.ico' );
 	} else if( req.path.indexOf( '/pwa-images/' ) === 0 ) {
@@ -581,7 +583,10 @@ app.get( '/*', (req, res, next) => {
 	} else if( req.path.indexOf( '/resources/' ) === 0 || req.path.indexOf( '/stylesheets/' ) === 0 ) {
 		res.set( 'Content-Type', 'text/plain' ).send( "" );
 	} else if( req.path === "/pwa-manifest-" + website.__name__ + ".json" ) {
-		res.set( 'Content-Type', 'application/json' ).sendfile( 'src/pwa-manifest' + "/pwa-manifest-" + website.__name__ + ".json" );
+		var manifest = fs.readFileSync( 'src/pwa-manifest' + "/pwa-manifest-" + website.__name__ + ".json", 'utf8' );
+		res.set( 'Content-Type', 'application/json' ).send( manifest );
+	} else if( req.path === '/pratilipi-logo-144px.png' ) {
+		res.sendfile( 'src' + req.path );
 	} else {
 		// https://github.com/expressjs/express/issues/3127
 		var html = fs.readFileSync( 'src/pwa-markup/PWA-' + website.__name__ + '.html', 'utf8' );
