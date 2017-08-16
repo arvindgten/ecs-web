@@ -595,4 +595,18 @@ app.get( '/*', (req, res, next) => {
 	}
 });
 
+// Debugging
+app.use( (err, req, res, next) => {
+	console.error( "ERROR_STACK :: ", err.stack );
+	res.status(500).json( UNEXPECTED_SERVER_EXCEPTION );
+});
+
+process.on( 'unhandledRejection', function( reason, p ) {
+	console.info( "unhandledRejection ", p, " reason: ", reason );
+});
+
+process.on( 'uncaughtException', function( err ) {
+	console.log( 'Error: ',  err );
+});
+
 app.listen( PORT );
