@@ -5,6 +5,12 @@ const cookieParser = require( 'cookie-parser' );
 var fs = require( 'fs' );
 
 var requestModule = require( 'request' );
+var http = require( 'http' );
+var https = require( 'https' );
+var httpPromise = require( 'request-promise' );
+
+var httpAgent = new http.Agent({ keepAlive : true });
+var httpsAgent = new https.Agent({ keepAlive : true });
 
 // Constants
 const PORT = 80;
@@ -187,14 +193,26 @@ function _forwardToGae( url, req, res ) {
 			url += ( url.contains( "?" ) ? "&" : "?" ) + "accessToken=" + req.cookies[ 'access_token' ];
 	}
 	var options = {
-		method: 'GET',
-		url: url,
-		headers: {
-			"ECS-HostName": req.headers.host
-		}
+		uri: url,
+		headers: { "ECS-HostName": req.headers.host },
+		method: "GET",
+		agent : url.indexOf( "https://" ) >= 0 ? httpsAgent : httpAgent,
+		json: true,
+		timeout: 60000, // 60 seconds
+		simple: false,
+		time: true,
+		resolveWithFullResponse: true
 	};
-	console.log( "forwardToGae :: " + JSON.stringify( options ) );
-	req.pipe( requestModule( options ) ).pipe( res );
+	console.log( "_forwardToGae::" + url );
+	httpPromise( options )
+		.then( resp => {
+			res.status( resp.statusCode ).send( resp.body );
+		})
+		.catch( err => {
+			console.log( "GAE_ERROR :: " + err.message );
+			res.status( 500 ).send( UNEXPECTED_SERVER_EXCEPTION );
+		})
+	;
 }
 
 // App
