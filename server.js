@@ -207,7 +207,7 @@ function _forwardToGae( url, req, res ) {
 	console.log( "_forwardToGae::" + url );
 	httpPromise( options )
 		.then( resp => {
-			res.status( resp.statusCode ).send( resp.body );
+			res.status( resp.statusCode ).set( resp.headers ).send( resp.body );
 		})
 		.catch( err => {
 			console.log( "GAE_ERROR :: " + err.message );
