@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require( 'express' );
+var compression = require( 'compression' );
 const cookieParser = require( 'cookie-parser' );
 var fs = require( 'fs' );
 
@@ -220,6 +221,9 @@ const app = express();
 
 // cookie parser
 app.use( cookieParser() );
+
+// gzip all responses
+app.use( compression() );
 
 // Health
 app.get( '/health', (req, res, next) => {
