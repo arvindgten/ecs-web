@@ -4,7 +4,7 @@
 
 	var localFilesToCache = [
 		'.',
-		'pwa-stylesheets/css/style.css?180820171427',
+		'pwa-stylesheets/css/style.css?210820171221',
 		'pwa-images/404.svg',
 		'pwa-images/library-empty.svg',
 		'pwa-images/NewSprite_2.png',
@@ -27,7 +27,7 @@
 		'https://www.ptlp.co/resource-all/font/font-en.css'
 	];
 
-	var STATIC_VERSION = "180820171427";
+	var STATIC_VERSION = "210820171221";
 	var DYNAMIC_VERSION = "7";
 	var staticCacheName = 'pratilipi-cache-static-' + STATIC_VERSION;
 	var dynamicCacheName = 'pratilipi-cache-dynamic-' + DYNAMIC_VERSION;
@@ -36,7 +36,7 @@
 	var apiPrefix = "https://www-gamma-gr.pratilipi.com";
 
 	/* Cache Keys */
-	var PWA_INDEX_HTML = "app-shell-180820171427.html";
+	var PWA_INDEX_HTML = "app-shell-210820171221.html";
 	var INIT_BANNER_LIST = "init-banner-list.json";
 	var TRENDING_SEARCH_KEYWORDS = "trending-search-keywords.json";
 
