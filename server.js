@@ -15,7 +15,7 @@ var httpsAgent = new https.Agent({ keepAlive : true });
 
 // Constants
 const PORT = 80;
-
+process.env.UV_THREADPOOL_SIZE = 128;
 
 function Enum() {
 	this._enums = [];
