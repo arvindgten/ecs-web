@@ -202,26 +202,30 @@ function _forwardToMini( req, res ) {
 	};
 	var url = _getMiniEndpoint( req ) + req.url;
 	var headers = { "Access-Token": req.cookies[ 'access_token' ] };
-	var options = {
-		uri: url,
-		headers: headers,
-		method: "GET",
-		agent : url.indexOf( "https://" ) >= 0 ? httpsAgent : httpAgent,
-		timeout: 60000, // 60 seconds
-		simple: false,
-		time: true,
-		resolveWithFullResponse: true
-	};
-	console.log( "_forwardToMini::" + url + " :: " + JSON.stringify( headers ) );
-	httpPromise( options )
-		.then( resp => {
-			res.status( resp.statusCode ).set( resp.headers ).send( resp.body );
-		})
-		.catch( err => {
-			console.log( "MINI_ERROR :: " + err.message );
-			res.status( 500 ).send( UNEXPECTED_SERVER_EXCEPTION );
-		})
-	;
+	if( req.path.isStaticFileRequest() ) {
+		req.pipe( requestModule(url) ).pipe( res );
+	} else {
+		var options = {
+			uri: url,
+			headers: headers,
+			method: "GET",
+			agent : url.indexOf( "https://" ) >= 0 ? httpsAgent : httpAgent,
+			timeout: 60000, // 60 seconds
+			simple: false,
+			time: true,
+			resolveWithFullResponse: true
+		};
+		console.log( "_forwardToMini::" + url + " :: " + JSON.stringify( headers ) );
+		httpPromise( options )
+			.then( resp => {
+				res.status( resp.statusCode ).set( resp.headers ).send( resp.body );
+			})
+			.catch( err => {
+				console.log( "MINI_ERROR :: " + err.message );
+				res.status( 500 ).send( UNEXPECTED_SERVER_EXCEPTION );
+			})
+		;
+	}
 }
 
 // _forwardToGae -> url might be null
