@@ -186,6 +186,36 @@ if( !( 'contains' in String.prototype ) ) {
 	};
 }
 
+// _forwardToMini -> url might be null
+function _forwardToMini( req, res ) {
+	var _getMiniEndpoint = function( req ) {
+		//Strip out port number
+		var hostname = ( req.headers.host.match(/:/g) ) ? req.headers.host.slice( 0, req.headers.host.indexOf(":") ) : req.headers.host;
+		return "https://" + hostname + ":81";
+	};
+	var url = _getMiniEndpoint( req ) + req.url;
+	var options = {
+		uri: url,
+		headers: { "ECS-HostName": req.headers.host, "Access-Token": req.cookies[ 'access_token' ] },
+		method: "GET",
+		agent : url.indexOf( "https://" ) >= 0 ? httpsAgent : httpAgent,
+		timeout: 60000, // 60 seconds
+		simple: false,
+		time: true,
+		resolveWithFullResponse: true
+	};
+	console.log( "_forwardToMini::" + url );
+	httpPromise( options )
+		.then( resp => {
+			res.status( resp.statusCode ).set( resp.headers ).send( resp.body );
+		})
+		.catch( err => {
+			console.log( "GAE_ERROR :: " + err.message );
+			res.status( 500 ).send( UNEXPECTED_SERVER_EXCEPTION );
+		})
+	;
+}
+
 // _forwardToGae -> url might be null
 function _forwardToGae( url, req, res ) {
 	if( ! url ) {
@@ -198,7 +228,6 @@ function _forwardToGae( url, req, res ) {
 		headers: { "ECS-HostName": req.headers.host },
 		method: "GET",
 		agent : url.indexOf( "https://" ) >= 0 ? httpsAgent : httpAgent,
-		json: true,
 		timeout: 60000, // 60 seconds
 		simple: false,
 		time: true,
@@ -373,8 +402,7 @@ app.get( '/*', (req, res, next) => {
 		}
 
 		if( isCrawler ) {
-			var appengineUrl = APPENGINE_ENDPOINT + req.url + ( req.url.contains( "?" ) ? "&" : "?" ) + "loadPWA=false";
-			_forwardToGae( appengineUrl, req, res );
+			_forwardToMini( req, res );
 		} else {
 			next();
 		}
@@ -547,7 +575,7 @@ app.use( (req, res, next) => {
 app.get( '/*', (req, res, next) => {
 	var web = _getWebsite( req.headers.host );
 	if( req.headers.host === web.mobileHostName ) {
-		_forwardToGae( null, req, res );
+		_forwardToMini( req, res );
 	} else {
 		next();
 	}
@@ -557,7 +585,7 @@ app.get( '/*', (req, res, next) => {
 app.get( '/*', (req, res, next) => {
 	var web = _getWebsite( req.headers.host );
 	if( web.__name__ === "ALL_LANGUAGE" || web.__name__ === "GAMMA_ALL_LANGUAGE" )
-		_forwardToGae( null, req, res );
+		_forwardToMini( req, res );
 	else
 		next();
 });
@@ -565,7 +593,7 @@ app.get( '/*', (req, res, next) => {
 // Other urls where PWA is not supported
 app.get( '/*', (req, res, next) => {
 	var referer = req.header( 'Referer' ) != null ? req.header( 'Referer' ) : "";
-	var forwardToGae = req.path === '/pratilipi-write'
+	var forwardToMini = req.path === '/pratilipi-write'
 		|| req.path === '/write'
 		|| req.path.startsWith( '/admin/' )
 		|| req.path === '/edit-event'
@@ -578,8 +606,8 @@ app.get( '/*', (req, res, next) => {
 		|| referer.contains( '/edit-blog' )
 		|| referer.contains( 'loadPWA=false' );
 
-	if( forwardToGae ) {
-		_forwardToGae( null, req, res );
+	if( forwardToMini ) {
+		_forwardToMini( req, res );
 	} else {
 		next();
 	}

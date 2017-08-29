@@ -2,6 +2,7 @@ FROM $DOCKER_REPO/node:8.3.0
 
 # Install app dependencies
 COPY package.json .
+COPY util util
 RUN npm install
 
 # Bundle app source
