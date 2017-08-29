@@ -196,9 +196,10 @@ function _forwardToMini( req, res ) {
 		return "http://" + hostName + ":81";
 	};
 	var url = _getMiniEndpoint( req ) + req.url;
+	var headers = { "Access-Token": req.cookies[ 'access_token' ] };
 	var options = {
 		uri: url,
-		headers: { "Access-Token": req.cookies[ 'access_token' ] },
+		headers: headers,
 		method: "GET",
 		agent : url.indexOf( "https://" ) >= 0 ? httpsAgent : httpAgent,
 		timeout: 60000, // 60 seconds
@@ -206,7 +207,7 @@ function _forwardToMini( req, res ) {
 		time: true,
 		resolveWithFullResponse: true
 	};
-	console.log( "_forwardToMini::" + url );
+	console.log( "_forwardToMini::" + url + " :: " + JSON.stringify( headers ) );
 	httpPromise( options )
 		.then( resp => {
 			res.status( resp.statusCode ).set( resp.headers ).send( resp.body );
