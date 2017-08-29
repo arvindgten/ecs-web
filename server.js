@@ -196,7 +196,7 @@ function _forwardToMini( req, res ) {
 	var url = _getMiniEndpoint( req ) + req.url;
 	var options = {
 		uri: url,
-		headers: { "ECS-HostName": req.headers.host, "Access-Token": req.cookies[ 'access_token' ] },
+		headers: { "Access-Token": req.cookies[ 'access_token' ] },
 		method: "GET",
 		agent : url.indexOf( "https://" ) >= 0 ? httpsAgent : httpAgent,
 		timeout: 60000, // 60 seconds
