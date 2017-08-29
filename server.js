@@ -180,11 +180,16 @@ switch( process.env.STAGE ) {
 
 const UNEXPECTED_SERVER_EXCEPTION = { "message": "Some exception occurred at server. Please try again." };
 
-if( !( 'contains' in String.prototype ) ) {
-	String.prototype.contains = function( str, startIndex ) {
-		return -1 !== String.prototype.indexOf.call( this, str, startIndex );
-	};
-}
+String.prototype.contains = function( str, startIndex ) {
+	return -1 !== String.prototype.indexOf.call( this, str, startIndex );
+};
+
+String.prototype.isStaticFileRequest = function() {
+	var staticFileExts = [ ".html", ".css", ".js", ".ico", ".png", ".svg", ".jpg", ".jpeg" ];
+	for( var i = 0; i < staticFileExts.length; i++ )
+		if( this && this.endsWith( staticFileExts[i] ) ) return true;
+	return false;
+};
 
 // _forwardToMini -> url might be null
 function _forwardToMini( req, res ) {
@@ -534,15 +539,8 @@ app.use( (req, res, next) => {
 
 // access_token
 app.use( (req, res, next) => {
-	var blackListFormats = [ '.html', '.css', '.js', '.png', '.jpg', '.svg', '.ico' ];
-	var isStaticRequest = false;
-	blackListFormats.forEach( function( format ) {
-		if( req.path.endsWith( format ) ) {
-			isStaticRequest = true;
-			return;
-		}
-	});
-	if( isStaticRequest ) {
+
+	if( req.path.isStaticFileRequest() ) {
 		next();
 	} else {
 		var accessToken = req.cookies[ "access_token" ];
@@ -595,19 +593,28 @@ app.get( '/*', (req, res, next) => {
 
 // Other urls where PWA is not supported
 app.get( '/*', (req, res, next) => {
-	var referer = req.header( 'Referer' ) != null ? req.header( 'Referer' ) : "";
-	var forwardToMini = req.path === '/pratilipi-write'
+
+	var forwardToMini = false;
+	if( req.path === '/pratilipi-write'
 		|| req.path === '/write'
 		|| req.path.startsWith( '/admin/' )
 		|| req.path === '/edit-event'
 		|| req.path === '/edit-blog'
-		|| req.url.contains( 'loadPWA=false' )
-		|| referer.contains( '/pratilipi-write' )
-		|| referer.contains( '/write' )
-		|| referer.contains( '/admin' )
-		|| referer.contains( '/edit-event' )
-		|| referer.contains( '/edit-blog' )
-		|| referer.contains( 'loadPWA=false' );
+		|| req.url.contains( 'loadPWA=false' ) ) {
+		forwardToMini = true;
+	}
+
+	// static files
+	var referer = req.header( 'Referer' ) != null ? req.header( 'Referer' ) : "";
+	if( req.path.isStaticFileRequest() &&
+		( referer.contains( '/pratilipi-write' )
+			|| referer.contains( '/write' )
+			|| referer.contains( '/admin' )
+			|| referer.contains( '/edit-event' )
+			|| referer.contains( '/edit-blog' )
+			|| referer.contains( 'loadPWA=false' ) ) ) {
+		forwardToMini = true;
+	}
 
 	if( forwardToMini ) {
 		_forwardToMini( req, res );
@@ -652,7 +659,7 @@ app.get( '/*', (req, res, next) => {
 		fs.readFile( 'src/pwa-markup/PWA-' + website.__name__ + '.html', { 'encoding': 'utf8' }, (err, data) => {
 			if(err) throw err;
 			res.set( 'Content-Type', 'text/html' ).send(data);
-        });
+		});
 	}
 });
 
