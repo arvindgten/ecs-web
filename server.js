@@ -201,7 +201,7 @@ function _forwardToMini( req, res ) {
 		return "http://" + hostName + ":81";
 	};
 	var url = _getMiniEndpoint( req ) + req.url;
-	var headers = { "Access-Token": req.cookies[ 'access_token' ] };
+	var headers = { "Access-Token": res.locals[ "access-token" ] };
 	if( req.path.isStaticFileRequest() ) {
 		req.pipe( requestModule(url) ).pipe( res );
 	} else {
@@ -232,8 +232,8 @@ function _forwardToMini( req, res ) {
 function _forwardToGae( url, req, res ) {
 	if( ! url ) {
 		url = APPENGINE_ENDPOINT + req.url;
-		if( req.cookies[ 'access_token' ] )
-			url += ( url.contains( "?" ) ? "&" : "?" ) + "accessToken=" + req.cookies[ 'access_token' ];
+		if( res.locals[ "access-token" ] )
+			url += ( url.contains( "?" ) ? "&" : "?" ) + "accessToken=" + res.locals[ "access-token" ];
 	}
 	var options = {
 		uri: url,
@@ -563,6 +563,7 @@ app.use( (req, res, next) => {
 					var domain = process.env.STAGE === 'devo' ? '.ptlp.co' : '.pratilipi.com';
 					if( _getWebsite( req.headers.host )[ "__name__" ] === "ALPHA" )
 						domain = "localhost";
+					res.locals[ "access-token" ] = accessToken;
 					res.cookie( 'access_token', accessToken,
 						{ domain: domain,
 							path: '/',
