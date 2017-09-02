@@ -4,7 +4,7 @@
 
 	var localFilesToCache = [
 		'.',
-		'pwa-stylesheets/css/style.css?200720171750',
+		'pwa-stylesheets/css/style.css?020920171123',
 		'pwa-images/404.svg',
 		'pwa-images/library-empty.svg',
 		'pwa-images/NewSprite_2.png',
@@ -27,16 +27,16 @@
 		'https://www.ptlp.co/resource-all/font/font-ml.css'
 	];
 
-	var STATIC_VERSION = "200720171750";
+	var STATIC_VERSION = "020920171123";
 	var DYNAMIC_VERSION = "7";
 	var staticCacheName = 'pratilipi-cache-static-' + STATIC_VERSION;
 	var dynamicCacheName = 'pratilipi-cache-dynamic-' + DYNAMIC_VERSION;
 
-	var hostName = "https://malayalam.devo-pratilipi.appspot.com";
-	var apiPrefix = "https://malayalam.devo-pratilipi.appspot.com";
+	var hostName = "https://malayalam-devo.ptlp.co";
+	var apiPrefix = "https://malayalam-devo.ptlp.co";
 
 	/* Cache Keys */
-	var PWA_INDEX_HTML = "app-shell.html";
+	var PWA_INDEX_HTML = "app-shell-020920171123.html";
 	var INIT_BANNER_LIST = "init-banner-list.json";
 	var TRENDING_SEARCH_KEYWORDS = "trending-search-keywords.json";
 
@@ -117,7 +117,8 @@
 			&& url.indexOf( hostName + "/pwa-images/" ) === -1
 			&& url.indexOf( hostName + "/resources/" ) === -1
 			&& url.indexOf( hostName + "/stylesheets/" ) === -1
-			&& url.indexOf( "loadPWA=false" ) === -1 ) {
+			&& url.indexOf( "loadPWA=false" ) === -1
+			&& false ) {
 				event.respondWith(
 					caches.match( PWA_INDEX_HTML ).then( function(response) {
 						if( response ) return response;
@@ -138,19 +139,19 @@
 		// External Resource Files
 		if( externalFilesToCache[ url ] ) {
 			event.respondWith(
-                caches.match( url ).then( function(response) {
-                    if( response ) return response;
-                    return fetch( event.request ).then( function(response) {
-                        if( !response.ok ) {
-                            return null;
-                        }
-                        return caches.open( staticCacheName ).then( function(cache) {
-                            cache.put( url, response.clone() );
-                            return response;
-                        });
-                    });
-                })
-            );
+				caches.match( url ).then( function(response) {
+					if( response ) return response;
+					return fetch( event.request ).then( function(response) {
+						if( !response.ok ) {
+							return null;
+						}
+						return caches.open( staticCacheName ).then( function(cache) {
+							cache.put( url, response.clone() );
+							return response;
+						});
+					});
+				})
+			);
 		}
 
 		// Banner List Api
@@ -159,24 +160,24 @@
 		}
 
 		// Trending Search KeywordList
-        if( url.indexOf( "/api/search/trending_search" ) !== -1 ) {
+		if( url.indexOf( "/api/search/trending_search" ) !== -1 ) {
 			cacheAndRevalidate( dynamicCacheName, TRENDING_SEARCH_KEYWORDS, event );
-        }
+		}
 
 	});
 
 	function cacheAndRevalidate( cacheName, cacheKey, event ) {
-        event.respondWith(
-            caches.open( cacheName ).then( function( cache ) {
-                return cache.match( cacheKey ).then( function( response ) {
-                    var fetchPromise = fetch( event.request ).then( function( networkResponse ) {
-                        cache.put( cacheKey, networkResponse.clone() );
-                        return networkResponse;
-                    });
-                    return response || fetchPromise;
-                })
-            })
-        );
-    }
+		event.respondWith(
+			caches.open( cacheName ).then( function( cache ) {
+				return cache.match( cacheKey ).then( function( response ) {
+					var fetchPromise = fetch( event.request, { credentials: 'include' } ).then( function( networkResponse ) {
+						cache.put( cacheKey, networkResponse.clone() );
+						return networkResponse;
+					});
+					return response || fetchPromise;
+				})
+			})
+		);
+	}
 
 })();
