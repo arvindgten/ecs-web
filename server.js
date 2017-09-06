@@ -300,7 +300,7 @@ app.use( (req, res, next) => {
 */
 app.enable( 'trust proxy' );
 app.use( (req, res, next) => {
-	if( req.secure || _getWebsite( req.headers.host ).__name__ === "ALPHA" ) {
+	if( req.secure || _getWebsite( req.headers.host ).__name__ === "ALPHA" || req.headers.host.contains( "-devo" ) ) {
 		return next();
 	}
 	res.redirect( "https://" + req.headers.host + req.url );
