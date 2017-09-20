@@ -4,7 +4,7 @@
 
 	var localFilesToCache = [
 		'.',
-		'pwa-stylesheets/css/style.css?180920171617',
+		'pwa-stylesheets/css/style.css?200920171319',
 		'pwa-images/404.svg',
 		'pwa-images/library-empty.svg',
 		'pwa-images/NewSprite_2.png',
@@ -26,10 +26,10 @@
 		'https://www.ptlp.co/resource-all/pwa/js/jkkrrsh.js',
 		'https://www.ptlp.co/resource-all/pwa/css/bmmg.css',
 		'https://www.ptlp.co/resource-all/pwa/js/bmg.js',
-		'https://www.ptlp.co/resource-all/font/font-hi.css'
+		'https://www.ptlp.co/resource-all/font/font-gu.css'
 	];
 
-	var STATIC_VERSION = "180920171617";
+	var STATIC_VERSION = "200920171319";
 	var DYNAMIC_VERSION = "7";
 	var staticCacheName = 'pratilipi-cache-static-' + STATIC_VERSION;
 	var dynamicCacheName = 'pratilipi-cache-dynamic-' + DYNAMIC_VERSION;
@@ -38,7 +38,7 @@
 	var apiPrefix = "https://www-delta.pratilipi.com";
 
 	/* Cache Keys */
-	var PWA_INDEX_HTML = "app-shell-180920171617.html";
+	var PWA_INDEX_HTML = "app-shell-200920171319.html";
 	var INIT_BANNER_LIST = "init-banner-list.json";
 	var TRENDING_SEARCH_KEYWORDS = "trending-search-keywords.json";
 
@@ -105,7 +105,7 @@
 			&& url.indexOf( hostName + "/theme.pratilipi/" ) === -1 // Old writer panel resources
 			&& url !== ( hostName + "/admin" )
 			&& url.indexOf( hostName + "/admin/" ) === -1
-			&& url.indexOf( hostName + "/elements.hi" ) === -1
+			&& url.indexOf( hostName + "/elements.gu" ) === -1
 			&& url.indexOf( hostName + "/edit-event" ) === -1
 			&& url.indexOf( hostName + "/edit-blog" ) === -1
 			&& url !== ( hostName + "/sitemap" )
