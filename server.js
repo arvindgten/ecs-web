@@ -143,6 +143,7 @@ var Website = defineEnum({
 function _getWebsite( hostName ) {
 	var website = null;
 	var basicMode;
+	hostName = ( hostName.match(/:/g) ) ? hostName.slice( 0, hostName.indexOf(":") ) : hostName;
 	Website.forEach( function( web ) {
 		if( web.hostName == hostName ) {
 			website = web;
