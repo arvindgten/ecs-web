@@ -1,12 +1,12 @@
 {
-	"name": "પ્રતિલિપિ",
-	"short_name": "પ્રતિલિપિ",
+	"name": "प्रतिलिपि",
+	"short_name": "प्रतिलिपि",
 	"start_url": "/?homescreen=1",
 	"display": "standalone",
 	"background_color": "#FFF",
 	"theme_color": "#D0021B",
-	"description": "વાંચો ગુજરાતી વાર્તાઓ, કવિતાઓ, નવલકથાઓ, સામયિકો અને નવીન સાહિત્ય",
-	"lang": "gu",
+	"description": "पढ़ें हिंदी कहानियाँ, कवितायें, उपन्यास और बहुत कुछ",
+	"lang": "hi",
 	"icons": [
 		{
 			"src": "pratilipi-logo-144px.png",
