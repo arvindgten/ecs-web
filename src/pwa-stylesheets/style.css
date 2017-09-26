@@ -2542,7 +2542,17 @@ nav.mdl-navigation {
   color: #fff; }
 
 .pratilipi-tags {
-  min-height: auto; }
+  min-height: auto;
+  @keyframes ripple {
+    0% {
+      box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0); }
+
+    50% {
+      box-shadow: 0px 0px 0px 15px rgba(0, 0, 0, 0.1); }
+
+    100% {
+      box-shadow: 0px 0px 0px 15px rgba(0, 0, 0, 0); } }
+ }
   .pratilipi-tags .font-16 {
     font-size: 16px; }
   .pratilipi-tags .pratilipi-tag-container {
@@ -2601,6 +2611,46 @@ nav.mdl-navigation {
     white-space: normal; }
   .pratilipi-tags .tag-deletable {
     padding-right: 4px; }
+  .pratilipi-tags .md-radio {
+    margin: 16px 0; }
+    .pratilipi-tags .md-radio.md-radio-inline {
+      display: inline-block; }
+    .pratilipi-tags .md-radio input[type="radio"] {
+      display: none; }
+      .pratilipi-tags .md-radio input[type="radio"]:checked + label:before {
+        border-color: #d0021b;
+        animation: ripple 0.2s linear forwards; }
+      .pratilipi-tags .md-radio input[type="radio"]:checked + label:after {
+        transform: scale(1); }
+    .pratilipi-tags .md-radio label {
+      display: inline-block;
+      height: 20px;
+      position: relative;
+      padding: 0 30px;
+      margin-bottom: 0;
+      cursor: pointer;
+      vertical-align: bottom; }
+      .pratilipi-tags .md-radio label:before, .pratilipi-tags .md-radio label:after {
+        position: absolute;
+        content: '';
+        border-radius: 50%;
+        transition: all .3s ease;
+        transition-property: transform, border-color; }
+      .pratilipi-tags .md-radio label:before {
+        left: 0;
+        top: 0;
+        width: 20px;
+        height: 20px;
+        border: 2px solid rgba(0, 0, 0, 0.54); }
+      .pratilipi-tags .md-radio label:after {
+        top: 5px;
+        left: 5px;
+        width: 10px;
+        height: 10px;
+        transform: scale(0);
+        background: #d0021b; }
+  .pratilipi-tags *, .pratilipi-tags *:before, .pratilipi-tags *:after {
+    box-sizing: border-box; }
 
 .th-nor-config {
   background-color: white !important;
