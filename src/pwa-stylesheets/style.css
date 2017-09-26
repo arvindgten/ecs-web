@@ -2567,6 +2567,8 @@ nav.mdl-navigation {
     text-align: center;
     border: solid 1px #c8c8c8;
     border-radius: 20px;
+    margin-left: 0;
+    margin-right: 8px;
     cursor: pointer; }
   .pratilipi-tags .checked {
     background: #c8c8c8; }
