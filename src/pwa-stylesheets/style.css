@@ -2551,20 +2551,16 @@ nav.mdl-navigation {
   .pratilipi-tags .pratilipi-tag-element {
     padding-top: 3px;
     padding-bottom: 3px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
     margin: 5px;
     text-align: center;
-    border: solid 1px black;
+    border: solid 1px #c8c8c8;
     border-radius: 20px;
-    cursor: pointer;
-    white-space: nowrap; }
+    cursor: pointer; }
   .pratilipi-tags .checked {
-    background: #D0021B;
-    border: solid 1px #D0021B;
-    color: #FFF; }
+    background: #c8c8c8; }
   .pratilipi-tags .disabled {
-    border: 1px solid #D3D3D3;
     cursor: default; }
   @media (max-width: 480px) {
     .pratilipi-tags .save-tags-button {
@@ -2574,7 +2570,6 @@ nav.mdl-navigation {
     font-size: 80%;
     color: #4A4A4A; }
   .pratilipi-tags .mdl-textfield {
-    width: 100%;
     display: block; }
   .pratilipi-tags .dropdown-icon {
     position: absolute;
@@ -2604,6 +2599,8 @@ nav.mdl-navigation {
     top: -5px;
     right: 105%;
     white-space: normal; }
+  .pratilipi-tags .tag-deletable {
+    padding-right: 4px; }
 
 .th-nor-config {
   background-color: white !important;
