@@ -2653,6 +2653,8 @@ nav.mdl-navigation {
         background: #d0021b; }
   .pratilipi-tags *, .pratilipi-tags *:before, .pratilipi-tags *:after {
     box-sizing: border-box; }
+  .pratilipi-tags .pratilipi-red-important {
+    color: #d0021b !important; }
 
 .th-nor-config {
   background-color: white !important;
