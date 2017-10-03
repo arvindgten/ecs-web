@@ -2569,7 +2569,8 @@ nav.mdl-navigation {
     border-radius: 20px;
     margin-left: 0;
     margin-right: 8px;
-    cursor: pointer; }
+    cursor: pointer;
+    white-space: nowrap; }
   .pratilipi-tags .checked {
     background: #c8c8c8; }
   .pratilipi-tags .disabled {
