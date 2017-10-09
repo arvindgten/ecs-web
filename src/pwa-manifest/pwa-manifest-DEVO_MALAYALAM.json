@@ -1,5 +1,7 @@
 {
 	"name": "പ്രതിലിപി",
+	"gcm_sender_id": "562691904657",
+	"gcm_user_visible_only": true, /* Backward compatability: chrome 47 and below */
 	"short_name": "പ്രതിലിപി",
 	"start_url": "/?homescreen=1",
 	"display": "standalone",

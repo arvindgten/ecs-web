@@ -1,5 +1,7 @@
 {
 	"name": "પ્રતિલિપિ",
+	"gcm_sender_id": "562691904657",
+	"gcm_user_visible_only": true, /* Backward compatability: chrome 47 and below */
 	"short_name": "પ્રતિલિપિ",
 	"start_url": "/?homescreen=1",
 	"display": "standalone",
