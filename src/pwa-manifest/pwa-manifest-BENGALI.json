@@ -1,5 +1,7 @@
 {
 	"name": "প্রতিলিপি",
+	"gcm_sender_id": "659873510744",
+	"gcm_user_visible_only": true, /* Backward compatability: chrome 47 and below */
 	"short_name": "প্রতিলিপি",
 	"start_url": "/?homescreen=1",
 	"display": "standalone",
