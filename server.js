@@ -136,14 +136,14 @@ var Website = defineEnum({
 	DEVO_TELUGU_GR:      { hostName: "telugu-devo-gr.ptlp.co",    mobileHostName: "te-devo-gr.ptlp.co", displayLanguage: Language.TELUGU,	filterLanguage: Language.TELUGU },
 	DEVO_KANNADA_GR:     { hostName: "kannada-devo-gr.ptlp.co",   mobileHostName: "kn-devo-gr.ptlp.co", displayLanguage: Language.KANNADA,	filterLanguage: Language.KANNADA },
 
-	ALPHA:	{ hostName: "localhost:8080", mobileHostName: "localhost:8081", displayLanguage: Language.HINDI, displayLanguage: Language.HINDI,  }
+	ALPHA:	{ hostName: "localhost:8080", mobileHostName: "localhost:8081", displayLanguage: Language.HINDI, displayLanguage: Language.HINDI, filterLanguage: Language.HINDI }
 
 });
 
 function _getWebsite( hostName ) {
 	var website = null;
 	var basicMode;
-	// hostName = ( hostName.match(/:/g) ) ? hostName.slice( 0, hostName.indexOf(":") ) : hostName;
+	hostName = ( hostName.match(/:/g) ) ? hostName.slice( 0, hostName.indexOf(":") ) : hostName;
 	Website.forEach( function( web ) {
 		if( web.hostName == hostName ) {
 			website = web;
