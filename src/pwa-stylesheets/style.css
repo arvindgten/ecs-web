@@ -2321,7 +2321,8 @@ nav.mdl-navigation {
   overflow-y: hidden;
   min-height: 80vh;
   max-width: 700px;
-  margin: auto; }
+  margin: auto;
+  white-space: pre-wrap; }
   .pratilipi-reader-content .content * {
     -webkit-font-smoothing: antialiased !important;
     -khtml-font-smoothing: antialiased !important;
