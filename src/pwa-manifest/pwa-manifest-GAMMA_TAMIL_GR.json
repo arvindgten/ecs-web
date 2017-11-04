@@ -1,10 +1,10 @@
 {
-	"name": "பிரதிலிபி",
 	"gcm_sender_id": "659873510744",
-	"gcm_user_visible_only": true, /* Backward compatability: chrome 47 and below */
+	"name": "பிரதிலிபி",
 	"short_name": "பிரதிலிபி",
 	"start_url": "/?homescreen=1",
 	"display": "standalone",
+	"orientation": "portrait",
 	"background_color": "#FFF",
 	"theme_color": "#D0021B",
 	"description": "தமிழ் கதைகள், புத்தகங்கள் , கவிதைகள், கட்டுரைகள், ஆகியவற்றை படிக்க",
@@ -16,11 +16,11 @@
 			"type": "image/png"
 		}
 	],
+	"prefer_related_applications": true,
 	"related_applications": [
 		{
-		  "platform": "play",
-		  "url": "https://play.google.com/store/apps/details?id=com.pratilipi.mobile.android&hl=en",
-		  "id": "com.pratilipi.mobile.android"
+			"platform": "play",
+			"id": "com.pratilipi.mobile.android"
 		}
 	]
 }
