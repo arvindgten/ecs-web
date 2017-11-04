@@ -3375,3 +3375,238 @@ ul.pratilipi-recommendation-carousel {
         padding: 10px 15px 10px 15px;
         outline: none;
         text-align: center; }
+
+html.sexy-modal-active, body.sexy-modal-active {
+  overflow: hidden; }
+
+.pratilipi-reader-exp-002 * {
+  box-sizing: border-box; }
+.pratilipi-reader-exp-002 .sexy-modal {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform: scale(0);
+  z-index: 1; }
+  .pratilipi-reader-exp-002 .sexy-modal.sexy-modal {
+    transform: scale(1); }
+    .pratilipi-reader-exp-002 .sexy-modal.sexy-modal .modal-background {
+      background: rgba(0, 0, 0, 0);
+      animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
+      .pratilipi-reader-exp-002 .sexy-modal.sexy-modal .modal-background .modal {
+        background-color: transparent;
+        animation: modalFadeIn 0.5s 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
+        .pratilipi-reader-exp-002 .sexy-modal.sexy-modal .modal-background .modal .message, .pratilipi-reader-exp-002 .sexy-modal.sexy-modal .modal-background .modal .footer {
+          opacity: 0;
+          position: relative;
+          animation: modalContentFadeIn 0.5s 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
+        .pratilipi-reader-exp-002 .sexy-modal.sexy-modal .modal-background .modal .modal-svg rect {
+          animation: sketchIn 0.5s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
+    .pratilipi-reader-exp-002 .sexy-modal.sexy-modal.out {
+      animation: quickScaleDown 0s .5s linear forwards; }
+      .pratilipi-reader-exp-002 .sexy-modal.sexy-modal.out .modal-background {
+        animation: fadeOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
+        .pratilipi-reader-exp-002 .sexy-modal.sexy-modal.out .modal-background .modal {
+          animation: modalFadeOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
+          .pratilipi-reader-exp-002 .sexy-modal.sexy-modal.out .modal-background .modal .header, .pratilipi-reader-exp-002 .sexy-modal.sexy-modal.out .modal-background .modal .message, .pratilipi-reader-exp-002 .sexy-modal.sexy-modal.out .modal-background .modal .footer {
+            animation: modalContentFadeOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
+          .pratilipi-reader-exp-002 .sexy-modal.sexy-modal.out .modal-background .modal .modal-svg rect {
+            animation: sketchOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
+  .pratilipi-reader-exp-002 .sexy-modal .modal-background {
+    display: table-cell;
+    background: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    vertical-align: middle; }
+    .pratilipi-reader-exp-002 .sexy-modal .modal-background .modal {
+      -webkit-display: flex;
+      -khtml-display: flex;
+      -moz-display: flex;
+      -ms-display: flex;
+      -o-display: flex;
+      display: flex;
+      -webkit-flex-direction: column;
+      -khtml-flex-direction: column;
+      -moz-flex-direction: column;
+      -ms-flex-direction: column;
+      -o-flex-direction: column;
+      flex-direction: column;
+      -webkit-justify-content: center;
+      -khtml-justify-content: center;
+      -moz-justify-content: center;
+      -ms-justify-content: center;
+      -o-justify-content: center;
+      justify-content: center;
+      background: white;
+      border-radius: 1px;
+      position: relative;
+      width: 300px;
+      height: 320px;
+      margin: auto; }
+      .pratilipi-reader-exp-002 .sexy-modal .modal-background .modal .header, .pratilipi-reader-exp-002 .sexy-modal .modal-background .modal .message, .pratilipi-reader-exp-002 .sexy-modal .modal-background .modal .footer {
+        padding: 16px 12px; }
+      .pratilipi-reader-exp-002 .sexy-modal .modal-background .modal .header {
+        -webkit-display: flex;
+        -khtml-display: flex;
+        -moz-display: flex;
+        -ms-display: flex;
+        -o-display: flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        -khtml-flex-direction: row;
+        -moz-flex-direction: row;
+        -ms-flex-direction: row;
+        -o-flex-direction: row;
+        flex-direction: row;
+        -webkit-justify-content: center;
+        -khtml-justify-content: center;
+        -moz-justify-content: center;
+        -ms-justify-content: center;
+        -o-justify-content: center;
+        justify-content: center;
+        -webkit-align-items: center;
+        -khtml-align-items: center;
+        -moz-align-items: center;
+        -ms-align-items: center;
+        -o-align-items: center;
+        align-items: center; }
+        .pratilipi-reader-exp-002 .sexy-modal .modal-background .modal .header img.icon {
+          background: none;
+          width: 56px;
+          max-width: 56px;
+          height: 56px;
+          max-height: 56px; }
+      .pratilipi-reader-exp-002 .sexy-modal .modal-background .modal .message {
+        font-size: 16px;
+        line-height: 1.8;
+        white-space: normal;
+        width: 300px; }
+      .pratilipi-reader-exp-002 .sexy-modal .modal-background .modal .footer {
+        -webkit-display: flex;
+        -khtml-display: flex;
+        -moz-display: flex;
+        -ms-display: flex;
+        -o-display: flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        -khtml-flex-direction: row;
+        -moz-flex-direction: row;
+        -ms-flex-direction: row;
+        -o-flex-direction: row;
+        flex-direction: row;
+        -webkit-justify-content: center;
+        -khtml-justify-content: center;
+        -moz-justify-content: center;
+        -ms-justify-content: center;
+        -o-justify-content: center;
+        justify-content: center;
+        -webkit-align-items: center;
+        -khtml-align-items: center;
+        -moz-align-items: center;
+        -ms-align-items: center;
+        -o-align-items: center;
+        align-items: center; }
+        .pratilipi-reader-exp-002 .sexy-modal .modal-background .modal .footer button.declined {
+          font-size: 18px;
+          outline: none;
+          border: none;
+          background: none;
+          margin-right: 24px; }
+        .pratilipi-reader-exp-002 .sexy-modal .modal-background .modal .footer button.accepted {
+          font-size: 18px;
+          border: 0;
+          background: #00a651;
+          color: white;
+          text-shadow: none;
+          box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.5);
+          border-radius: 2px;
+          letter-spacing: 0.3px;
+          line-height: 16px;
+          display: block;
+          padding: 10px 15px 10px 15px;
+          outline: none;
+          text-align: center; }
+      .pratilipi-reader-exp-002 .sexy-modal .modal-background .modal .modal-svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        border-radius: 3px;
+        z-index: -1; }
+        .pratilipi-reader-exp-002 .sexy-modal .modal-background .modal .modal-svg rect {
+          stroke: #fff;
+          stroke-width: 2px;
+          stroke-dasharray: 778;
+          stroke-dashoffset: 778; }
+
+@keyframes fadeIn {
+  0% {
+    background: rgba(0, 0, 0, 0); }
+
+  100% {
+    background: rgba(0, 0, 0, 0.7); } }
+
+@keyframes fadeOut {
+  0% {
+    background: rgba(0, 0, 0, 0.7); }
+
+  100% {
+    background: rgba(0, 0, 0, 0); } }
+
+@keyframes quickScaleDown {
+  0% {
+    transform: scale(1); }
+
+  99.9% {
+    transform: scale(1); }
+
+  100% {
+    transform: scale(0); } }
+
+@keyframes sketchIn {
+  0% {
+    stroke-dashoffset: 778; }
+
+  100% {
+    stroke-dashoffset: 0; } }
+
+@keyframes sketchOut {
+  0% {
+    stroke-dashoffset: 0; }
+
+  100% {
+    stroke-dashoffset: 778; } }
+
+@keyframes modalFadeIn {
+  0% {
+    background-color: transparent; }
+
+  100% {
+    background-color: white; } }
+
+@keyframes modalFadeOut {
+  0% {
+    background-color: white; }
+
+  100% {
+    background-color: transparent; } }
+
+@keyframes modalContentFadeIn {
+  0% {
+    opacity: 0;
+    top: -20px; }
+
+  100% {
+    opacity: 1;
+    top: 0; } }
+
+@keyframes modalContentFadeOut {
+  0% {
+    opacity: 1;
+    top: 0px; }
+
+  100% {
+    opacity: 0;
+    top: -20px; } }
