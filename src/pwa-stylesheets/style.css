@@ -3235,3 +3235,143 @@ ul.pratilipi-recommendation-carousel {
       .pratilipi-author-leaderboard .author-leaderboard-ul .mdl-list__item .small-button {
         min-width: 36px;
         padding: 0; }
+
+.pratilipi-reader-app-install-banner {
+  z-index: 999;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  border-top: 1px solid #f3f3f3;
+  -webkit-display: flex;
+  -khtml-display: flex;
+  -moz-display: flex;
+  -ms-display: flex;
+  -o-display: flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -khtml-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+  -webkit-justify-content: center;
+  -khtml-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  -webkit-box-shadow: 0px -1px 0px 0px rgba(0,0,0,0.1);
+  -khtml-box-shadow: 0px -1px 0px 0px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0px -1px 0px 0px rgba(0,0,0,0.1);
+  -ms-box-shadow: 0px -1px 0px 0px rgba(0,0,0,0.1);
+  -o-box-shadow: 0px -1px 0px 0px rgba(0,0,0,0.1);
+  box-shadow: 0px -1px 0px 0px rgba(0,0,0,0.1);
+  -webkit-transition: opacity 250ms, visibility 250ms;
+  -khtml-transition: opacity 250ms, visibility 250ms;
+  -moz-transition: opacity 250ms, visibility 250ms;
+  -ms-transition: opacity 250ms, visibility 250ms;
+  -o-transition: opacity 250ms, visibility 250ms;
+  transition: opacity 250ms, visibility 250ms; }
+  .pratilipi-reader-app-install-banner .banner {
+    -webkit-display: flex;
+    -khtml-display: flex;
+    -moz-display: flex;
+    -ms-display: flex;
+    -o-display: flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    -khtml-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    -o-flex-direction: column;
+    flex-direction: column;
+    -webkit-margin: 20px 16px;
+    -khtml-margin: 20px 16px;
+    -moz-margin: 20px 16px;
+    -ms-margin: 20px 16px;
+    -o-margin: 20px 16px;
+    margin: 20px 16px; }
+    .pratilipi-reader-app-install-banner .banner .header {
+      -webkit-display: flex;
+      -khtml-display: flex;
+      -moz-display: flex;
+      -ms-display: flex;
+      -o-display: flex;
+      display: flex;
+      -webkit-flex-direction: row;
+      -khtml-flex-direction: row;
+      -moz-flex-direction: row;
+      -ms-flex-direction: row;
+      -o-flex-direction: row;
+      flex-direction: row;
+      -webkit-align-items: center;
+      -khtml-align-items: center;
+      -moz-align-items: center;
+      -ms-align-items: center;
+      -o-align-items: center;
+      align-items: center; }
+      .pratilipi-reader-app-install-banner .banner .header img.icon {
+        background: none;
+        width: 48px;
+        max-width: 48px;
+        height: 48px;
+        max-height: 48px; }
+      .pratilipi-reader-app-install-banner .banner .header .message {
+        text-align: left;
+        margin-left: 12px;
+        font-size: 16px;
+        line-height: 1.4; }
+    .pratilipi-reader-app-install-banner .banner .footer {
+      -webkit-display: flex;
+      -khtml-display: flex;
+      -moz-display: flex;
+      -ms-display: flex;
+      -o-display: flex;
+      display: flex;
+      -webkit-flex-direction: row;
+      -khtml-flex-direction: row;
+      -moz-flex-direction: row;
+      -ms-flex-direction: row;
+      -o-flex-direction: row;
+      flex-direction: row;
+      -webkit-justify-content: flex-end;
+      -khtml-justify-content: flex-end;
+      -moz-justify-content: flex-end;
+      -ms-justify-content: flex-end;
+      -o-justify-content: flex-end;
+      justify-content: flex-end;
+      -webkit-align-items: center;
+      -khtml-align-items: center;
+      -moz-align-items: center;
+      -ms-align-items: center;
+      -o-align-items: center;
+      align-items: center;
+      -webkit-margin: 8px 0;
+      -khtml-margin: 8px 0;
+      -moz-margin: 8px 0;
+      -ms-margin: 8px 0;
+      -o-margin: 8px 0;
+      margin: 8px 0; }
+      .pratilipi-reader-app-install-banner .banner .footer button.declined {
+        font-size: 18px;
+        margin-right: 32px;
+        outline: none;
+        border: none;
+        background: none; }
+      .pratilipi-reader-app-install-banner .banner .footer button.accepted {
+        font-size: 18px;
+        border: 0;
+        background: #00a651;
+        color: white;
+        text-shadow: none;
+        box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.5);
+        border-radius: 2px;
+        letter-spacing: 0.3px;
+        line-height: 16px;
+        display: block;
+        padding: 10px 15px 10px 15px;
+        outline: none;
+        text-align: center; }
