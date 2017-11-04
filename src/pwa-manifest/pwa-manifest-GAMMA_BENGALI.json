@@ -1,10 +1,10 @@
 {
-	"name": "প্রতিলিপি",
 	"gcm_sender_id": "659873510744",
-	"gcm_user_visible_only": true, /* Backward compatability: chrome 47 and below */
+	"name": "প্রতিলিপি",
 	"short_name": "প্রতিলিপি",
 	"start_url": "/?homescreen=1",
 	"display": "standalone",
+	"orientation": "portrait",
 	"background_color": "#FFF",
 	"theme_color": "#D0021B",
 	"description": "পড়ুন বাংলা গল্প,কবিতা,উপন্যাস এবং আরও অনেক কিছু",
@@ -16,11 +16,11 @@
 			"type": "image/png"
 		}
 	],
+	"prefer_related_applications": true,
 	"related_applications": [
 		{
-		  "platform": "play",
-		  "url": "https://play.google.com/store/apps/details?id=com.pratilipi.mobile.android&hl=en",
-		  "id": "com.pratilipi.mobile.android"
+			"platform": "play",
+			"id": "com.pratilipi.mobile.android"
 		}
 	]
 }

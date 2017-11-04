@@ -1,10 +1,10 @@
 {
-	"name": "प्रतिलिपि",
 	"gcm_sender_id": "562691904657",
-	"gcm_user_visible_only": true, /* Backward compatability: chrome 47 and below */
+	"name": "प्रतिलिपि",
 	"short_name": "प्रतिलिपि",
 	"start_url": "/?homescreen=1",
 	"display": "standalone",
+	"orientation": "portrait",
 	"background_color": "#FFF",
 	"theme_color": "#D0021B",
 	"description": "वाचा मराठी कथा, कविता, कादंबरी, आणि इतर खूप सारे साहित्य",
@@ -16,11 +16,11 @@
 			"type": "image/png"
 		}
 	],
+	"prefer_related_applications": true,
 	"related_applications": [
 		{
-		  "platform": "play",
-		  "url": "https://play.google.com/store/apps/details?id=com.pratilipi.mobile.android&hl=en",
-		  "id": "com.pratilipi.mobile.android"
+			"platform": "play",
+			"id": "com.pratilipi.mobile.android"
 		}
 	]
 }
