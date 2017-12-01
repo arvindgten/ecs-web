@@ -1123,8 +1123,9 @@ nav.pratilipi-navigation-drawer {
   -o-flex-direction: row;
   flex-direction: row;
   padding: 0; }
-  .pratilipi-review .review-header .user-rating {
-    align-self: center; }
+  .pratilipi-review .review-header .three-dots {
+    position: relative;
+    right: 2px; }
 .pratilipi-review .user-info {
   flex-grow: 1;
   -webkit-display: flex;
@@ -1136,10 +1137,13 @@ nav.pratilipi-navigation-drawer {
   .pratilipi-review .user-info a.reviewer-name {
     text-decoration: none;
     color: #000 !important; }
-  .pratilipi-review .user-info .review-date {
-    color: rgba(0, 0, 0, 0.54);
-    display: block;
-    margin-top: 2px; }
+  .pratilipi-review .user-info .rating-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center; }
+    .pratilipi-review .user-info .rating-block .review-date {
+      color: rgba(0, 0, 0, 0.54);
+      margin-left: 4px; }
 .pratilipi-review .review-container {
   white-space: pre-wrap;
   padding: 16px 0 8px 0; }
