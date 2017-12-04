@@ -1196,6 +1196,8 @@ nav.pratilipi-navigation-drawer {
       color: rgba(0, 0, 0, 0.54);
       display: block;
       margin-top: 2px; }
+  .pratilipi-review-comment .comment-header .three-dots {
+    position: relative; }
 .pratilipi-review-comment .comment-container {
   padding: 16px 0 8px 0; }
 .pratilipi-review-comment .comment-footer {
