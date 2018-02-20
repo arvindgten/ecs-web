@@ -4,7 +4,7 @@
 
 	var localFilesToCache = [
 		'.',
-		'pwa-stylesheets/css/style.css?300820170215',
+		'pwa-stylesheets/css/style.css?200220182123',
 		'pwa-images/404.svg',
 		'pwa-images/library-empty.svg',
 		'pwa-images/NewSprite_2.png',
@@ -19,6 +19,8 @@
 		'stylesheets/PageNotFound.png',
 		'stylesheets/Server.png'
 	];
+	// TODO: Remove once pwg is fixed
+	localFilesToCache = [];
 
 	var externalFilesToCache = [
 		'https://www.ptlp.co/resource-all/pwa/js/jkkrrsh.js',
@@ -27,16 +29,16 @@
 		'https://www.ptlp.co/resource-all/font/font-bn.css'
 	];
 
-	var STATIC_VERSION = "300820170215";
+	var STATIC_VERSION = "200220182123";
 	var DYNAMIC_VERSION = "7";
 	var staticCacheName = 'pratilipi-cache-static-' + STATIC_VERSION;
 	var dynamicCacheName = 'pratilipi-cache-dynamic-' + DYNAMIC_VERSION;
 
-	var hostName = "https://bengali-prod.pratilipi.com";
-	var apiPrefix = "https://bengali-prod.pratilipi.com";
+	var hostName = "https://bengali-mum.pratilipi.com";
+	var apiPrefix = "https://bengali-mum.pratilipi.com";
 
 	/* Cache Keys */
-	var PWA_INDEX_HTML = "app-shell-300820170215.html";
+	var PWA_INDEX_HTML = "app-shell-200220182123.html";
 	var INIT_BANNER_LIST = "init-banner-list.json";
 	var TRENDING_SEARCH_KEYWORDS = "trending-search-keywords.json";
 
@@ -47,14 +49,14 @@
 			caches.open( staticCacheName )
 			.then( function(cache) {
 				return cache.addAll( localFilesToCache );
-			}).then( function() { // index.html
-				fetch( "/" ).then( function(response) {
-					if( response.ok ) {
-						caches.open( staticCacheName ).then( function(cache) {
-							cache.put( PWA_INDEX_HTML, response );
-						});
-					}
-				});
+//			}).then( function() { // index.html
+//				fetch( "/" ).then( function(response) {
+//					if( response.ok ) {
+//						caches.open( staticCacheName ).then( function(cache) {
+//							cache.put( PWA_INDEX_HTML, response );
+//						});
+//					}
+//				});
 //			}).then( function() { // CDN
 //				for( var i = 0; i < externalFilesToCache.length; i++ ) {
 //					fetch( externalFilesToCache[i] ).then( function(response) {
@@ -118,7 +120,7 @@
 			&& url.indexOf( hostName + "/resources/" ) === -1
 			&& url.indexOf( hostName + "/stylesheets/" ) === -1
 			&& url.indexOf( "loadPWA=false" ) === -1
-			&& false ) {
+			&& false ) { // Hack
 				event.respondWith(
 					caches.match( PWA_INDEX_HTML ).then( function(response) {
 						if( response ) return response;
@@ -164,6 +166,25 @@
 			cacheAndRevalidate( dynamicCacheName, TRENDING_SEARCH_KEYWORDS, event );
 		}
 
+	});
+
+	self.addEventListener( 'push', function(event) {
+		const title = 'Test Title';
+		const options = {
+			body: 'Test body....'
+		};
+
+		const notificationPromise = self.registration.showNotification(title, options);
+		event.waitUntil( notificationPromise );
+
+	});
+
+
+	self.addEventListener( 'notificationclick', function(event) {
+		event.notification.close();
+		event.waitUntil(
+			clients.openWindow('https://www.pratilipi.com')
+		);
 	});
 
 	function cacheAndRevalidate( cacheName, cacheKey, event ) {
