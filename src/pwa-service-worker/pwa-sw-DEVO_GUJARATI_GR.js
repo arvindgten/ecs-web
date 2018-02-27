@@ -4,7 +4,7 @@
 
 	var localFilesToCache = [
 		'.',
-		'pwa-stylesheets/css/style.css?260220180707',
+		'pwa-stylesheets/css/style.css?270220180852',
 		'pwa-images/404.svg',
 		'pwa-images/library-empty.svg',
 		'pwa-images/NewSprite_2.png',
@@ -29,7 +29,7 @@
 		'https://www.ptlp.co/resource-all/font/font-gu.css'
 	];
 
-	var STATIC_VERSION = "260220180707";
+	var STATIC_VERSION = "270220180852";
 	var DYNAMIC_VERSION = "7";
 	var staticCacheName = 'pratilipi-cache-static-' + STATIC_VERSION;
 	var dynamicCacheName = 'pratilipi-cache-dynamic-' + DYNAMIC_VERSION;
@@ -38,7 +38,7 @@
 	var apiPrefix = "https://gujarati-devo-gr.ptlp.co";
 
 	/* Cache Keys */
-	var PWA_INDEX_HTML = "app-shell-260220180707.html";
+	var PWA_INDEX_HTML = "app-shell-270220180852.html";
 	var INIT_BANNER_LIST = "init-banner-list.json";
 	var TRENDING_SEARCH_KEYWORDS = "trending-search-keywords.json";
 
