@@ -1391,7 +1391,78 @@ nav.pratilipi-navigation-drawer {
 
 .section-list .section-container {
   margin-bottom: 20px; }
-  .section-list .section-container .section-title {
+  .section-list .section-container .section-header {
+    -webkit-display: flex;
+    -khtml-display: flex;
+    -moz-display: flex;
+    -ms-display: flex;
+    -o-display: flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -khtml-flex-direction: row;
+    -moz-flex-direction: row;
+    -ms-flex-direction: row;
+    -o-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -khtml-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -o-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-align-items: center;
+    -khtml-align-items: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    -o-align-items: center;
+    align-items: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 4px;
+    background: #fff;
+    min-height: 64px; }
+    .section-list .section-container .section-header .section-heading-container {
+      padding: 0 8px; }
+      .section-list .section-container .section-header .section-heading-container .section-heading {
+        margin: 0; }
+    .section-list .section-container .section-header .partnership-container {
+      -webkit-display: flex;
+      -khtml-display: flex;
+      -moz-display: flex;
+      -ms-display: flex;
+      -o-display: flex;
+      display: flex;
+      -webkit-flex-direction: row;
+      -khtml-flex-direction: row;
+      -moz-flex-direction: row;
+      -ms-flex-direction: row;
+      -o-flex-direction: row;
+      flex-direction: row;
+      -webkit-flex-wrap: nowrap;
+      -khtml-flex-wrap: nowrap;
+      -moz-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+      -o-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      -webkit-justify-self: flex-end;
+      -khtml-justify-self: flex-end;
+      -moz-justify-self: flex-end;
+      -ms-justify-self: flex-end;
+      -o-justify-self: flex-end;
+      justify-self: flex-end;
+      margin-left: auto; }
+      .section-list .section-container .section-header .partnership-container .caption {
+        align-self: flex-end;
+        margin-right: 8px;
+        font-size: 12px; }
+      .section-list .section-container .section-header .partnership-container .image-holder img.partner-image {
+        height: 48px;
+        max-height: 48px; }
+        @media only screen and (max-width: 768px) {
+          .section-list .section-container .section-header .partnership-container .image-holder img.partner-image {
+            height: 40px;
+            max-height: 40px; } }
+  .section-list .section-container .section-footer {
     margin: 0;
     background: #fff;
     padding: 16px 8px;
