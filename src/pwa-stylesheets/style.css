@@ -1355,6 +1355,14 @@ nav.pratilipi-navigation-drawer {
         @media (min-width: 480px) {
           .pratilipi-pratilipi-card .pratilipi-meta-holder .pratilipi-card-footer-icons-holder .edit-category-button {
             line-height: 32px; } }
+      .pratilipi-pratilipi-card .pratilipi-meta-holder .pratilipi-card-footer-icons-holder .mdl-progress {
+        display: block;
+        position: absolute;
+        height: 5px;
+        bottom: 3px;
+        width: 70%; }
+      .pratilipi-pratilipi-card .pratilipi-meta-holder .pratilipi-card-footer-icons-holder .mdl-progress > .bufferbar {
+        background: lightgrey; }
 
 @media (min-width: 480px) {
   .pratilipi-add-category {
