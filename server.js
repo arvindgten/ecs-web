@@ -190,6 +190,9 @@ app.use( cookieParser() );
 // gzip all responses
 app.use( compression() );
 
+// prerender
+app.use(require('prerender-node'));
+
 // Health
 app.get( '/health', (req, res, next) => {
 	console.log( "Healthy!" );
