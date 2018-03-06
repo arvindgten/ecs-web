@@ -191,7 +191,7 @@ app.use( cookieParser() );
 app.use( compression() );
 
 // prerender
-app.use(require('prerender-node'));
+// app.use(require('prerender-node'));
 
 // Health
 app.get( '/health', (req, res, next) => {
