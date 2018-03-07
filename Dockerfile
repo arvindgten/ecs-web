@@ -1,4 +1,4 @@
-FROM 370531249777.dkr.ecr.ap-south-1.amazonaws.com/node:8.3.0
+FROM 370531249777.dkr.ecr.ap-south-1.amazonaws.com/node:carbon
 
 # Install app dependencies
 COPY package.json .
