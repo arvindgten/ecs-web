@@ -2404,7 +2404,8 @@ nav.mdl-navigation {
 .pratilipi-reader-content .content {
   overflow-x: auto;
   overflow-y: hidden;
-  min-height: 80vh;
+  min-height: 68vh;
+  min-height: calc(100vh - 190px);
   max-width: 700px;
   margin: auto;
   white-space: pre-wrap; }
@@ -2423,6 +2424,25 @@ nav.mdl-navigation {
   @media only screen and (min-width: 768px) {
     .pratilipi-reader-content .content {
       text-align: justify; } }
+.pratilipi-reader-content .content-type-image {
+  -webkit-display: flex;
+  -khtml-display: flex;
+  -moz-display: flex;
+  -ms-display: flex;
+  -o-display: flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -khtml-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  -o-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: center;
+  -khtml-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center; }
 .pratilipi-reader-content .content img:not(.image-content), .pratilipi-reader-content .content > img:not(.image-content) {
   max-width: 100% !important;
   width: initial !important;
