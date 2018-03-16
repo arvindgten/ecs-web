@@ -3198,12 +3198,13 @@ ul.pratilipi-recommendation-carousel {
   max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-  background: inherit; }
+  background: inherit;
+  white-space: nowrap; }
   @media only screen and (max-width: 768px) {
     ul.pratilipi-recommendation-carousel {
       white-space: nowrap; }
       ul.pratilipi-recommendation-carousel li {
-        max-width: 120px; } }
+        max-width: 280px; } }
   ul.pratilipi-recommendation-carousel li {
     list-style: none;
     display: inline-block;
