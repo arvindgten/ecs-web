@@ -3190,26 +3190,61 @@ pratilipi-loading-state {
     flex-flow: row; }
 
 ul.pratilipi-recommendation-carousel {
-  display: inline-block;
-  position: relative;
-  left: 0;
-  padding: 0;
+  -webkit-flex-flow: row;
+  -khtml-flex-flow: row;
+  -moz-flex-flow: row;
+  -ms-flex-flow: row;
+  -o-flex-flow: row;
+  flex-flow: row;
+  -webkit-flex-shrink: 0;
+  -khtml-flex-shrink: 0;
+  -moz-flex-shrink: 0;
+  -ms-flex-shrink: 0;
+  -o-flex-shrink: 0;
+  flex-shrink: 0;
+  -webkit-flex-wrap: nowrap;
+  -khtml-flex-wrap: nowrap;
+  -moz-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  -o-flex-wrap: nowrap;
+  flex-wrap: nowrap;
   width: 100%;
-  max-width: 100%;
+  position: relative;
+  padding: 0;
   overflow-x: auto;
   overflow-y: hidden;
   background: inherit;
-  white-space: nowrap; }
+  box-sizing: border-box;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none; }
   @media only screen and (max-width: 768px) {
-    ul.pratilipi-recommendation-carousel {
-      white-space: nowrap; }
-      ul.pratilipi-recommendation-carousel li {
-        max-width: 280px; } }
+    ul.pratilipi-recommendation-carousel li {
+      max-width: 280px; } }
   ul.pratilipi-recommendation-carousel li {
     list-style: none;
     display: inline-block;
     min-width: 100px;
-    position: relative; }
+    -webkit-flex-grow: 0;
+    -khtml-flex-grow: 0;
+    -moz-flex-grow: 0;
+    -ms-flex-grow: 0;
+    -o-flex-grow: 0;
+    flex-grow: 0;
+    -webkit-flex-shrink: 0;
+    -khtml-flex-shrink: 0;
+    -moz-flex-shrink: 0;
+    -ms-flex-shrink: 0;
+    -o-flex-shrink: 0;
+    flex-shrink: 0;
+    -webkit-flex-basis: auto;
+    -khtml-flex-basis: auto;
+    -moz-flex-basis: auto;
+    -ms-flex-basis: auto;
+    -o-flex-basis: auto;
+    flex-basis: auto; }
+
+ul.pratilipi-recommendation-carousel::-webkit-scrollbar {
+  display: none; }
 
 .pratilipi-pratilipi-card-mini {
   display: block;
