@@ -3599,3 +3599,29 @@ ul.pratilipi-recommendation-carousel {
       padding: 10px 15px 10px 15px;
       outline: none;
       text-align: center; }
+
+a.pratilipi-pratilipi-card-v2 .reco-container {
+  height: 250px; }
+a.pratilipi-pratilipi-card-v2 .shadow-without-summary {
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 80px 80px -20px inset; }
+a.pratilipi-pratilipi-card-v2 .shadow-with-summary {
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 80px 80px -20px inset, rgba(0, 0, 0, 0.8) 0px -110px 100px -10px inset; }
+a.pratilipi-pratilipi-card-v2 .pratilipi-title {
+  font-size: 1.4em;
+  padding: 10px;
+  padding-bottom: 0px;
+  text-overflow: ellipsis;
+  overflow: hidden; }
+a.pratilipi-pratilipi-card-v2 .reads-holder {
+  display: inline-flex;
+  align-items: center;
+  padding-right: 10px; }
+a.pratilipi-pratilipi-card-v2 .summary {
+  position: absolute;
+  bottom: 0;
+  white-space: normal;
+  height: 86px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  text-align: justify; }
