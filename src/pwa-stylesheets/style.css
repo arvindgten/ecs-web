@@ -9670,13 +9670,15 @@ ul.pratilipi-recommendation-carousel::-webkit-scrollbar {
         text-align: center; }
 
 .reader-read-in-app-helper .download-in-app-helper {
-  position: relative;
+  position: fixed;
   background-color: #266a1f;
   max-width: 100%;
   padding: 10px;
   opacity: 0.92;
   margin: 10px;
-  top: -170px;
+  bottom: 55px;
+  left: 0px;
+  right: 0px;
   height: 50px;
   color: white; }
   .reader-read-in-app-helper .download-in-app-helper .read-in-app-close {
