@@ -9669,118 +9669,25 @@ ul.pratilipi-recommendation-carousel::-webkit-scrollbar {
         outline: none;
         text-align: center; }
 
-.pratilipi-reader-exp-002 * {
-  box-sizing: border-box; }
-.pratilipi-reader-exp-002 .modal-body {
-  -webkit-display: flex;
-  -khtml-display: flex;
-  -moz-display: flex;
-  -ms-display: flex;
-  -o-display: flex;
-  display: flex;
-  -webkit-flex-direction: column;
-  -khtml-flex-direction: column;
-  -moz-flex-direction: column;
-  -ms-flex-direction: column;
-  -o-flex-direction: column;
-  flex-direction: column;
-  -webkit-justify-content: center;
-  -khtml-justify-content: center;
-  -moz-justify-content: center;
-  -ms-justify-content: center;
-  -o-justify-content: center;
-  justify-content: center;
-  background: white;
-  border-radius: 1px;
+.reader-read-in-app-helper .download-in-app-helper {
   position: relative;
-  width: 300px;
-  height: 320px;
-  margin: auto;
-  padding: 0 !important; }
-  .pratilipi-reader-exp-002 .modal-body .header, .pratilipi-reader-exp-002 .modal-body .message, .pratilipi-reader-exp-002 .modal-body .footer {
-    margin: 16px 12px;
-    padding: 0 !important; }
-  .pratilipi-reader-exp-002 .modal-body .header {
-    -webkit-display: flex;
-    -khtml-display: flex;
-    -moz-display: flex;
-    -ms-display: flex;
-    -o-display: flex;
-    display: flex;
-    -webkit-flex-direction: row;
-    -khtml-flex-direction: row;
-    -moz-flex-direction: row;
-    -ms-flex-direction: row;
-    -o-flex-direction: row;
-    flex-direction: row;
-    -webkit-justify-content: center;
-    -khtml-justify-content: center;
-    -moz-justify-content: center;
-    -ms-justify-content: center;
-    -o-justify-content: center;
-    justify-content: center;
-    -webkit-align-items: center;
-    -khtml-align-items: center;
-    -moz-align-items: center;
-    -ms-align-items: center;
-    -o-align-items: center;
-    align-items: center; }
-    .pratilipi-reader-exp-002 .modal-body .header img.icon {
-      background: none;
-      width: 56px;
-      max-width: 56px;
-      height: 56px;
-      max-height: 56px; }
-  .pratilipi-reader-exp-002 .modal-body .message {
-    font-size: 16px;
-    line-height: 1.8;
-    white-space: normal;
-    text-align: center; }
-  .pratilipi-reader-exp-002 .modal-body .footer {
-    -webkit-display: flex;
-    -khtml-display: flex;
-    -moz-display: flex;
-    -ms-display: flex;
-    -o-display: flex;
-    display: flex;
-    -webkit-flex-direction: row;
-    -khtml-flex-direction: row;
-    -moz-flex-direction: row;
-    -ms-flex-direction: row;
-    -o-flex-direction: row;
-    flex-direction: row;
-    -webkit-justify-content: flex-end;
-    -khtml-justify-content: flex-end;
-    -moz-justify-content: flex-end;
-    -ms-justify-content: flex-end;
-    -o-justify-content: flex-end;
-    justify-content: flex-end;
-    -webkit-align-items: center;
-    -khtml-align-items: center;
-    -moz-align-items: center;
-    -ms-align-items: center;
-    -o-align-items: center;
-    align-items: center; }
-    .pratilipi-reader-exp-002 .modal-body .footer button.declined {
-      font-size: 18px;
-      outline: none;
-      border: none;
-      background: none;
-      margin-right: 20px; }
-    .pratilipi-reader-exp-002 .modal-body .footer button.accepted {
-      font-size: 18px;
-      border: 0;
-      background: #00a651;
-      color: white;
-      text-shadow: none;
-      box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.5);
-      border-radius: 2px;
-      letter-spacing: 0.3px;
-      line-height: 16px;
-      display: block;
-      padding: 10px 15px 10px 15px;
-      outline: none;
-      text-align: center; }
+  background-color: #266a1f;
+  max-width: 100%;
+  padding: 10px;
+  opacity: 0.92;
+  margin: 10px;
+  top: -140px;
+  height: 65px;
+  color: white; }
+  .reader-read-in-app-helper .download-in-app-helper .read-in-app-close {
+    float: right;
+    background: none;
+    border: none;
+    color: white; }
+  .reader-read-in-app-helper .download-in-app-helper .read-in-app-text {
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px; }
 
 a.pratilipi-pratilipi-card-v2 .reco-container {
   height: 250px;
