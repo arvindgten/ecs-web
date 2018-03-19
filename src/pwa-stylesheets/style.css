@@ -9784,28 +9784,35 @@ ul.pratilipi-recommendation-carousel::-webkit-scrollbar {
 
 a.pratilipi-pratilipi-card-v2 .reco-container {
   height: 250px;
-  position: relative; }
+  position: relative;
+  box-sizing: border-box; }
 a.pratilipi-pratilipi-card-v2 .shadow-without-summary {
   box-shadow: rgba(0, 0, 0, 0.5) 0px 80px 80px -20px inset; }
 a.pratilipi-pratilipi-card-v2 .shadow-with-summary {
   box-shadow: rgba(0, 0, 0, 0.5) 0px 80px 80px -20px inset, rgba(0, 0, 0, 0.8) 0px -110px 100px -10px inset; }
 a.pratilipi-pratilipi-card-v2 .pratilipi-title {
-  font-size: 1.4em;
+  position: absolute;
   padding: 10px;
-  padding-bottom: 0px;
+  padding-bottom: 0;
+  box-sizing: border-box;
   text-overflow: ellipsis;
-  overflow: hidden; }
-a.pratilipi-pratilipi-card-v2 .reads-holder {
-  display: inline-flex;
-  align-items: center;
-  padding-right: 10px; }
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  white-space: nowrap; }
+a.pratilipi-pratilipi-card-v2 .info-container {
+  padding: 0 10px;
+  position: absolute; }
+  a.pratilipi-pratilipi-card-v2 .info-container .reads-holder {
+    display: inline-flex;
+    align-items: center;
+    padding-right: 10px; }
 a.pratilipi-pratilipi-card-v2 .summary {
   position: absolute;
   white-space: normal;
   overflow: hidden;
   padding: 0 10px 2px 10px;
   bottom: 0;
-  text-align: justify;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 4;
