@@ -3637,7 +3637,8 @@ ul.pratilipi-recommendation-carousel::-webkit-scrollbar {
       text-align: center; }
 
 a.pratilipi-pratilipi-card-v2 .reco-container {
-  height: 250px; }
+  height: 250px;
+  position: relative; }
 a.pratilipi-pratilipi-card-v2 .shadow-without-summary {
   box-shadow: rgba(0, 0, 0, 0.5) 0px 80px 80px -20px inset; }
 a.pratilipi-pratilipi-card-v2 .shadow-with-summary {
@@ -3654,10 +3655,13 @@ a.pratilipi-pratilipi-card-v2 .reads-holder {
   padding-right: 10px; }
 a.pratilipi-pratilipi-card-v2 .summary {
   position: absolute;
-  bottom: 0;
   white-space: normal;
   height: 86px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 10px;
-  text-align: justify; }
+  overflow: hidden;
+  padding: 0 10px 10px 10px;
+  bottom: 0;
+  text-align: justify;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical; }
