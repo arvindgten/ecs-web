@@ -9675,11 +9675,10 @@ ul.pratilipi-recommendation-carousel::-webkit-scrollbar {
   max-width: 100%;
   padding: 10px;
   opacity: 0.92;
-  margin: 10px;
   bottom: 55px;
   left: 0px;
   right: 0px;
-  height: 50px;
+  height: 30px;
   color: white; }
   .reader-read-in-app-helper .download-in-app-helper .read-in-app-close {
     float: right;
@@ -9688,7 +9687,6 @@ ul.pratilipi-recommendation-carousel::-webkit-scrollbar {
     color: white; }
   .reader-read-in-app-helper .download-in-app-helper .read-in-app-text {
     text-align: center;
-    line-height: 50px;
     font-size: 20px; }
 
 a.pratilipi-pratilipi-card-v2 .reco-container {
