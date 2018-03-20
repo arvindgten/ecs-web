@@ -9687,7 +9687,8 @@ ul.pratilipi-recommendation-carousel::-webkit-scrollbar {
     color: white; }
   .reader-read-in-app-helper .download-in-app-helper .read-in-app-text {
     text-align: center;
-    font-size: 20px; }
+    font-size: 20px;
+    padding: 5px; }
 
 a.pratilipi-pratilipi-card-v2 .reco-container {
   height: 250px;
