@@ -9333,7 +9333,7 @@ pratilipi-loading-state {
     -o-flex-flow: row;
     flex-flow: row; }
 
-ul.pratilipi-recommendation-carousel {
+.pratilipi-recommendation-carousel ul.pratilipi-recommendation-carousel {
   -webkit-flex-flow: row;
   -khtml-flex-flow: row;
   -moz-flex-flow: row;
@@ -9362,9 +9362,9 @@ ul.pratilipi-recommendation-carousel {
   -ms-overflow-style: none;
   overflow: -moz-scrollbars-none; }
   @media only screen and (max-width: 768px) {
-    ul.pratilipi-recommendation-carousel li {
+    .pratilipi-recommendation-carousel ul.pratilipi-recommendation-carousel li {
       max-width: 260px; } }
-  ul.pratilipi-recommendation-carousel li {
+  .pratilipi-recommendation-carousel ul.pratilipi-recommendation-carousel li {
     list-style: none;
     display: inline-block;
     min-width: 100px;
@@ -9388,8 +9388,7 @@ ul.pratilipi-recommendation-carousel {
     -ms-flex-basis: auto;
     -o-flex-basis: auto;
     flex-basis: auto; }
-
-ul.pratilipi-recommendation-carousel::-webkit-scrollbar {
+.pratilipi-recommendation-carousel ul.pratilipi-recommendation-carousel::-webkit-scrollbar {
   display: none; }
 
 .pratilipi-pratilipi-card-mini {
