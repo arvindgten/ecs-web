@@ -4,7 +4,7 @@
 
 	var localFilesToCache = [
 		'.',
-		'pwa-stylesheets/css/style.css?260320181509',
+		'pwa-stylesheets/css/style.css?260320181510',
 		'pwa-images/404.svg',
 		'pwa-images/library-empty.svg',
 		'pwa-images/NewSprite_2.png',
@@ -29,7 +29,7 @@
 		'https://www.ptlp.co/resource-all/font/font-kn.css'
 	];
 
-	var STATIC_VERSION = "260320181509";
+	var STATIC_VERSION = "260320181510";
 	var DYNAMIC_VERSION = "7";
 	var staticCacheName = 'pratilipi-cache-static-' + STATIC_VERSION;
 	var dynamicCacheName = 'pratilipi-cache-dynamic-' + DYNAMIC_VERSION;
@@ -38,7 +38,7 @@
 	var apiPrefix = "https://kannada-devo-gr.ptlp.co";
 
 	/* Cache Keys */
-	var PWA_INDEX_HTML = "app-shell-260320181509.html";
+	var PWA_INDEX_HTML = "app-shell-260320181510.html";
 	var INIT_BANNER_LIST = "init-banner-list.json";
 	var TRENDING_SEARCH_KEYWORDS = "trending-search-keywords.json";
 
