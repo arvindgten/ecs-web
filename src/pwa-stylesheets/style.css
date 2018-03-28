@@ -7361,37 +7361,53 @@ nav.pratilipi-navigation-drawer {
     margin-right: 4px; }
 
 .pratilipi-login-component {
-  -webkit-display: flex;
-  -khtml-display: flex;
-  -moz-display: flex;
-  -ms-display: flex;
-  -o-display: flex;
-  display: flex;
-  -webkit-flex-direction: column;
-  -khtml-flex-direction: column;
-  -moz-flex-direction: column;
-  -ms-flex-direction: column;
-  -o-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: center;
-  -khtml-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  -o-align-items: center;
-  align-items: center;
-  -webkit-justify-content: center;
-  -khtml-justify-content: center;
-  -moz-justify-content: center;
-  -ms-justify-content: center;
-  -o-justify-content: center;
-  justify-content: center;
-  background: #FFFFFF;
-  border: 1px solid black;
-  box-sizing: border-box;
   width: 100%;
   height: 100%;
   max-width: 400px;
-  max-height: 500px; }
+  max-height: 500px;
+  border: 1px solid black;
+  background: #FFFFFF;
+  box-sizing: border-box; }
+  .pratilipi-login-component input.login-input {
+    margin: 4px 0;
+    outline: 0;
+    padding: 10px 8px;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    background: #f3f3f3;
+    color: #333333;
+    border: 1px solid #ededed;
+    border-radius: 1px; }
+  .pratilipi-login-component button.login-button {
+    -webkit-display: flex;
+    -khtml-display: flex;
+    -moz-display: flex;
+    -ms-display: flex;
+    -o-display: flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -khtml-flex-direction: row;
+    -moz-flex-direction: row;
+    -ms-flex-direction: row;
+    -o-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-shrink: 0;
+    -khtml-flex-shrink: 0;
+    -moz-flex-shrink: 0;
+    -ms-flex-shrink: 0;
+    -o-flex-shrink: 0;
+    flex-shrink: 0;
+    margin: 4px 0;
+    border-radius: 0;
+    box-shadow: none;
+    text-align: left;
+    box-sizing: border-box;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    padding: 10px 8px;
+    border-radius: 1px; }
   .pratilipi-login-component span.pratilipi-logo-icon {
     -webkit-zoom: 1.2;
     -khtml-zoom: 1.2;
@@ -7399,11 +7415,7 @@ nav.pratilipi-navigation-drawer {
     -ms-zoom: 1.2;
     -o-zoom: 1.2;
     zoom: 1.2; }
-  .pratilipi-login-component div.sign-in-text {
-    margin: 12px 0; }
-  .pratilipi-login-component div.social-login-container, .pratilipi-login-component div.email-login-container {
-    width: 260px; }
-  .pratilipi-login-component div.social-login-container {
+  .pratilipi-login-component div.email-input-screen, .pratilipi-login-component div.email-login-screen, .pratilipi-login-component div.email-register-screen {
     -webkit-display: flex;
     -khtml-display: flex;
     -moz-display: flex;
@@ -7415,109 +7427,105 @@ nav.pratilipi-navigation-drawer {
     -moz-flex-direction: column;
     -ms-flex-direction: column;
     -o-flex-direction: column;
-    flex-direction: column; }
-    .pratilipi-login-component div.social-login-container button.fb-login, .pratilipi-login-component div.social-login-container button.google-login {
-      -webkit-display: flex;
-      -khtml-display: flex;
-      -moz-display: flex;
-      -ms-display: flex;
-      -o-display: flex;
-      display: flex;
-      -webkit-flex-direction: row;
-      -khtml-flex-direction: row;
-      -moz-flex-direction: row;
-      -ms-flex-direction: row;
-      -o-flex-direction: row;
-      flex-direction: row;
-      margin: 4px 0;
-      border-radius: 0;
-      box-shadow: none;
-      text-align: left;
-      border: 1px solid #d3d3d3;
-      box-sizing: border-box;
-      align-items: center;
-      width: 100%;
-      height: auto;
-      padding: 10px 8px; }
-      .pratilipi-login-component div.social-login-container button.fb-login span, .pratilipi-login-component div.social-login-container button.google-login span {
-        -webkit-display: flex;
-        -khtml-display: flex;
-        -moz-display: flex;
-        -ms-display: flex;
-        -o-display: flex;
-        display: flex; }
-      .pratilipi-login-component div.social-login-container button.fb-login span.sprites-icon, .pratilipi-login-component div.social-login-container button.google-login span.sprites-icon {
-        margin-right: 8px; }
-      .pratilipi-login-component div.social-login-container button.fb-login span.social-login-title, .pratilipi-login-component div.social-login-container button.google-login span.social-login-title {
-        flex-grow: 1;
-        justify-content: center; }
-    .pratilipi-login-component div.social-login-container button.fb-login {
-      background-color: #3b5998 !important;
-      color: #FFFFFF; }
-    .pratilipi-login-component div.social-login-container button.google-login {
-      background-color: #FFFFFF !important;
-      color: #000000; }
-  .pratilipi-login-component p.login-or {
+    flex-direction: column;
+    -webkit-align-items: center;
+    -khtml-align-items: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    -o-align-items: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: inherit;
+    height: inherit;
+    padding-top: 20px;
+    overflow-y: auto; }
+  .pratilipi-login-component div.screen-heading-text {
     margin: 12px 0; }
-  .pratilipi-login-component div.email-login-container {
+  .pratilipi-login-component form.login-form-container {
     -webkit-display: flex;
     -khtml-display: flex;
     -moz-display: flex;
     -ms-display: flex;
     -o-display: flex;
-    display: flex; }
-    .pratilipi-login-component div.email-login-container form {
+    display: flex;
+    -webkit-flex-direction: column;
+    -khtml-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    -o-flex-direction: column;
+    flex-direction: column;
+    width: 100%; }
+    .pratilipi-login-component form.login-form-container button[type="submit"] {
+      background: #d0021b;
+      color: #FFFFFF; }
+  .pratilipi-login-component span.error-message {
+    color: red; }
+  .pratilipi-login-component div.form-container {
+    -webkit-display: flex;
+    -khtml-display: flex;
+    -moz-display: flex;
+    -ms-display: flex;
+    -o-display: flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    -khtml-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    -o-flex-direction: column;
+    flex-direction: column;
+    width: 260px; }
+  .pratilipi-login-component div.email-input-screen {
+    display: none; }
+    .pratilipi-login-component div.email-input-screen div.social-login-container button.fb-login span, .pratilipi-login-component div.email-input-screen div.social-login-container button.google-login span {
       -webkit-display: flex;
       -khtml-display: flex;
       -moz-display: flex;
       -ms-display: flex;
       -o-display: flex;
-      display: flex;
-      -webkit-flex-direction: column;
-      -khtml-flex-direction: column;
-      -moz-flex-direction: column;
-      -ms-flex-direction: column;
-      -o-flex-direction: column;
-      flex-direction: column;
-      width: 100%; }
-      .pratilipi-login-component div.email-login-container form input, .pratilipi-login-component div.email-login-container form button {
-        margin: 4px 0;
-        border: 0;
-        outline: 0;
-        padding: 10px 8px;
-        box-sizing: border-box;
-        width: 100%;
-        text-align: left; }
-      .pratilipi-login-component div.email-login-container form input[type="email"] {
-        background: #f3f3f3;
-        color: #333333;
-        border: 1px solid #d3d3d3; }
-      .pratilipi-login-component div.email-login-container form button[type="submit"] {
-        -webkit-display: flex;
-        -khtml-display: flex;
-        -moz-display: flex;
-        -ms-display: flex;
-        -o-display: flex;
-        display: flex;
-        -webkit-flex-direction: row;
-        -khtml-flex-direction: row;
-        -moz-flex-direction: row;
-        -ms-flex-direction: row;
-        -o-flex-direction: row;
-        flex-direction: row;
-        align-items: center;
-        background: #d0021b;
-        color: #FFFFFF;
-        border: 1px solid #d3d3d3;
-        box-shadow: none;
-        border: 1px solid #d3d3d3;
-        height: auto; }
-        .pratilipi-login-component div.email-login-container form button[type="submit"] span.email-login-title {
-          flex-grow: 1;
-          justify-content: flex-start; }
-      .pratilipi-login-component div.email-login-container form span.error-message {
-        color: red;
-        padding-left: 12px; }
+      display: flex; }
+    .pratilipi-login-component div.email-input-screen div.social-login-container button.fb-login span.sprites-icon, .pratilipi-login-component div.email-input-screen div.social-login-container button.google-login span.sprites-icon {
+      margin-right: 8px; }
+    .pratilipi-login-component div.email-input-screen div.social-login-container button.fb-login span.social-login-title, .pratilipi-login-component div.email-input-screen div.social-login-container button.google-login span.social-login-title {
+      flex-grow: 1;
+      justify-content: center; }
+    .pratilipi-login-component div.email-input-screen div.social-login-container button.fb-login {
+      background-color: #3b5998 !important;
+      color: #FFFFFF; }
+    .pratilipi-login-component div.email-input-screen div.social-login-container button.google-login {
+      background-color: #FFFFFF !important;
+      color: #000000; }
+    .pratilipi-login-component div.email-input-screen p.login-or {
+      margin: 12px 0; }
+    .pratilipi-login-component div.email-input-screen div.email-login-container form.login-form-container button[type="submit"] span.email-login-title {
+      flex-grow: 1;
+      justify-content: flex-start; }
+    .pratilipi-login-component div.email-input-screen div.email-login-container form.login-form-container span.error-message {
+      padding-left: 12px; }
+  .pratilipi-login-component div.email-login-screen {
+    display: none; }
+    .pratilipi-login-component div.email-login-screen form.login-form-container button[type="submit"] span.email-login-title {
+      flex-grow: 1;
+      justify-content: center;
+      text-align: center; }
+    .pratilipi-login-component div.email-login-screen form.login-form-container span.error-message {
+      text-align: center;
+      margin: 4px 0 12px 0; }
+    .pratilipi-login-component div.email-login-screen button.forgot-password-button {
+      outline: none;
+      border: none;
+      color: #333333; }
+  .pratilipi-login-component div.email-register-screen div.screen-description-text {
+    padding: 0 20px 16px 20px;
+    text-align: center;
+    color: red; }
+  .pratilipi-login-component div.email-register-screen form.login-form-container button[type="submit"] span.email-login-title {
+    flex-grow: 1;
+    justify-content: center;
+    text-align: center; }
+  .pratilipi-login-component div.email-register-screen form.login-form-container span.error-message {
+    padding-left: 12px; }
+  .pratilipi-login-component div.email-register-screen form.login-form-container label.terms-conditions {
+    margin: 12px 0; }
 
 .pratilipi-login-container {
   text-align: center;
