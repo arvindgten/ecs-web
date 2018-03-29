@@ -7810,7 +7810,8 @@ nav.pratilipi-navigation-drawer {
         font-size: 12px; }
       .section-list .section-container .section-header .partnership-container .image-holder img.partner-image {
         height: 48px;
-        max-height: 48px; }
+        max-height: 48px;
+        background: #ffffff; }
         @media only screen and (max-width: 768px) {
           .section-list .section-container .section-header .partnership-container .image-holder img.partner-image {
             height: 40px;
