@@ -7504,12 +7504,12 @@ nav.pratilipi-navigation-drawer {
     color: #000000; }
   .pratilipi-login-component div.email-input-screen p.login-or {
     margin: 12px 0; }
-  .pratilipi-login-component div.email-input-screen div.email-login-container form button[type="submit"] span.email-login-title {
+  .pratilipi-login-component div.email-input-screen div.email-login-container form button[type="submit"] span.button-text {
     flex-grow: 1;
     justify-content: flex-start; }
   .pratilipi-login-component div.email-input-screen div.email-login-container form span.error-message {
     padding-left: 12px; }
-  .pratilipi-login-component div.email-login-screen form button[type="submit"] span.email-login-title {
+  .pratilipi-login-component div.email-login-screen form button[type="submit"] span.button-text {
     flex-grow: 1;
     justify-content: center;
     text-align: center; }
@@ -7525,7 +7525,7 @@ nav.pratilipi-navigation-drawer {
     padding: 0 20px 16px 20px;
     text-align: center;
     color: red; }
-  .pratilipi-login-component div.email-register-screen form button[type="submit"] span.email-login-title {
+  .pratilipi-login-component div.email-register-screen form button[type="submit"] span.button-text {
     flex-grow: 1;
     justify-content: center;
     text-align: center; }
@@ -7537,7 +7537,7 @@ nav.pratilipi-navigation-drawer {
     .pratilipi-login-component div.email-register-screen form label.terms-conditions span.label-text > a {
       color: inherit;
       text-decoration: underline; }
-  .pratilipi-login-component div.reset-password-screen form button[type="submit"] span.email-login-title {
+  .pratilipi-login-component div.reset-password-screen form button[type="submit"] span.button-text {
     flex-grow: 1;
     justify-content: center;
     text-align: center; }
