@@ -7415,7 +7415,7 @@ nav.pratilipi-navigation-drawer {
     -ms-zoom: 1.2;
     -o-zoom: 1.2;
     zoom: 1.2; }
-  .pratilipi-login-component div.email-input-screen, .pratilipi-login-component div.email-login-screen, .pratilipi-login-component div.email-register-screen {
+  .pratilipi-login-component div.email-input-screen, .pratilipi-login-component div.email-login-screen, .pratilipi-login-component div.email-register-screen, .pratilipi-login-component div.reset-password-screen {
     -webkit-display: flex;
     -khtml-display: flex;
     -moz-display: flex;
@@ -7434,6 +7434,7 @@ nav.pratilipi-navigation-drawer {
     -ms-align-items: center;
     -o-align-items: center;
     align-items: center;
+    display: none;
     box-sizing: border-box;
     width: inherit;
     height: inherit;
@@ -7441,7 +7442,7 @@ nav.pratilipi-navigation-drawer {
     overflow-y: auto; }
   .pratilipi-login-component div.screen-heading-text {
     margin: 12px 0; }
-  .pratilipi-login-component form.login-form-container {
+  .pratilipi-login-component form {
     -webkit-display: flex;
     -khtml-display: flex;
     -moz-display: flex;
@@ -7455,7 +7456,7 @@ nav.pratilipi-navigation-drawer {
     -o-flex-direction: column;
     flex-direction: column;
     width: 100%; }
-    .pratilipi-login-component form.login-form-container button[type="submit"] {
+    .pratilipi-login-component form button[type="submit"] {
       background: #d0021b;
       color: #FFFFFF; }
   .pratilipi-login-component span.error-message {
@@ -7474,8 +7475,8 @@ nav.pratilipi-navigation-drawer {
     -o-flex-direction: column;
     flex-direction: column;
     width: 260px; }
-  .pratilipi-login-component div.email-input-screen {
-    display: none; }
+  .pratilipi-login-component div.email-input-screen div.social-login-container button.fb-login, .pratilipi-login-component div.email-input-screen div.social-login-container button.google-login {
+    border: 1px solid #ededed; }
     .pratilipi-login-component div.email-input-screen div.social-login-container button.fb-login span, .pratilipi-login-component div.email-input-screen div.social-login-container button.google-login span {
       -webkit-display: flex;
       -khtml-display: flex;
@@ -7488,44 +7489,53 @@ nav.pratilipi-navigation-drawer {
     .pratilipi-login-component div.email-input-screen div.social-login-container button.fb-login span.social-login-title, .pratilipi-login-component div.email-input-screen div.social-login-container button.google-login span.social-login-title {
       flex-grow: 1;
       justify-content: center; }
-    .pratilipi-login-component div.email-input-screen div.social-login-container button.fb-login {
-      background-color: #3b5998 !important;
-      color: #FFFFFF; }
-    .pratilipi-login-component div.email-input-screen div.social-login-container button.google-login {
-      background-color: #FFFFFF !important;
-      color: #000000; }
-    .pratilipi-login-component div.email-input-screen p.login-or {
-      margin: 12px 0; }
-    .pratilipi-login-component div.email-input-screen div.email-login-container form.login-form-container button[type="submit"] span.email-login-title {
-      flex-grow: 1;
-      justify-content: flex-start; }
-    .pratilipi-login-component div.email-input-screen div.email-login-container form.login-form-container span.error-message {
-      padding-left: 12px; }
-  .pratilipi-login-component div.email-login-screen {
-    display: none; }
-    .pratilipi-login-component div.email-login-screen form.login-form-container button[type="submit"] span.email-login-title {
-      flex-grow: 1;
-      justify-content: center;
-      text-align: center; }
-    .pratilipi-login-component div.email-login-screen form.login-form-container span.error-message {
-      text-align: center;
-      margin: 4px 0 12px 0; }
-    .pratilipi-login-component div.email-login-screen button.forgot-password-button {
-      outline: none;
-      border: none;
-      color: #333333; }
+  .pratilipi-login-component div.email-input-screen div.social-login-container button.fb-login {
+    background-color: #3b5998 !important;
+    color: #FFFFFF; }
+  .pratilipi-login-component div.email-input-screen div.social-login-container button.google-login {
+    background-color: #FFFFFF !important;
+    color: #000000; }
+  .pratilipi-login-component div.email-input-screen p.login-or {
+    margin: 12px 0; }
+  .pratilipi-login-component div.email-input-screen div.email-login-container form button[type="submit"] span.email-login-title {
+    flex-grow: 1;
+    justify-content: flex-start; }
+  .pratilipi-login-component div.email-input-screen div.email-login-container form span.error-message {
+    padding-left: 12px; }
+  .pratilipi-login-component div.email-login-screen form button[type="submit"] span.email-login-title {
+    flex-grow: 1;
+    justify-content: center;
+    text-align: center; }
+  .pratilipi-login-component div.email-login-screen form span.error-message {
+    text-align: center;
+    margin: 4px 0 12px 0; }
+  .pratilipi-login-component div.email-login-screen button.forgot-password-button {
+    outline: none;
+    border: none;
+    color: #333333;
+    cursor: pointer; }
   .pratilipi-login-component div.email-register-screen div.screen-description-text {
     padding: 0 20px 16px 20px;
     text-align: center;
     color: red; }
-  .pratilipi-login-component div.email-register-screen form.login-form-container button[type="submit"] span.email-login-title {
+  .pratilipi-login-component div.email-register-screen form button[type="submit"] span.email-login-title {
     flex-grow: 1;
     justify-content: center;
     text-align: center; }
-  .pratilipi-login-component div.email-register-screen form.login-form-container span.error-message {
+  .pratilipi-login-component div.email-register-screen form span.error-message {
     padding-left: 12px; }
-  .pratilipi-login-component div.email-register-screen form.login-form-container label.terms-conditions {
-    margin: 12px 0; }
+  .pratilipi-login-component div.email-register-screen form label.terms-conditions {
+    margin: 12px 0;
+    color: #333333; }
+    .pratilipi-login-component div.email-register-screen form label.terms-conditions span.label-text > a {
+      color: inherit;
+      text-decoration: underline; }
+  .pratilipi-login-component div.reset-password-screen form button[type="submit"] span.email-login-title {
+    flex-grow: 1;
+    justify-content: center;
+    text-align: center; }
+  .pratilipi-login-component div.reset-password-screen form span.error-message {
+    padding-left: 12px; }
 
 .pratilipi-login-container {
   text-align: center;
