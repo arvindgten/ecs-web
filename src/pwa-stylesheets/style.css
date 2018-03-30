@@ -7407,7 +7407,8 @@ nav.pratilipi-navigation-drawer {
     width: 100%;
     height: auto;
     padding: 10px 8px;
-    border-radius: 1px; }
+    border-radius: 1px;
+    text-transform: none; }
   .pratilipi-login-component span.pratilipi-logo-icon {
     -webkit-zoom: 1.2;
     -khtml-zoom: 1.2;
@@ -7416,12 +7417,12 @@ nav.pratilipi-navigation-drawer {
     -o-zoom: 1.2;
     zoom: 1.2; }
   .pratilipi-login-component div.email-input-screen, .pratilipi-login-component div.email-login-screen, .pratilipi-login-component div.email-register-screen, .pratilipi-login-component div.reset-password-screen {
-    -webkit-display: flex;
-    -khtml-display: flex;
-    -moz-display: flex;
-    -ms-display: flex;
-    -o-display: flex;
-    display: flex;
+    -webkit-display: none;
+    -khtml-display: none;
+    -moz-display: none;
+    -ms-display: none;
+    -o-display: none;
+    display: none;
     -webkit-flex-direction: column;
     -khtml-flex-direction: column;
     -moz-flex-direction: column;
@@ -7434,12 +7435,18 @@ nav.pratilipi-navigation-drawer {
     -ms-align-items: center;
     -o-align-items: center;
     align-items: center;
-    display: none;
     box-sizing: border-box;
     width: inherit;
     height: inherit;
     padding-top: 20px;
     overflow-y: auto; }
+  .pratilipi-login-component div.email-input-screen.is-active, .pratilipi-login-component div.email-login-screen.is-active, .pratilipi-login-component div.email-register-screen.is-active, .pratilipi-login-component div.reset-password-screen.is-active {
+    -webkit-display: flex;
+    -khtml-display: flex;
+    -moz-display: flex;
+    -ms-display: flex;
+    -o-display: flex;
+    display: flex; }
   .pratilipi-login-component div.screen-heading-text {
     margin: 12px 0; }
   .pratilipi-login-component form {
