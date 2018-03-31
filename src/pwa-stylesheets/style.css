@@ -7381,10 +7381,7 @@ nav.pratilipi-navigation-drawer {
   justify-content: center;
   width: 100%;
   height: 100%;
-  max-width: 400px;
-  max-height: 500px;
-  border: 1px solid black;
-  background: #FFFFFF;
+  background: inherit;
   box-sizing: border-box; }
   .pratilipi-login-component input.login-input {
     margin: 4px 0;
@@ -7453,11 +7450,31 @@ nav.pratilipi-navigation-drawer {
     -ms-align-items: center;
     -o-align-items: center;
     align-items: center;
+    -webkit-flex-shrink: 0;
+    -khtml-flex-shrink: 0;
+    -moz-flex-shrink: 0;
+    -ms-flex-shrink: 0;
+    -o-flex-shrink: 0;
+    flex-shrink: 0;
     box-sizing: border-box;
     width: inherit;
     height: inherit;
-    padding-top: 20px;
-    overflow-y: auto; }
+    padding: 20px 0;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none; }
+    .pratilipi-login-component div.pre-login-screen *, .pratilipi-login-component div.login-screen *, .pratilipi-login-component div.register-screen *, .pratilipi-login-component div.reset-password-screen * {
+      -webkit-flex-shrink: 0;
+      -khtml-flex-shrink: 0;
+      -moz-flex-shrink: 0;
+      -ms-flex-shrink: 0;
+      -o-flex-shrink: 0;
+      flex-shrink: 0; }
+  .pratilipi-login-component div.pre-login-screen::-webkit-scrollbar,
+  .pratilipi-login-component div.login-screen::-webkit-scrollbar,
+  .pratilipi-login-component div.register-screen::-webkit-scrollbar,
+  .pratilipi-login-component div.reset-password-screen::-webkit-scrollbar {
+    display: none; }
   .pratilipi-login-component div.pre-login-screen.is-active, .pratilipi-login-component div.login-screen.is-active, .pratilipi-login-component div.register-screen.is-active, .pratilipi-login-component div.reset-password-screen.is-active {
     -webkit-display: flex;
     -khtml-display: flex;
@@ -7541,7 +7558,8 @@ nav.pratilipi-navigation-drawer {
     outline: none;
     border: none;
     color: #333333;
-    cursor: pointer; }
+    cursor: pointer;
+    background: inherit; }
   .pratilipi-login-component div.register-screen div.screen-description-text {
     padding: 0 20px 16px 20px;
     text-align: center;
