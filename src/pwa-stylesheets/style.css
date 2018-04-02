@@ -49,6 +49,9 @@
   background-image: url(../../pwa-images/notifications-empty.svg);
   background-repeat: no-repeat; }
 
+body.bg-white {
+  background: white !important; }
+
 .parent-container {
   padding: 0px;
   min-width: 300px;
