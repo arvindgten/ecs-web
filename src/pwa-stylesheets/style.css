@@ -10048,3 +10048,25 @@ a.pratilipi-pratilipi-card-v2 .summary {
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical; }
+
+.pratilipi-writersacademy-collection-page .collection-info-variable-width {
+  flex-grow: 1;
+  margin: 8px; }
+  @media (max-width: 459px) {
+    .pratilipi-writersacademy-collection-page .collection-info-variable-width {
+      text-align: center;
+      width: 100%; } }
+  @media (min-width: 460px) {
+    .pratilipi-writersacademy-collection-page .collection-info-variable-width {
+      width: 50%; } }
+.pratilipi-writersacademy-collection-page .collection {
+  padding: 16px;
+  min-height: unset !important; }
+.pratilipi-writersacademy-collection-page .title-padding {
+  padding-bottom: 8px; }
+.pratilipi-writersacademy-collection-page .video-image-holder {
+  width: 100%; }
+.pratilipi-writersacademy-collection-page .no-margin {
+  margin: 0px; }
+.pratilipi-writersacademy-collection-page .no-padding {
+  padding: 0px; }
