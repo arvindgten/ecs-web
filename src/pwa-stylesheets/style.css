@@ -10126,6 +10126,21 @@ a.pratilipi-pratilipi-card-v2 .summary {
     flex-basis: auto; }
 .pratilipi-writersacademy-collection-page ul.video-carousel::-webkit-scrollbar {
   display: none; }
+.pratilipi-writersacademy-collection-page div.mdl-spinner-container {
+  -webkit-display: flex;
+  -khtml-display: flex;
+  -moz-display: flex;
+  -ms-display: flex;
+  -o-display: flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -khtml-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  margin: 12px 0;
+  background: #ffffff; }
 
 .pratilipi-writersacademy-video-page .video {
   padding: 16px;
