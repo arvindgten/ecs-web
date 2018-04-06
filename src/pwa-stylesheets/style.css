@@ -10057,6 +10057,8 @@ a.pratilipi-pratilipi-card-v2 .summary {
   @media (min-width: 460px) {
     .pratilipi-writersacademy-collection-page .collection-info-variable-width {
       width: 50%; } }
+.pratilipi-writersacademy-collection-page .image-video-width {
+  width: 100%; }
 .pratilipi-writersacademy-collection-page .collection {
   padding: 16px;
   min-height: unset !important;
@@ -10094,9 +10096,7 @@ a.pratilipi-pratilipi-card-v2 .summary {
   overflow-x: auto;
   overflow-y: hidden;
   background: inherit;
-  box-sizing: border-box;
-  -ms-overflow-style: none;
-  overflow: -moz-scrollbars-none; }
+  box-sizing: border-box; }
   @media only screen and (max-width: 768px) {
     .pratilipi-writersacademy-collection-page ul.video-carousel li {
       max-width: 260px; } }
