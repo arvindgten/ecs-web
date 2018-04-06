@@ -10067,6 +10067,31 @@ a.pratilipi-pratilipi-card-v2 .summary {
   padding-bottom: 8px; }
 .pratilipi-writersacademy-collection-page .video-image-holder {
   width: 100%; }
+.pratilipi-writersacademy-collection-page .latest-video-media-container {
+  margin: 8px 0;
+  -webkit-flex-grow: 1;
+  -khtml-flex-grow: 1;
+  -moz-flex-grow: 1;
+  -ms-flex-grow: 1;
+  -o-flex-grow: 1;
+  flex-grow: 1; }
+  .pratilipi-writersacademy-collection-page .latest-video-media-container img, .pratilipi-writersacademy-collection-page .latest-video-media-container iframe {
+    width: 100%; }
+.pratilipi-writersacademy-collection-page .latest-video-info-container {
+  -webkit-flex-grow: 1;
+  -khtml-flex-grow: 1;
+  -moz-flex-grow: 1;
+  -ms-flex-grow: 1;
+  -o-flex-grow: 1;
+  flex-grow: 1;
+  margin: 0 4px; }
+  @media only screen and (min-width: 840px) {
+    .pratilipi-writersacademy-collection-page .latest-video-info-container {
+      margin: 4px 8px; } }
+  .pratilipi-writersacademy-collection-page .latest-video-info-container a {
+    color: inherit; }
+  .pratilipi-writersacademy-collection-page .latest-video-info-container .latest-video-description {
+    padding-top: 8px; }
 .pratilipi-writersacademy-collection-page .no-margin {
   margin: 0px; }
 .pratilipi-writersacademy-collection-page .no-padding {
@@ -10096,7 +10121,10 @@ a.pratilipi-pratilipi-card-v2 .summary {
   overflow-x: auto;
   overflow-y: hidden;
   background: inherit;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  margin-left: -8px;
+  margin-right: -8px;
+  width: calc(100% + 16px); }
   @media only screen and (max-width: 768px) {
     .pratilipi-writersacademy-collection-page ul.video-carousel li {
       max-width: 260px; } }
@@ -10124,6 +10152,12 @@ a.pratilipi-pratilipi-card-v2 .summary {
     -ms-flex-basis: auto;
     -o-flex-basis: auto;
     flex-basis: auto; }
+    .pratilipi-writersacademy-collection-page ul.video-carousel li a.video-title {
+      color: inherit;
+      margin-top: 4px;
+      display: inline-block; }
+  .pratilipi-writersacademy-collection-page ul.video-carousel li:last-child {
+    border-right: 8px solid white; }
 .pratilipi-writersacademy-collection-page ul.video-carousel::-webkit-scrollbar {
   display: none; }
 .pratilipi-writersacademy-collection-page div.mdl-spinner-container {
