@@ -7423,7 +7423,7 @@ nav.pratilipi-navigation-drawer {
     -ms-zoom: 1.2;
     -o-zoom: 1.2;
     zoom: 1.2; }
-  .pratilipi-login-component div.pre-login-screen, .pratilipi-login-component div.login-screen, .pratilipi-login-component div.register-screen, .pratilipi-login-component div.reset-password-screen {
+  .pratilipi-login-component div.pre-login-screen, .pratilipi-login-component div.login-screen, .pratilipi-login-component div.register-screen, .pratilipi-login-component div.reset-password-screen, .pratilipi-login-component div.add-password-screen {
     -webkit-display: none;
     -khtml-display: none;
     -moz-display: none;
@@ -7455,7 +7455,7 @@ nav.pratilipi-navigation-drawer {
     overflow-y: auto;
     -ms-overflow-style: none;
     overflow: -moz-scrollbars-none; }
-    .pratilipi-login-component div.pre-login-screen *, .pratilipi-login-component div.login-screen *, .pratilipi-login-component div.register-screen *, .pratilipi-login-component div.reset-password-screen * {
+    .pratilipi-login-component div.pre-login-screen *, .pratilipi-login-component div.login-screen *, .pratilipi-login-component div.register-screen *, .pratilipi-login-component div.reset-password-screen *, .pratilipi-login-component div.add-password-screen * {
       -webkit-flex-shrink: 0;
       -khtml-flex-shrink: 0;
       -moz-flex-shrink: 0;
@@ -7465,9 +7465,14 @@ nav.pratilipi-navigation-drawer {
   .pratilipi-login-component div.pre-login-screen::-webkit-scrollbar,
   .pratilipi-login-component div.login-screen::-webkit-scrollbar,
   .pratilipi-login-component div.register-screen::-webkit-scrollbar,
-  .pratilipi-login-component div.reset-password-screen::-webkit-scrollbar {
+  .pratilipi-login-component div.reset-password-screen::-webkit-scrollbar,
+  .pratilipi-login-component div.add-password-screen::-webkit-scrollbar {
     display: none; }
-  .pratilipi-login-component div.pre-login-screen.is-active, .pratilipi-login-component div.login-screen.is-active, .pratilipi-login-component div.register-screen.is-active, .pratilipi-login-component div.reset-password-screen.is-active {
+  .pratilipi-login-component div.pre-login-screen.is-active,
+  .pratilipi-login-component div.login-screen.is-active,
+  .pratilipi-login-component div.register-screen.is-active,
+  .pratilipi-login-component div.reset-password-screen.is-active,
+  .pratilipi-login-component div.add-password-screen.is-active {
     -webkit-display: flex;
     -khtml-display: flex;
     -moz-display: flex;
@@ -7533,28 +7538,32 @@ nav.pratilipi-navigation-drawer {
     -o-flex-direction: column;
     flex-direction: column;
     width: 260px; }
-  .pratilipi-login-component div.pre-login-screen div.social-login-container button.fb-login, .pratilipi-login-component div.pre-login-screen div.social-login-container button.google-login {
+  .pratilipi-login-component div.social-login-container button.fb-login, .pratilipi-login-component div.social-login-container button.google-login {
     border: 1px solid #ededed; }
-    .pratilipi-login-component div.pre-login-screen div.social-login-container button.fb-login span, .pratilipi-login-component div.pre-login-screen div.social-login-container button.google-login span {
+    .pratilipi-login-component div.social-login-container button.fb-login span, .pratilipi-login-component div.social-login-container button.google-login span {
       -webkit-display: flex;
       -khtml-display: flex;
       -moz-display: flex;
       -ms-display: flex;
       -o-display: flex;
       display: flex; }
-    .pratilipi-login-component div.pre-login-screen div.social-login-container button.fb-login span.sprites-icon, .pratilipi-login-component div.pre-login-screen div.social-login-container button.google-login span.sprites-icon {
+    .pratilipi-login-component div.social-login-container button.fb-login span.sprites-icon, .pratilipi-login-component div.social-login-container button.google-login span.sprites-icon {
       margin-right: 8px; }
-    .pratilipi-login-component div.pre-login-screen div.social-login-container button.fb-login span.social-login-title, .pratilipi-login-component div.pre-login-screen div.social-login-container button.google-login span.social-login-title {
+    .pratilipi-login-component div.social-login-container button.fb-login span.social-login-title, .pratilipi-login-component div.social-login-container button.google-login span.social-login-title {
       flex-grow: 1;
       justify-content: center; }
-  .pratilipi-login-component div.pre-login-screen div.social-login-container button.fb-login {
+  .pratilipi-login-component div.social-login-container button.fb-login {
     background-color: #3b5998 !important;
     color: #FFFFFF; }
-  .pratilipi-login-component div.pre-login-screen div.social-login-container button.google-login {
+  .pratilipi-login-component div.social-login-container button.google-login {
     background-color: #FFFFFF !important;
     color: #000000; }
-  .pratilipi-login-component div.pre-login-screen p.login-or {
+  .pratilipi-login-component p.login-or {
     margin: 12px 0; }
+  .pratilipi-login-component div.screen-description-text {
+    padding: 0 20px 16px 20px;
+    text-align: center;
+    color: red; }
   .pratilipi-login-component div.pre-login-screen div.email-login-container form button[type="submit"] span.button-text {
     flex-grow: 1;
     justify-content: flex-start; }
@@ -7568,10 +7577,6 @@ nav.pratilipi-navigation-drawer {
     color: #333333;
     cursor: pointer;
     background: inherit; }
-  .pratilipi-login-component div.register-screen div.screen-description-text {
-    padding: 0 20px 16px 20px;
-    text-align: center;
-    color: red; }
   .pratilipi-login-component div.register-screen form button[type="submit"] span.button-text {
     flex-grow: 1;
     justify-content: center;
@@ -7586,6 +7591,9 @@ nav.pratilipi-navigation-drawer {
     flex-grow: 1;
     justify-content: center;
     text-align: center; }
+  .pratilipi-login-component div.add-password-screen div.email-login-container form button[type="submit"] span.button-text {
+    flex-grow: 1;
+    justify-content: flex-start; }
 
 @-webkit-keyframes fade-show-hide {
   0%, 100% {
