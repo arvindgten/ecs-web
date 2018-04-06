@@ -7386,17 +7386,6 @@ nav.pratilipi-navigation-drawer {
   height: 100%;
   background: inherit;
   box-sizing: border-box; }
-  .pratilipi-login-component input.login-input {
-    margin: 4px 0;
-    outline: 0;
-    padding: 10px 8px;
-    box-sizing: border-box;
-    width: 100%;
-    text-align: left;
-    background: #f3f3f3;
-    color: #333333;
-    border: 1px solid #ededed;
-    border-radius: 1px; }
   .pratilipi-login-component button.login-button {
     -webkit-display: flex;
     -khtml-display: flex;
@@ -7504,11 +7493,32 @@ nav.pratilipi-navigation-drawer {
     -o-flex-direction: column;
     flex-direction: column;
     width: 100%; }
+    .pratilipi-login-component form input.login-input {
+      margin: 0;
+      outline: 0;
+      padding: 10px 8px;
+      box-sizing: border-box;
+      width: 100%;
+      text-align: left;
+      background: #f3f3f3;
+      color: #333333;
+      border: 1px solid #ededed;
+      border-radius: 1px; }
+    .pratilipi-login-component form span.error-message {
+      white-space: pre-wrap;
+      color: #d0021b;
+      padding: 0 8px; }
     .pratilipi-login-component form button[type="submit"] {
       background: #d0021b;
       color: #FFFFFF; }
-  .pratilipi-login-component span.error-message {
-    color: red; }
+    .pratilipi-login-component form button[type="submit"]:focus, .pratilipi-login-component form button[type="submit"]:active {
+      background: #d0021b;
+      color: #FFFFFF; }
+  .pratilipi-login-component span.common-error-message {
+    white-space: pre-wrap;
+    color: #d0021b;
+    text-align: center;
+    margin: 4px 0 12px 0; }
   .pratilipi-login-component div.form-container {
     -webkit-display: flex;
     -khtml-display: flex;
@@ -7548,15 +7558,10 @@ nav.pratilipi-navigation-drawer {
   .pratilipi-login-component div.pre-login-screen div.email-login-container form button[type="submit"] span.button-text {
     flex-grow: 1;
     justify-content: flex-start; }
-  .pratilipi-login-component div.pre-login-screen div.email-login-container form span.error-message {
-    padding-left: 12px; }
   .pratilipi-login-component div.login-screen form button[type="submit"] span.button-text {
     flex-grow: 1;
     justify-content: center;
     text-align: center; }
-  .pratilipi-login-component div.login-screen form span.error-message {
-    text-align: center;
-    margin: 4px 0 12px 0; }
   .pratilipi-login-component div.login-screen button.forgot-password-button {
     outline: none;
     border: none;
@@ -7571,8 +7576,6 @@ nav.pratilipi-navigation-drawer {
     flex-grow: 1;
     justify-content: center;
     text-align: center; }
-  .pratilipi-login-component div.register-screen form span.error-message {
-    padding-left: 12px; }
   .pratilipi-login-component div.register-screen form label.terms-conditions {
     margin: 12px 0;
     color: #333333; }
@@ -7583,8 +7586,6 @@ nav.pratilipi-navigation-drawer {
     flex-grow: 1;
     justify-content: center;
     text-align: center; }
-  .pratilipi-login-component div.reset-password-screen form span.error-message {
-    padding-left: 12px; }
 
 @-webkit-keyframes fade-show-hide {
   0%, 100% {
