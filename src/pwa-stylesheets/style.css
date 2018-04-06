@@ -10061,7 +10061,8 @@ a.pratilipi-pratilipi-card-v2 .summary {
       width: 50%; } }
 .pratilipi-writersacademy-collection-page .collection {
   padding: 16px;
-  min-height: unset !important; }
+  min-height: unset !important;
+  margin: 0px; }
 .pratilipi-writersacademy-collection-page .title-padding {
   padding-bottom: 8px; }
 .pratilipi-writersacademy-collection-page .video-image-holder {
@@ -10070,3 +10071,130 @@ a.pratilipi-pratilipi-card-v2 .summary {
   margin: 0px; }
 .pratilipi-writersacademy-collection-page .no-padding {
   padding: 0px; }
+.pratilipi-writersacademy-collection-page ul.video-carousel {
+  -webkit-flex-flow: row;
+  -khtml-flex-flow: row;
+  -moz-flex-flow: row;
+  -ms-flex-flow: row;
+  -o-flex-flow: row;
+  flex-flow: row;
+  -webkit-flex-shrink: 0;
+  -khtml-flex-shrink: 0;
+  -moz-flex-shrink: 0;
+  -ms-flex-shrink: 0;
+  -o-flex-shrink: 0;
+  flex-shrink: 0;
+  -webkit-flex-wrap: nowrap;
+  -khtml-flex-wrap: nowrap;
+  -moz-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  -o-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  width: 100%;
+  position: relative;
+  padding: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: inherit;
+  box-sizing: border-box;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none; }
+  @media only screen and (max-width: 768px) {
+    .pratilipi-writersacademy-collection-page ul.video-carousel li {
+      max-width: 260px; } }
+  .pratilipi-writersacademy-collection-page ul.video-carousel li {
+    list-style: none;
+    display: inline-block;
+    min-width: 100px;
+    box-sizing: border-box;
+    position: relative;
+    -webkit-flex-grow: 0;
+    -khtml-flex-grow: 0;
+    -moz-flex-grow: 0;
+    -ms-flex-grow: 0;
+    -o-flex-grow: 0;
+    flex-grow: 0;
+    -webkit-flex-shrink: 0;
+    -khtml-flex-shrink: 0;
+    -moz-flex-shrink: 0;
+    -ms-flex-shrink: 0;
+    -o-flex-shrink: 0;
+    flex-shrink: 0;
+    -webkit-flex-basis: auto;
+    -khtml-flex-basis: auto;
+    -moz-flex-basis: auto;
+    -ms-flex-basis: auto;
+    -o-flex-basis: auto;
+    flex-basis: auto; }
+.pratilipi-writersacademy-collection-page ul.video-carousel::-webkit-scrollbar {
+  display: none; }
+
+.pratilipi-writersacademy-video-page .video {
+  padding: 16px;
+  min-height: unset !important;
+  margin: 0px; }
+.pratilipi-writersacademy-video-page .title-padding {
+  padding-bottom: 8px; }
+.pratilipi-writersacademy-video-page .video-image-holder {
+  width: 100%; }
+.pratilipi-writersacademy-video-page .no-margin {
+  margin: 0px; }
+.pratilipi-writersacademy-video-page .no-padding {
+  padding: 0px; }
+.pratilipi-writersacademy-video-page ul.video-carousel {
+  -webkit-flex-flow: row;
+  -khtml-flex-flow: row;
+  -moz-flex-flow: row;
+  -ms-flex-flow: row;
+  -o-flex-flow: row;
+  flex-flow: row;
+  -webkit-flex-shrink: 0;
+  -khtml-flex-shrink: 0;
+  -moz-flex-shrink: 0;
+  -ms-flex-shrink: 0;
+  -o-flex-shrink: 0;
+  flex-shrink: 0;
+  -webkit-flex-wrap: nowrap;
+  -khtml-flex-wrap: nowrap;
+  -moz-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  -o-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  width: 100%;
+  position: relative;
+  padding: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: inherit;
+  box-sizing: border-box;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none; }
+  @media only screen and (max-width: 768px) {
+    .pratilipi-writersacademy-video-page ul.video-carousel li {
+      max-width: 260px; } }
+  .pratilipi-writersacademy-video-page ul.video-carousel li {
+    list-style: none;
+    display: inline-block;
+    min-width: 100px;
+    box-sizing: border-box;
+    position: relative;
+    -webkit-flex-grow: 0;
+    -khtml-flex-grow: 0;
+    -moz-flex-grow: 0;
+    -ms-flex-grow: 0;
+    -o-flex-grow: 0;
+    flex-grow: 0;
+    -webkit-flex-shrink: 0;
+    -khtml-flex-shrink: 0;
+    -moz-flex-shrink: 0;
+    -ms-flex-shrink: 0;
+    -o-flex-shrink: 0;
+    flex-shrink: 0;
+    -webkit-flex-basis: auto;
+    -khtml-flex-basis: auto;
+    -moz-flex-basis: auto;
+    -ms-flex-basis: auto;
+    -o-flex-basis: auto;
+    flex-basis: auto; }
+.pratilipi-writersacademy-video-page ul.video-carousel::-webkit-scrollbar {
+  display: none; }
