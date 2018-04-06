@@ -9682,9 +9682,7 @@ pratilipi-loading-state {
   overflow-x: auto;
   overflow-y: hidden;
   background: inherit;
-  box-sizing: border-box;
-  -ms-overflow-style: none;
-  overflow: -moz-scrollbars-none; }
+  box-sizing: border-box; }
   @media only screen and (max-width: 768px) {
     .pratilipi-recommendation-carousel ul.pratilipi-recommendation-carousel li {
       max-width: 260px; } }
