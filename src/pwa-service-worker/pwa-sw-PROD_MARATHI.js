@@ -4,7 +4,7 @@
 
 	var localFilesToCache = [
 		'.',
-		'pwa-stylesheets/css/style.css?080420181642',
+		'pwa-stylesheets/css/style.css?080420181643',
 		'pwa-images/404.svg',
 		'pwa-images/library-empty.svg',
 		'pwa-images/NewSprite_2.png',
@@ -29,7 +29,7 @@
 		'https://www.ptlp.co/resource-all/font/font-mr.css'
 	];
 
-	var STATIC_VERSION = "080420181642";
+	var STATIC_VERSION = "080420181643";
 	var DYNAMIC_VERSION = "7";
 	var staticCacheName = 'pratilipi-cache-static-' + STATIC_VERSION;
 	var dynamicCacheName = 'pratilipi-cache-dynamic-' + DYNAMIC_VERSION;
@@ -38,7 +38,7 @@
 	var apiPrefix = "https://marathi-mum.pratilipi.com";
 
 	/* Cache Keys */
-	var PWA_INDEX_HTML = "app-shell-080420181642.html";
+	var PWA_INDEX_HTML = "app-shell-080420181643.html";
 	var INIT_BANNER_LIST = "init-banner-list.json";
 	var TRENDING_SEARCH_KEYWORDS = "trending-search-keywords.json";
 
