@@ -10059,6 +10059,9 @@ a.pratilipi-pratilipi-card-v2 .summary {
       width: 50%; } }
 .pratilipi-writersacademy-collection-page .image-video-width {
   width: 100%; }
+.pratilipi-writersacademy-collection-page .video-video-width {
+  width: 100%;
+  height: 25vh; }
 .pratilipi-writersacademy-collection-page .collection {
   padding: 16px;
   min-height: unset !important;
@@ -10186,8 +10189,14 @@ a.pratilipi-pratilipi-card-v2 .summary {
   width: 100%; }
 .pratilipi-writersacademy-video-page .video-holder {
   width: 100%;
-  height: 450px;
+  height: 60vh;
   min-height: unset !important; }
+.pratilipi-writersacademy-video-page .previous-link {
+  float: left;
+  color: inherit; }
+.pratilipi-writersacademy-video-page .next-link {
+  float: right;
+  color: inherit; }
 .pratilipi-writersacademy-video-page .no-margin {
   margin: 0px; }
 .pratilipi-writersacademy-video-page .no-padding {
