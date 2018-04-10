@@ -10064,7 +10064,15 @@ a.pratilipi-pratilipi-card-v2 .summary {
   height: 30vh; }
 .pratilipi-writersacademy-collection-page .category-video-width {
   width: 100%;
-  height: 60vh; }
+  height: 450px; }
+  @media only screen and (max-width: 768px) {
+    .pratilipi-writersacademy-collection-page .category-video-width {
+      width: 100%;
+      height: 180px; } }
+  @media only screen and (min-width: 769px) and (max-width: 1024px) {
+    .pratilipi-writersacademy-collection-page .category-video-width {
+      width: 100%;
+      height: 432px; } }
 .pratilipi-writersacademy-collection-page .collection {
   padding: 16px;
   min-height: unset !important;
