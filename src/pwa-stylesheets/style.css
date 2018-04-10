@@ -10062,6 +10062,9 @@ a.pratilipi-pratilipi-card-v2 .summary {
 .pratilipi-writersacademy-collection-page .video-video-width {
   width: 100%;
   height: 25vh; }
+.pratilipi-writersacademy-collection-page .category-video-width {
+  width: 100%;
+  height: 60vh; }
 .pratilipi-writersacademy-collection-page .collection {
   padding: 16px;
   min-height: unset !important;
