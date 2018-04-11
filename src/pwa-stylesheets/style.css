@@ -10057,6 +10057,8 @@ a.pratilipi-pratilipi-card-v2 .summary {
   @media (min-width: 460px) {
     .pratilipi-writersacademy-collection-page .collection-info-variable-width {
       width: 50%; } }
+.pratilipi-writersacademy-collection-page .width100 {
+  width: 100%; }
 .pratilipi-writersacademy-collection-page .image-video-width {
   width: 100%; }
 .pratilipi-writersacademy-collection-page .video-video-width {
