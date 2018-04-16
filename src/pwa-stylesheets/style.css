@@ -9710,6 +9710,8 @@ pratilipi-loading-state {
     -ms-flex-basis: auto;
     -o-flex-basis: auto;
     flex-basis: auto; }
+  .pratilipi-recommendation-carousel ul.pratilipi-recommendation-carousel li:last-child {
+    border-right: 8px solid transparent; }
 .pratilipi-recommendation-carousel ul.pratilipi-recommendation-carousel::-webkit-scrollbar {
   display: none; }
 
@@ -10277,7 +10279,7 @@ a.pratilipi-pratilipi-card-v2 .summary {
       margin-top: 4px;
       display: inline-block; }
   .pratilipi-writersacademy-video-page ul.video-carousel li:last-child {
-    border-right: 8px solid white; }
+    border-right: 8px solid transparent; }
 .pratilipi-writersacademy-video-page ul.video-carousel::-webkit-scrollbar {
   display: none; }
 .pratilipi-writersacademy-video-page div.mdl-spinner-container {
