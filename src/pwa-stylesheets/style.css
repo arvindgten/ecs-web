@@ -81,7 +81,7 @@ body.bg-white {
 @media (max-width: 480px) {
   .mobile-card {
     margin: 0;
-    width: 100%; } }
+    width: 100% !important; } }
 
 .white-background {
   background-color: white; }
@@ -10090,24 +10090,22 @@ a.pratilipi-pratilipi-card-v2 .summary {
       left: 0;
       width: 100%;
       height: 100%; }
-  .pratilipi-videoseries-page .category-info-container {
+  .pratilipi-videoseries-page .videoseries-info-container {
     position: relative;
     box-sizing: border-box; }
-    .pratilipi-videoseries-page .category-info-container .category-info-media-container {
+    .pratilipi-videoseries-page .videoseries-info-container .videoseries-info-media-container {
       position: relative;
       box-sizing: border-box;
       width: 100%; }
-      .pratilipi-videoseries-page .category-info-container .category-info-media-container div.img-container {
+      .pratilipi-videoseries-page .videoseries-info-container .videoseries-info-media-container div.img-container {
         width: 100%; }
-        .pratilipi-videoseries-page .category-info-container .category-info-media-container div.img-container img {
+        .pratilipi-videoseries-page .videoseries-info-container .videoseries-info-media-container div.img-container img {
           width: 100%;
           height: auto; }
-    .pratilipi-videoseries-page .category-info-container .category-info-description-container {
+    .pratilipi-videoseries-page .videoseries-info-container .videoseries-info-description-container {
       padding: 16px;
       min-height: unset !important;
       margin: 0px; }
-      .pratilipi-videoseries-page .category-info-container .category-info-description-container .category-title {
-        padding-bottom: 8px; }
   .pratilipi-videoseries-page .latest-video-container .latest-video-inner-container {
     padding: 16px;
     min-height: unset !important;
@@ -10178,109 +10176,155 @@ a.pratilipi-pratilipi-card-v2 .summary {
     margin: 12px 0;
     background: transparent; }
 
-.pratilipi-writersacademy-video-page .video {
-  padding: 16px;
-  min-height: unset !important;
-  margin: 0px; }
-.pratilipi-writersacademy-video-page .title-padding {
-  padding-bottom: 8px; }
-.pratilipi-writersacademy-video-page .video-image-holder {
-  width: 100%; }
-.pratilipi-writersacademy-video-page .video-holder {
-  width: 100%;
-  height: 60vh;
-  min-height: unset !important; }
-.pratilipi-writersacademy-video-page .previous-link {
-  float: left;
-  color: inherit; }
-.pratilipi-writersacademy-video-page .next-link {
-  float: right;
-  color: inherit; }
-.pratilipi-writersacademy-video-page .no-margin {
-  margin: 0px; }
-.pratilipi-writersacademy-video-page .no-padding {
-  padding: 0px; }
-.pratilipi-writersacademy-video-page .image-video-width {
-  width: 100%; }
-.pratilipi-writersacademy-video-page ul.video-carousel {
-  -webkit-flex-flow: row;
-  -khtml-flex-flow: row;
-  -moz-flex-flow: row;
-  -ms-flex-flow: row;
-  -o-flex-flow: row;
-  flex-flow: row;
-  -webkit-flex-shrink: 0;
-  -khtml-flex-shrink: 0;
-  -moz-flex-shrink: 0;
-  -ms-flex-shrink: 0;
-  -o-flex-shrink: 0;
-  flex-shrink: 0;
-  -webkit-flex-wrap: nowrap;
-  -khtml-flex-wrap: nowrap;
-  -moz-flex-wrap: nowrap;
-  -ms-flex-wrap: nowrap;
-  -o-flex-wrap: nowrap;
-  flex-wrap: nowrap;
-  width: 100%;
-  position: relative;
-  padding: 0;
-  overflow-x: auto;
-  overflow-y: hidden;
-  background: inherit;
-  box-sizing: border-box;
-  margin-left: -8px;
-  margin-right: -8px;
-  width: calc(100% + 16px); }
-  @media only screen and (max-width: 768px) {
-    .pratilipi-writersacademy-video-page ul.video-carousel li {
-      max-width: 260px; } }
-  .pratilipi-writersacademy-video-page ul.video-carousel li {
-    list-style: none;
-    display: inline-block;
-    min-width: 100px;
-    box-sizing: border-box;
+.pratilipi-video-page {
+  background: #ffffff; }
+  .pratilipi-video-page .title-padding {
+    padding-bottom: 8px; }
+  .pratilipi-video-page div.iframe-container {
+    /* 16:9 */
+    height: 0;
+    padding-bottom: 56.25%;
+    /* 9/16 * 100 */
+    position: relative; }
+    .pratilipi-video-page div.iframe-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%; }
+  .pratilipi-video-page .video-info-container {
     position: relative;
-    -webkit-flex-grow: 0;
-    -khtml-flex-grow: 0;
-    -moz-flex-grow: 0;
-    -ms-flex-grow: 0;
-    -o-flex-grow: 0;
-    flex-grow: 0;
+    box-sizing: border-box; }
+    .pratilipi-video-page .video-info-container .video-info-media-container {
+      position: relative;
+      box-sizing: border-box;
+      width: 100%; }
+    .pratilipi-video-page .video-info-container .video-info-description-container {
+      padding: 16px;
+      min-height: unset !important;
+      margin: 0px; }
+      .pratilipi-video-page .video-info-container .video-info-description-container .previous-next-link-container {
+        -webkit-display: flex;
+        -khtml-display: flex;
+        -moz-display: flex;
+        -ms-display: flex;
+        -o-display: flex;
+        display: flex;
+        -webkit-flex: 1;
+        -khtml-flex: 1;
+        -moz-flex: 1;
+        -ms-flex: 1;
+        -o-flex: 1;
+        flex: 1;
+        -webkit-flex-flow: row;
+        -khtml-flex-flow: row;
+        -moz-flex-flow: row;
+        -ms-flex-flow: row;
+        -o-flex-flow: row;
+        flex-flow: row;
+        padding: 12px 0; }
+        .pratilipi-video-page .video-info-container .video-info-description-container .previous-next-link-container a.previous-link, .pratilipi-video-page .video-info-container .video-info-description-container .previous-next-link-container a.next-link {
+          color: #d0021b;
+          text-decoration: none; }
+        .pratilipi-video-page .video-info-container .video-info-description-container .previous-next-link-container a.previous-link {
+          margin-right: auto; }
+        .pratilipi-video-page .video-info-container .video-info-description-container .previous-next-link-container a.next-link {
+          margin-left: auto; }
+  .pratilipi-video-page .other-video-container {
+    padding: 16px;
+    min-height: unset !important;
+    margin: 0px; }
+  .pratilipi-video-page ul.pratilipi-video-carousel {
+    -webkit-flex-flow: row;
+    -khtml-flex-flow: row;
+    -moz-flex-flow: row;
+    -ms-flex-flow: row;
+    -o-flex-flow: row;
+    flex-flow: row;
     -webkit-flex-shrink: 0;
     -khtml-flex-shrink: 0;
     -moz-flex-shrink: 0;
     -ms-flex-shrink: 0;
     -o-flex-shrink: 0;
     flex-shrink: 0;
-    -webkit-flex-basis: auto;
-    -khtml-flex-basis: auto;
-    -moz-flex-basis: auto;
-    -ms-flex-basis: auto;
-    -o-flex-basis: auto;
-    flex-basis: auto; }
-    .pratilipi-writersacademy-video-page ul.video-carousel li a.video-title {
-      color: inherit;
-      margin-top: 4px;
-      display: inline-block; }
-  .pratilipi-writersacademy-video-page ul.video-carousel li:last-child {
-    border-right: 8px solid transparent; }
-.pratilipi-writersacademy-video-page ul.video-carousel::-webkit-scrollbar {
-  display: none; }
-.pratilipi-writersacademy-video-page div.mdl-spinner-container {
-  -webkit-display: flex;
-  -khtml-display: flex;
-  -moz-display: flex;
-  -ms-display: flex;
-  -o-display: flex;
-  display: flex;
-  -webkit-justify-content: center;
-  -khtml-justify-content: center;
-  -moz-justify-content: center;
-  -ms-justify-content: center;
-  -o-justify-content: center;
-  justify-content: center;
-  margin: 12px 0;
-  background: #ffffff; }
+    -webkit-flex-wrap: nowrap;
+    -khtml-flex-wrap: nowrap;
+    -moz-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    -o-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    width: 100%;
+    position: relative;
+    padding: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    background: inherit;
+    box-sizing: border-box;
+    margin-left: -8px;
+    margin-right: -8px;
+    width: calc(100% + 14px); }
+    @media only screen and (max-width: 768px) {
+      .pratilipi-video-page ul.pratilipi-video-carousel li.pratilipi-video-card {
+        max-width: 260px; } }
+    .pratilipi-video-page ul.pratilipi-video-carousel li.pratilipi-video-card:last-child {
+      border-right: 8px solid transparent; }
+    .pratilipi-video-page ul.pratilipi-video-carousel li.pratilipi-video-card {
+      list-style: none;
+      display: inline-block;
+      min-width: 100px;
+      box-sizing: border-box;
+      position: relative;
+      -webkit-flex-grow: 0;
+      -khtml-flex-grow: 0;
+      -moz-flex-grow: 0;
+      -ms-flex-grow: 0;
+      -o-flex-grow: 0;
+      flex-grow: 0;
+      -webkit-flex-shrink: 0;
+      -khtml-flex-shrink: 0;
+      -moz-flex-shrink: 0;
+      -ms-flex-shrink: 0;
+      -o-flex-shrink: 0;
+      flex-shrink: 0;
+      -webkit-flex-basis: auto;
+      -khtml-flex-basis: auto;
+      -moz-flex-basis: auto;
+      -ms-flex-basis: auto;
+      -o-flex-basis: auto;
+      flex-basis: auto; }
+      .pratilipi-video-page ul.pratilipi-video-carousel li.pratilipi-video-card div.video-card {
+        padding-bottom: 40px; }
+        .pratilipi-video-page ul.pratilipi-video-carousel li.pratilipi-video-card div.video-card a.reco-container {
+          display: block;
+          height: 250px;
+          position: relative;
+          box-sizing: border-box; }
+        .pratilipi-video-page ul.pratilipi-video-carousel li.pratilipi-video-card div.video-card .pratilipi-title {
+          position: absolute;
+          padding: 10px 0;
+          box-sizing: border-box;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          width: 100%;
+          max-width: 100%;
+          white-space: nowrap; }
+  .pratilipi-video-page ul.pratilipi-video-carousel::-webkit-scrollbar {
+    display: none; }
+  .pratilipi-video-page div.mdl-spinner-container {
+    -webkit-display: flex;
+    -khtml-display: flex;
+    -moz-display: flex;
+    -ms-display: flex;
+    -o-display: flex;
+    display: flex;
+    -webkit-justify-content: center;
+    -khtml-justify-content: center;
+    -moz-justify-content: center;
+    -ms-justify-content: center;
+    -o-justify-content: center;
+    justify-content: center;
+    margin: 12px 0;
+    background: #ffffff; }
 
 .pratilipi-video-carousel ul.video-carousel {
   -webkit-flex-flow: row;
