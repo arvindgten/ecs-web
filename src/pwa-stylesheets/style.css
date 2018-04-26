@@ -10149,11 +10149,18 @@ a.pratilipi-pratilipi-card-v2 .summary {
       margin-left: -4px;
       margin-right: -4px; }
     .pratilipi-videoseries-page .all-videos-container .all-videos-inner-container .video-card {
-      background: transparent; }
+      background: transparent;
+      margin: 8px; }
     .pratilipi-videoseries-page .all-videos-container .all-videos-inner-container .video-card-inner-container {
       position: relative; }
       .pratilipi-videoseries-page .all-videos-container .all-videos-inner-container .video-card-inner-container .media-container {
         margin-bottom: 8px; }
+        .pratilipi-videoseries-page .all-videos-container .all-videos-inner-container .video-card-inner-container .media-container a.reco-container {
+          display: block;
+          padding-bottom: 56.25%;
+          /* 9/16 * 100 */
+          position: relative;
+          box-sizing: border-box; }
         .pratilipi-videoseries-page .all-videos-container .all-videos-inner-container .video-card-inner-container .media-container img {
           width: 100%;
           height: auto; }
