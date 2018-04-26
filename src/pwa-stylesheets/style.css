@@ -10296,7 +10296,8 @@ a.pratilipi-pratilipi-card-v2 .summary {
         padding-bottom: 40px; }
         .pratilipi-video-page ul.pratilipi-video-carousel li.pratilipi-video-card div.video-card a.reco-container {
           display: block;
-          height: 250px;
+          padding-bottom: 56.25%;
+          /* 9/16 * 100 */
           position: relative;
           box-sizing: border-box; }
         .pratilipi-video-page ul.pratilipi-video-carousel li.pratilipi-video-card div.video-card .pratilipi-title {
