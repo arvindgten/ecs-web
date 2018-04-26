@@ -10271,7 +10271,6 @@ a.pratilipi-pratilipi-card-v2 .summary {
     .pratilipi-video-page ul.pratilipi-video-carousel li.pratilipi-video-card {
       list-style: none;
       display: inline-block;
-      min-width: 100px;
       box-sizing: border-box;
       position: relative;
       -webkit-flex-grow: 0;
