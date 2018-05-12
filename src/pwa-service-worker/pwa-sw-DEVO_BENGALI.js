@@ -4,7 +4,7 @@
 
 	var localFilesToCache = [
 		'.',
-		'pwa-stylesheets/css/style.css?100520181652',
+		'pwa-stylesheets/css/style.css?120520181550',
 		'pwa-images/404.svg',
 		'pwa-images/library-empty.svg',
 		'pwa-images/NewSprite_2.png',
@@ -29,7 +29,7 @@
 		'https://www.ptlp.co/resource-all/font/font-bn.css'
 	];
 
-	var STATIC_VERSION = "100520181652";
+	var STATIC_VERSION = "120520181550";
 	var DYNAMIC_VERSION = "7";
 	var staticCacheName = 'pratilipi-cache-static-' + STATIC_VERSION;
 	var dynamicCacheName = 'pratilipi-cache-dynamic-' + DYNAMIC_VERSION;
@@ -38,7 +38,7 @@
 	var apiPrefix = "https://bengali-devo.ptlp.co";
 
 	/* Cache Keys */
-	var PWA_INDEX_HTML = "app-shell-100520181652.html";
+	var PWA_INDEX_HTML = "app-shell-120520181550.html";
 	var INIT_BANNER_LIST = "init-banner-list.json";
 	var TRENDING_SEARCH_KEYWORDS = "trending-search-keywords.json";
 
@@ -171,13 +171,22 @@
 	});
 
 	self.addEventListener( 'push', function(event) {
-		const title = 'Test Title';
-		const options = {
-			body: 'Test body....'
-		};
 
-		const notificationPromise = self.registration.showNotification(title, options);
-		event.waitUntil( notificationPromise );
+		// Implementation => Only for marketing notifications.
+		var pratilipi = event.data.json();
+
+		if( pratilipi ) {
+			var title = pratilipi.displayTitle,
+				options = {
+					// badge: pratilipi.coverImageUrl,
+					body: pratilipi.summary,
+					// icon: pratilipi.coverImageUrl, 
+					// image: pratilipi.coverImageUrl,
+					data: pratilipi // on notificationclick event
+				};
+			var notificationPromise = self.registration.showNotification(title, options);
+			event.waitUntil( notificationPromise );
+		}
 
 	});
 
@@ -185,7 +194,7 @@
 	self.addEventListener( 'notificationclick', function(event) {
 		event.notification.close();
 		event.waitUntil(
-			clients.openWindow('https://www.pratilipi.com')
+			clients.openWindow(event.notification.data.readPageUrl)
 		);
 	});
 
