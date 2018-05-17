@@ -9481,36 +9481,46 @@ pratilipi-loading-state {
     @media only screen and (max-width: 808px) {
       .pratilipi-search-page .pratilipi-search-header div.header {
         padding: 6px 4px; } }
-    .pratilipi-search-page .pratilipi-search-header div.header button.search-button {
-      position: absolute;
-      right: 2px;
-      top: 12px;
-      background: transparent;
-      border: none;
-      color: #444; }
-    .pratilipi-search-page .pratilipi-search-header div.header span.search-loading-spinner {
-      position: absolute;
-      right: 12px;
-      top: 18px;
-      width: 16px;
-      height: 16px; }
-      .pratilipi-search-page .pratilipi-search-header div.header span.search-loading-spinner .mdl-spinner__circle {
-        border-width: 2px; }
-    .pratilipi-search-page .pratilipi-search-header div.header button.exit-search-button {
+    .pratilipi-search-page .pratilipi-search-header div.header div.back-button-holder {
       position: relative;
       margin-right: 6px; }
-    .pratilipi-search-page .pratilipi-search-header div.header input[type="text"] {
+    .pratilipi-search-page .pratilipi-search-header div.header div.search-input-holder {
       position: relative;
-      padding: 10px;
       margin: 0;
-      border: solid 1px #dcdcdc;
-      transition: border 0.2s;
-      outline: none;
-      flex-grow: 1;
-      font-size: 13px; }
-    .pratilipi-search-page .pratilipi-search-header div.header input[type="text"]:focus,
-    .pratilipi-search-page .pratilipi-search-header div.header input[type="text"].focus {
-      border: solid 1px #707070; }
+      flex-grow: 1; }
+      .pratilipi-search-page .pratilipi-search-header div.header div.search-input-holder input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        border: solid 1px #dcdcdc;
+        transition: border 0.2s;
+        outline: none;
+        font-size: 13px; }
+      .pratilipi-search-page .pratilipi-search-header div.header div.search-input-holder input[type="text"]:focus,
+      .pratilipi-search-page .pratilipi-search-header div.header div.search-input-holder input[type="text"].focus {
+        border: solid 1px #707070; }
+      .pratilipi-search-page .pratilipi-search-header div.header div.search-input-holder button.search-button {
+        position: absolute;
+        right: 2px;
+        top: 8px;
+        background: transparent;
+        border: none;
+        color: #444;
+        outline: none; }
+      .pratilipi-search-page .pratilipi-search-header div.header div.search-input-holder span.search-loading-spinner {
+        position: absolute;
+        right: 12px;
+        top: 12px;
+        width: 16px;
+        height: 16px; }
+        .pratilipi-search-page .pratilipi-search-header div.header div.search-input-holder span.search-loading-spinner .mdl-spinner__circle {
+          border-width: 2px; }
+    .pratilipi-search-page .pratilipi-search-header div.header div.voice-button-holder {
+      position: relative;
+      margin-left: 6px; }
+      .pratilipi-search-page .pratilipi-search-header div.header div.voice-button-holder button.voice-input-button.is-active {
+        color: #d0021b;
+        -webkit-animation: half-fade-show 1s infinite ease-in-out;
+        animation: half-fade-show 1s infinite ease-in-out; }
 .pratilipi-search-page div.body {
   background: white;
   margin-top: 60px;
@@ -9656,6 +9666,44 @@ pratilipi-loading-state {
     -ms-flex-flow: row;
     -o-flex-flow: row;
     flex-flow: row; }
+
+@-webkit-keyframes half-fade-show {
+  0% {
+    opacity: 0.5; }
+
+  20% {
+    opacity: 0.6; }
+
+  40% {
+    opacity: 0.8; }
+
+  60% {
+    opacity: 1; }
+
+  80% {
+    opacity: 0.8; }
+
+  100% {
+    opacity: 0.5; } }
+
+@keyframes half-fade-show {
+  0% {
+    opacity: 0.5; }
+
+  20% {
+    opacity: 0.6; }
+
+  40% {
+    opacity: 0.8; }
+
+  60% {
+    opacity: 1; }
+
+  80% {
+    opacity: 0.8; }
+
+  100% {
+    opacity: 0.5; } }
 
 .pratilipi-recommendation-carousel ul.pratilipi-recommendation-carousel {
   -webkit-flex-flow: row;
