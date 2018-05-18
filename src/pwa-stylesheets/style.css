@@ -9498,14 +9498,15 @@ pratilipi-loading-state {
       .pratilipi-search-page .pratilipi-search-header div.header div.search-input-holder input[type="text"]:focus,
       .pratilipi-search-page .pratilipi-search-header div.header div.search-input-holder input[type="text"].focus {
         border: solid 1px #707070; }
-      .pratilipi-search-page .pratilipi-search-header div.header div.search-input-holder button.search-button {
+      .pratilipi-search-page .pratilipi-search-header div.header div.search-input-holder button.search-button, .pratilipi-search-page .pratilipi-search-header div.header div.search-input-holder button.voice-input-button {
         position: absolute;
         right: 2px;
-        top: 8px;
+        top: 4px;
         background: transparent;
         border: none;
         color: #444;
-        outline: none; }
+        outline: none;
+        z-index: 999; }
       .pratilipi-search-page .pratilipi-search-header div.header div.search-input-holder span.search-loading-spinner {
         position: absolute;
         right: 12px;
@@ -9514,10 +9515,7 @@ pratilipi-loading-state {
         height: 16px; }
         .pratilipi-search-page .pratilipi-search-header div.header div.search-input-holder span.search-loading-spinner .mdl-spinner__circle {
           border-width: 2px; }
-    .pratilipi-search-page .pratilipi-search-header div.header div.voice-button-holder {
-      position: relative;
-      margin-left: 6px; }
-      .pratilipi-search-page .pratilipi-search-header div.header div.voice-button-holder button.voice-input-button.is-active {
+      .pratilipi-search-page .pratilipi-search-header div.header div.search-input-holder button.voice-input-button.is-active {
         color: #d0021b;
         -webkit-animation: half-fade-show 1s infinite ease-in-out;
         animation: half-fade-show 1s infinite ease-in-out; }
