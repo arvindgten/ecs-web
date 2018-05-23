@@ -1,0 +1,46 @@
+{
+	"gcm_sender_id": "659873510744",
+	"name": "ಪ್ರತಿಲಿಪಿ",
+	"short_name": "ಪ್ರತಿಲಿಪಿ",
+	"start_url": "/?homescreen=1",
+	"display": "standalone",
+	"orientation": "portrait",
+	"background_color": "#FFF",
+	"theme_color": "#D0021B",
+	"description": "ಕನ್ನಡ, ಹಿಂದಿ,ಗುಜರಾತಿ,ತಮಿಳು, ತೆಲುಗು, ಮಲಯಾಳಂ,ಮರಾಠಿ,ಬೆಂಗಾಲಿ ಕಥೆ, ಕವನ ಮತ್ತು ಪುಸ್ತಕಗಳನ್ನು ಓದಿರಿ.",
+	"lang": "kn",
+	"icons": [
+		{
+			"src": "http://public.pratilipi.com/pratilipi-logo/png/Logo-2C-RGB-32px.png",
+			"sizes": "32x32",
+			"type": "image/png"
+		},
+		{
+			"src": "http://public.pratilipi.com/pratilipi-logo/png/Logo-2C-RGB-80px.png",
+			"sizes": "80x80",
+			"type": "image/png"
+		},
+		{
+			"src": "http://public.pratilipi.com/pratilipi-logo/png/Logo-2C-RGB-144px.png",
+			"sizes": "144x144",
+			"type": "image/png"
+		},
+		{
+			"src": "http://public.pratilipi.com/pratilipi-logo/png/Logo-2C-RGB-192px.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "http://public.pratilipi.com/pratilipi-logo/png/Logo-2C-RGB-2000px.png",
+			"sizes": "2000x2000",
+			"type": "image/png"
+		}
+	],
+	"prefer_related_applications": true,
+	"related_applications": [
+		{
+			"platform": "play",
+			"id": "com.pratilipi.mobile.android"
+		}
+	]
+}
